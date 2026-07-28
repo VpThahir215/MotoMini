@@ -1,0 +1,87 @@
+import React from 'react'
+
+
+const categories = [
+  {
+    name: "Sport",
+    image:
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "Classic",
+    image:
+      "https://images.unsplash.com/photo-1517846693594-1567da72af75?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "MotoGP",
+    image:
+      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "Super",
+    image:
+      "https://images.unsplash.com/photo-1515777315835-281b94c9589f?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "Limited",
+    image:
+      "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "Adventure",
+    image:
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop",
+  },
+];
+
+export default function Categories() {
+    
+  return (
+    <div>
+        <section className="bg-black py-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Heading */}
+        <p className="text-center text- uppercase tracking-[0.35em] text-sm font-semibold">
+          Browse By Type
+        </p>
+
+        <h2 className="mt-4 text-center text-5xl lg:text-6xl font-extrabold text-[#D3AF37] uppercase">
+          Shop Categories
+        </h2>
+
+        {/* Grid */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((item) => (
+            <div
+              key={item.name}
+              className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer"
+            >
+              {/* Image */}
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/45 group-hover:bg-black/30 transition duration-500"></div>
+
+              {/* Text */}
+              <div className="absolute bottom-6 left-6">
+                <p className="text-white uppercase tracking-widest text-xs font-semibold">
+                  Collection
+                </p>
+
+                <h3 className="text-[#D3AF37] text-3xl font-bold mt-1">
+                  {item.name}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+      
+    </div>
+  )
+}
