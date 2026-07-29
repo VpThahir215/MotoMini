@@ -15,7 +15,7 @@ const categories = [
   {
     name: "MotoGP",
     image:
-      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop",
+      "https://i.pinimg.com/736x/e8/45/9f/e8459fe21d04fcbbccc87b296f796838.jpg",
   },
   {
     name: "Super",
@@ -30,7 +30,7 @@ const categories = [
   {
     name: "Adventure",
     image:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop",
+      "https://i.pinimg.com/736x/1d/65/9f/1d659f9afd74847a0e6937ab2adb5e81.jpg",
   },
 ];
 

@@ -12,10 +12,10 @@ const products = [
     badgeColor: "bg-orange-500",
     scale: "Scale 1:12",
     image:
-      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop",
-    title: "Himalayan 450 - Slate",
+      "https://i.pinimg.com/1200x/a1/94/27/a19427da0808e549f229b3a986d7bf84.jpg",
+    title: "BMW R nine T motorcycle",
     description:
-      "Die-cast zinc alloy · Hand-finished · Certificate of authenticity",
+      "These diecast are often sold by brands like CM Model ",
     price: "$149.99",
   },
   {
@@ -24,10 +24,10 @@ const products = [
     badgeColor: "bg-emerald-600",
     scale: "Scale 1:10",
     image:
-      "https://images.unsplash.com/photo-1529429617124-aee711a5ac1c?q=80&w=1200&auto=format&fit=crop",
-    title: "Classic Cruiser Edition",
+      "https://i.pinimg.com/736x/4b/a5/b3/4ba5b3abf0f57bb1c460a4f98c3988d8.jpg",
+    title: "Maisto 1:18 scale model",
     description:
-      "Die-cast zinc alloy · Hand-finished · Certificate of authenticity",
+      "This model features detailled diecast metal constrictions",
     price: "$189.99",
   },
   {
@@ -36,10 +36,10 @@ const products = [
     badgeColor: "bg-violet-600",
     scale: "Scale 1:18",
     image:
-      "https://images.unsplash.com/photo-1515777315835-281b94c9589f?q=80&w=1200&auto=format&fit=crop",
-    title: "MotoGP Replica - #46",
+      "https://i.pinimg.com/736x/59/78/7c/59787c3dc53a3cb039a434061b2e7a9a.jpg",
+    title: "1:18 scale red dirt bike ",
     description:
-      "Die-cast zinc alloy · Hand-finished · Certificate of authenticity",
+      "This features realistic details such as spoked wheels and a textured seat",
     price: "$229.99",
   },
 ];

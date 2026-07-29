@@ -15,11 +15,11 @@ const Footer = () => {
             MotoMini
           </h2>
 
-          <p className="mt-3 text-gray-400">
+          <p className="mt-3 text-[#D3AF37] ">
            Small Bikes. Endless Passion.
           </p>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-[#D3AF37] ">
             Premium Miniature Motorcycle Collection
           </p>
         </div>
@@ -66,7 +66,7 @@ const Footer = () => {
           </p>
 
           <p className="text-center text-sm text-gray-600 mt-2">
-            Built for Collectors ❤️
+            Built for Collectors 💛
           </p>
         </div>
 

@@ -1,1 +1,15 @@
-{}
+{
+    "products": [
+        {
+            "id":"1",
+             "brand":"X1 Spark L ",
+             "categories":"Advanture",
+             "image":"https://i.pinimg.com/1200x/7d/b9/43/7db943e92f9d34a3c66f465412908308.jpg",
+             "description":"Bring the power of the X1 Spark L to life with this detailed 3D printable STL model 🎨✨. Designed for collectors, hobbyists, and miniature bike enthusiasts, this electric dirt bike model"
+
+        }
+    ],
+  "users": [],
+  "orders": []
+
+}
