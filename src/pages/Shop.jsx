@@ -1,77 +1,76 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { getProducts } from '../services/productService'
-import SearchBar from '../component/product/SearchBar'
-import SortDropdown from '../component/product/SortDropdown'
-import FilterSidebar from '../component/product/FilterSidebar'
-import ProductCard from '../component/product/ProductCard'
-import ProductGrid from '../component/product/ProductGrid'
-import Pagination from '../component/product/Pagination'
-import { useDispatch } from 'react-redux'
-import { setProducts } from '../redux/slice/productSlice'
-import { setError, setLoading } from '../redux/slice/productSlice'
 
+
+
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { getProducts } from "../services/productService";
+import { setProducts, setLoading } from "../redux/slice/productSlice";
+
+import SearchBar from "../component/product/SearchBar";
+import FilterSidebar from "../component/product/FilterSidebar";
+import ProductGrid from "../component/product/ProductGrid";
+import Pagination from "../component/product/Pagination";
 
 function Shop() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
+  const [search, setSearch] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        dispatch(setLoading(true));
-        const data = await getProducts()
-        dispatch(setProducts(data))
-      }
+      dispatch(setLoading(true));
 
-      finally {
-        dispatch(setLoading(false))
-      }
+      const data = await getProducts();
 
+      dispatch(setProducts(data));
+      dispatch(setLoading(false));
+    };
 
-
-    }
-    fetchProducts()
-  }, [dispatch])
+    fetchProducts();
+  }, [dispatch]);
 
   return (
+    <section className="bg-black min-h-screen pt-28 pb-16">
 
-    <div>
+      <SearchBar
+        search={search}
+        setSearch={setSearch}
+      />
 
-      <section className="bg-black min-h-screen pt-28 pb-16">
-        <SearchBar />
+      <div className="max-w-7xl mx-auto px-6">
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-12 gap-6 mt-8">
 
+          <div className="col-span-3">
+            <FilterSidebar
+              selectedBrand={selectedBrand}
+              setSelectedBrand={setSelectedBrand}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          </div>
 
-
-
-
-          <div className="grid grid-cols-12 gap-6 mt-8">
-
-            <div className="col-span-3 ">
-              <FilterSidebar />
-            </div>
-
-            <div className="col-span-9">
-              <ProductGrid />
-            </div>
-
+          <div className="col-span-9">
+            <ProductGrid
+              search={search}
+              selectedBrand={selectedBrand}
+              selectedCategory={selectedCategory}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </div>
 
         </div>
 
-      </section>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={3}
-        onPageChange={setCurrentPage}
-      />
+      </div>
 
-
-    </div>
-  )
+    </section>
+  );
 }
 
-export default Shop
+export default Shop;

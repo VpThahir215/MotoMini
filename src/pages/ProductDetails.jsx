@@ -3,11 +3,52 @@ import ProductGallery from '../component/productDetails/ProductGallery'
 import ProductInfo from '../component/productDetails/ProductInfo'
 import { useParams } from 'react-router-dom'
 import { getOneProduct } from '../services/productService'
+import { useEffect } from 'react'
 
 function ProductDetails() {
 const {id} =useParams()
   console.log(id);
   const [product,setProduct]=useState(null)
+ const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+
+        const data = await getOneProduct(id);
+
+        setProduct(data);
+      } catch (error) {
+        console.error(error);
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <h1 className="text-white text-2xl">
+          Loading product...
+        </h1>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <h1 className="text-red-500 text-2xl">
+          Product not found.
+        </h1>
+      </div>
+    );
+  }
   
   return (
     <div>
@@ -17,9 +58,9 @@ const {id} =useParams()
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <ProductGallery id={id}/>
+          <ProductGallery product={product}/>
 
-          <ProductInfo id={id}/>
+          <ProductInfo product={product}/>
 
         </div>
 

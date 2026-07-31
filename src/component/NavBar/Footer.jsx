@@ -25,37 +25,37 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-8 mt-10 text-sm font-medium">
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             Home
           </a>
 
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             Shop
           </a>
 
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             About
           </a>
 
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             Contact
           </a>
         </div>
 
         <div className="flex justify-center gap-6 mt-10 text-2xl">
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             <FaInstagram />
           </a>
 
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             <FaFacebookF />
           </a>
 
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             <FaYoutube />
           </a>
 
-          <a href="#" className="hover:text-orange-500 duration-300">
+          <a href="#" className="hover:text-[#D3AF37] duration-300">
             <FaWhatsapp />
           </a>
         </div>

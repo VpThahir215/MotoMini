@@ -36,7 +36,7 @@ const features = [
 const  WhyChoose = () => {
   return (
     <div>
-       <section className="bg-[#0b0b0b] py-24 px-6">
+       <section className="bg-black py-24 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Heading */}
