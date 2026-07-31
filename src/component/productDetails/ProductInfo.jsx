@@ -3,15 +3,20 @@ import { FiStar } from 'react-icons/fi'
 import QuantitySelector from './QuantitySelector'
 import AddToCartButton from './ AddToCartButton'
 import BuyNowButton from './BuyNowButton'
+import { useSelector } from 'react-redux'
 
 
-const ProductInfo = () => {
+const ProductInfo = ({id}) => {
+   const products = useSelector((state) => state.product.products);
+   const product=products.find((item)=>item.id===Number(id));
+  console.log(product);
+  
   return (
     <div>
         <div className="text-white">
 
       <h1 className="text-4xl font-bold">
-        Kawasaki Ninja ZX-10R
+      
       </h1>
 
       <p className="text-[#D3AF37] mt-2">

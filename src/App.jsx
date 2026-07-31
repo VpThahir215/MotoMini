@@ -1,12 +1,21 @@
 import { useState } from 'react'
 import './App.css'
 import AppRoutes from './routes/AppRoutes'
-import UserLayout from './layouts/UserLayout'
-
+import { getProducts } from './services/productService'
+import { getOneProduct } from './services/productService'
+import { useEffect } from 'react'
 
 function App() {
 
-  const [count, setCount] = useState(0)
+  
+   useEffect(()=>{
+    const fetchOneProduct=async ()=>{
+      const productOne=await getOneProduct(1)
+      
+    }
+    fetchOneProduct()
+  },[])
+ 
 
   return (
     <>
