@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 import { PlusIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 
 const PANELS = [
@@ -9,7 +10,7 @@ const PANELS = [
         label: "Sport",
         image:
             "https://i.pinimg.com/736x/33/ce/03/33ce0301eb516f6aeae60b95e8cf543a.jpg",
-           
+
     },
     {
         label: "MotoGP",
@@ -64,8 +65,8 @@ const Hero = () => {
                         </motion.a>
                     ))}
                 </div>
-               
-            
+
+
 
 
                 <div className="absolute left-5 sm:left-8 top-24 sm:top-28 max-w-md">
@@ -75,23 +76,25 @@ const Hero = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.35 }}
                         className="font-heading text-6xl lg:text-8xl text-black-none tracking-wide"
-                   
+
                     >
-                     Collect <span style={{color:"#D3AF37"}}>Legendary</span> 
+                        Collect <span style={{ color: "#D3AF37" }}>Legendary</span>
                         <br />
-                      Miniature Motorcycles
-                        
+                        Miniature Motorcycles
+
                     </motion.h1>
                     <p className=" pt-4 text-[15px] tracking-[0.3em] max-w-lg text-gray-200">
                         Discover beautifully crafted miniature motorcycles inspired by the world's most iconic machines. Perfect for collectors and enthusiasts.
                     </p>
-                    <br/>
-           <button className="group flex items-center gap-2 border-2 bg-[#D3AF37] border-[#D3AF37] px-8 py-3 text-black  rounded-full hover:bg-[#D3AF37] hover:text-[#D3AF37] hover:border-black hover:bg-black transition-all duration-300">
-  <span>Explore Collection</span>
-  <span className="transition-transform duration-300 group-hover:translate-x-1">
-    →
-  </span>
-</button>
+                    <br />
+                    <Link to={'/shop'}>
+                        <button className="group flex items-center gap-2 border-2 bg-[#D3AF37] border-[#D3AF37] px-8 py-3 text-black  rounded-full hover:bg-[#D3AF37] hover:text-[#D3AF37] hover:border-black hover:bg-black transition-all duration-300">
+                            <span>Explore Collection</span>
+                            <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                →
+                            </span>
+                        </button>
+                    </Link>
                 </div>
             </section>
         </div>

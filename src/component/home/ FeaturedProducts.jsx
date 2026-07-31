@@ -1,5 +1,6 @@
 import React from 'react'
 import {ArrowRight} from 'lucide-react'
+import {CalendarDays,Clock3} from 'lucide-react'
 
 
 
@@ -50,19 +51,13 @@ const  FeaturedProducts = () => {
        <section className="bg-black py-24 px-6">
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
         <div className="flex items-center justify-between mb-14">
           <h2 className="text-5xl lg:text-6xl font-extrabold text-[#D3AF37] uppercase">
             Featured Products
           </h2>
 
-          <button className="hidden md:flex items-center gap-2 text-[#D3AF37] uppercase tracking-wider hover:text-white transition">
-            View All
-            <ArrowRight size={18} />
-          </button>
         </div>
 
-        {/* Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
           {products.map((product) => (
@@ -71,7 +66,6 @@ const  FeaturedProducts = () => {
               className="bg-[#151515] rounded-3xl overflow-hidden border border-zinc-800 hover:border-[#D3AF37] transition-all duration-300 group"
             >
 
-              {/* Image */}
               <div className="relative overflow-hidden">
 
                 <img
@@ -80,21 +74,18 @@ const  FeaturedProducts = () => {
                   className="h-64 w-full object-cover group-hover:scale-105 transition duration-700"
                 />
 
-                {/* Badge */}
                 <span
                   className={`absolute left-4 top-4 px-3 py-1 rounded-md text-xs font-bold text-[#D3AF37] ${product.badgeColor}`}
                 >
                   {product.badge}
                 </span>
 
-                {/* Scale */}
                 <span className="absolute right-4 top-4 bg-black/60 text-[#D3AF37] text-xs px-3 py-1 rounded-md">
                   {product.scale}
                 </span>
 
               </div>
 
-              {/* Content */}
               <div className="p-6">
 
                 <h3 className="text-white text-3xl font-bold uppercase">
@@ -105,17 +96,27 @@ const  FeaturedProducts = () => {
                   {product.description}
                 </p>
 
-                <div className="mt-8 flex items-center justify-between">
+               <div className="mt-8 border-t border-[#D3AF37]/30 pt-5">
 
-                  <span className="text-[#D3AF37] text-4xl font-extrabold">
-                    {product.price}
-                  </span>
+  <div className="flex items-center gap-3 text-[#D3AF37]">
+    <CalendarDays size={20} />
+    <span className="uppercase font-bold tracking-wider">
+      Coming Soon
+    </span>
+  </div>
 
-                  <button className="bg-[#D3AF37] hover:bg-black transition px-6 py-3 rounded-xl text-white font-semibold">
-                    + CART
-                  </button>
+  <div className="mt-5 flex items-center gap-3 text-gray-300">
+    <Clock3 size={18} className="text-[#D3AF37]" />
+    <span className="text-base">
+      Expected Release:
+      <span className="ml-2 font-semibold text-[#D3AF37]">
+        2027
+      </span>
+    </span>
+  </div>
 
-                </div>
+
+</div>
 
               </div>
 
