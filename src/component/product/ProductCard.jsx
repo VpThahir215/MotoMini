@@ -1,6 +1,28 @@
-import {Link} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 const ProductCard = ({ product }) => {
+
+       const navigate=useNavigate()
+
+
+       const handleAddToCart = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user);
+    
+
+    if (!user) {
+      toast.error("Please login to add products to your cart.");
+      navigate("/login");
+     
+      return;
+    }
+
+    console.log("Add product to cart", product);
+
+    toast.success("Product added to cart!");
+  };
+  
   return (
     <div className="bg-[#161616] rounded-xl overflow-hidden border border-gray-800 hover:border-[#D3AF37] transition">
 
@@ -22,9 +44,12 @@ const ProductCard = ({ product }) => {
     </div>
   </Link>
 
-  <button className="mt-5 w-full border border-[#D3AF37] text-white py-2 rounded hover:bg-[#D3AF37] hover:text-black transition">
+  <button
+  onClick={handleAddToCart}
+  className="mt-5 w-full border border-[#D3AF37] text-white py-2 rounded hover:bg-[#D3AF37] hover:text-black transition">
     ADD TO CART
   </button>
+ 
 
 </div>
   );

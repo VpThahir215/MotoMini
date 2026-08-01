@@ -36,19 +36,7 @@ const SearchBar = ({ search, setSearch }) => {
             />
           </div>
 
-          <div className="flex items-center gap-3">
-            <span className="text-gray-400">Sort By:</span>
-
-            <div className="relative">
-              <select className="appearance-none rounded-lg border border-gray-800 bg-zinc-900 py-3 pl-4 pr-10 outline-none focus:border-[#D3AF37] ">
-                <option>Newest</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-              </select>
-
-              <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400" />
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>

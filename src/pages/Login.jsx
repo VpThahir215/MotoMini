@@ -1,4 +1,8 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
+import { getUsers } from "../services/userService";
+import toast from "react-hot-toast";
+import { useState } from "react";
 import {
   FiMail,
   FiLock,
@@ -6,6 +10,41 @@ import {
 } from "react-icons/fi";
 
 const Login = () => {
+  const navigate=useNavigate()
+  const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+
+async function handleLogin(e) {
+  e.preventDefault();
+
+  if (!email || !password) {
+    toast.error("Please enter email and password.");
+    return;
+  }
+
+  try {
+    const users = await getUsers();
+
+    const user = users.find(
+      (u) =>
+        u.email === email &&
+        u.password === password
+    );
+
+    if (!user) {
+      toast.error("Invalid Email or Password");
+      return;
+    }
+localStorage.setItem("user", JSON.stringify(user));
+    toast.success(`Hy ${user.name}! Welcome back to Moto Mini.`);
+    navigate('/')
+
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+}
+
   return (
     <section className="w-full h-screen flex overflow-hidden bg-black">
 
@@ -43,6 +82,7 @@ const Login = () => {
 
               <input
                 type="email"
+                onChange={(e)=>setEmail(e.target.value)}
                 placeholder="Email Address"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
               />
@@ -53,34 +93,18 @@ const Login = () => {
 
               <input
                 type="password"
+                 onChange={(e)=>setPassword(e.target.value)}
                 placeholder="Password"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
               />
             </div>
 
-            {/* Remember & Forgot */}
-            <div className="flex justify-between items-center text-sm">
-
-              <label className="flex items-center gap-2 text-gray-400 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="accent-[#D3AF37]"
-                />
-                Remember Me
-              </label>
-
-              <button
-                type="button"
-                className="text-[#D3AF37] hover:underline"
-              >
-                Forgot Password?
-              </button>
-
-            </div>
+            
 
             {/* Button */}
             <button
               type="submit"
+              onClick={handleLogin}
               className="w-full bg-[#D3AF37] hover:bg-yellow-400 transition py-4 rounded-xl font-bold text-black flex justify-center items-center gap-3"
             >
               Login
@@ -89,7 +113,7 @@ const Login = () => {
 
             <p className="text-center text-gray-400">
               Don't have an account?{" "}
-              <span className="text-[#D3AF37] cursor-pointer hover:underline">
+              <span onClick={()=>navigate('/register')} className="text-[#D3AF37] cursor-pointer hover:underline">
                 Sign Up
               </span>
             </p>

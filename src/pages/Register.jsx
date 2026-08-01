@@ -1,4 +1,8 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
+import { useState } from "react";
+import { registerUser } from "../services/userService";
+import toast from "react-hot-toast";
 import {
   FiUser,
   FiMail,
@@ -7,6 +11,56 @@ import {
 } from "react-icons/fi";
 
 const Register = () => {
+  const navigate=useNavigate()
+    let [name,setName]=useState("")
+      let [email,setEmail]=useState("")
+        let [password,setPassword]=useState("")
+        let [confirmPassword, setConfirmPassword] = useState("");
+
+
+          function ErrorHandle(e) {
+  e.preventDefault();
+
+  if (name === "") {
+    toast.error("Name is required");
+    return;
+  }
+
+  if (email === "") {
+    toast.error("Enter a valid email");
+    return;
+  }
+
+  if (password === "") {
+    toast.error("Password is required");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    toast.error("Passwords do not match");
+    return;
+  }
+
+  saveUser();
+}
+async function saveUser() {
+  try {
+    const newUser = {
+      name: name,
+      email: email,
+      password: confirmPassword,
+    };
+
+    await registerUser(newUser);
+      alert("Registration successful! Welcome to MotoMini.")
+  //  toast.success("Registration successful! Welcome to MotoMini.")
+    navigate("/login"); 
+  } catch (error) {
+  //  toast.error("Unable to create your MotoMini account. Please try again.")
+  alert("Unable to create your MotoMini account. Please try again.")
+    console.error(error);
+  }
+}
   return (
     <section className="w-full h-screen flex overflow-hidden bg-black">
 
@@ -42,15 +96,16 @@ const Register = () => {
             <div className="relative">
               <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
               <input
+              onChange={(e)=>setName(e.target.value)}
                 type="text"
                 placeholder="Full Name"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
               />
             </div>
-
             <div className="relative">
               <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
               <input
+                onChange={(e)=>setEmail(e.target.value)}
                 type="email"
                 placeholder="Email Address"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
@@ -60,6 +115,7 @@ const Register = () => {
             <div className="relative">
               <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
               <input
+                onChange={(e)=>setPassword(e.target.value)}
                 type="password"
                 placeholder="Password"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
@@ -69,6 +125,7 @@ const Register = () => {
             <div className="relative">
               <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
               <input
+                onChange={(e)=>setConfirmPassword(e.target.value)}
                 type="password"
                 placeholder="Confirm Password"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
@@ -77,6 +134,7 @@ const Register = () => {
 
             <button
               type="submit"
+              onClick={ErrorHandle}
               className="w-full bg-[#D3AF37] hover:bg-yellow-400 transition py-4 rounded-xl font-bold text-black flex justify-center items-center gap-3"
             >
               Sign Up
@@ -85,7 +143,7 @@ const Register = () => {
 
             <p className="text-center text-gray-400">
               Already have an account?{" "}
-              <span className="text-[#D3AF37] cursor-pointer hover:underline">
+              <span onClick={()=>navigate('/login')} className="text-[#D3AF37] cursor-pointer hover:underline ">
                 Sign In
               </span>
             </p>

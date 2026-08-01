@@ -12,6 +12,8 @@ import Register from '../pages/Register'
 import Shop from '../pages/Shop'
 import UserLayout from '../layouts/UserLayout'
 import AuthLayout from '../layouts/AuthLayout'
+import UserProfile from '../pages/UserProfile'
+import WishList from '../pages/WishList'
 
 const AppRoutes = () => {
     const navigate = useNavigate()
@@ -22,20 +24,22 @@ const AppRoutes = () => {
                     <Route index element={<Home />} />
                     <Route path='/checkout' element={<Checkout />} />
                     <Route path='/cart' element={<Cart />} />
-                    
-                  
+
+
                     <Route path='/order' element={<Order />} />
                     <Route path='/productDetails/:id' element={<ProductDetails />} />
-                   
+
+                    <Route path="/profile" element={<UserProfile />} />
+             <Route path="/wishlist" element={<WishList />} />
                     <Route path='/shop' element={<Shop />} />
 
                 </Route>
-                <Route element={<AuthLayout/>}>
-                 <Route path='/login' element={<Login />} />
-                  <Route path='/register' element={<Register />} />
+                <Route element={<AuthLayout />}>
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/register' element={<Register />} />
 
                 </Route>
-                    <Route path='*' element={<NotFound />} />
+                <Route path='*' element={<NotFound />} />
 
             </Routes>
         </div>
