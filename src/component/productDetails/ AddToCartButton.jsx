@@ -11,6 +11,8 @@ const AddToCartButton = ({ product }) => {
   const navigate = useNavigate();
 
     const user = JSON.parse(localStorage.getItem("user"));
+  
+    
 
   const handleAddToCart = async () => {
     console.log("button clicked");
@@ -23,7 +25,10 @@ const AddToCartButton = ({ product }) => {
     }
 
     try {
-      const existingItem = await getCartItem(product.id);
+      const existingItem = await getCartItem(
+product.id,
+  user.id
+);
       console.log("product id to existingItem");
       
 
@@ -41,6 +46,7 @@ const AddToCartButton = ({ product }) => {
           console.log("incrase quandity");
       } else {
         await addCartItem({
+            userId: user.id,
           productId: product.id,
           name: product.name,
           brand: product.brand,

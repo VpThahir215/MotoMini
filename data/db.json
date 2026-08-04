@@ -319,10 +319,329 @@
       "email": "felix@gmail.com",
       "password": "123",
       "id": "bMzha_N"
+    },
+    {
+      "name": "Siraj",
+      "email": "siraj@gmail.com",
+      "password": "123",
+      "id": "C96q6Us"
+    },
+    {
+      "name": "masoor",
+      "email": "mansoor@gmail.com",
+      "password": "123",
+      "id": "9cMSTTU"
+    },
+    {
+      "name": "mansoor",
+      "email": "opmmansoor@gmail.com",
+      "password": "1234",
+      "id": "FEmxUg5"
+    },
+    {
+      "name": "afla ",
+      "email": "afla@gmail.com",
+      "password": "afla123",
+      "id": "j2p8Ag3"
+    },
+    {
+      "name": "rizal",
+      "email": "rizal@gmail.com",
+      "password": "7777777",
+      "id": "tdttzch"
     }
   ],
-  "cart": [],
-  "wishlist": [],
-  "orders": [],
+  "cart": [
+    {
+      "productId": "2",
+      "name": "Himalayan 450 Hanle Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 3552.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+      "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "productId": "1",
+      "name": "Himalayan 450 Kamet White",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 2557.99,
+      "stock": 16,
+      "image": "https://i.pinimg.com/736x/4e/c0/ca/4ec0caa811ffbe0e4527a649bc8b7d69.jpg",
+      "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance.",
+      "quantity": 4,
+      "id": 2
+    },
+    {
+      "userId": "XwSkyn9vZVE",
+      "productId": "2",
+      "name": "Himalayan 450 Hanle Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 3552.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+      "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+      "quantity": 4,
+      "id": 3
+    },
+    {
+      "userId": "FEmxUg5",
+      "productId": "6",
+      "name": "BMW S 1000 RR",
+      "brand": "BMW Motorrad",
+      "category": "Super Bike",
+      "price": 1772.99,
+      "stock": 8,
+      "image": "https://i.pinimg.com/736x/08/96/95/08969534b1a4907fa564bd8175f09f1d.jpg",
+      "description": "A premium miniature replica of the BMW S 1000 RR, showcasing aggressive styling, aerodynamic fairings, and authentic detailing. Crafted for collectors and superbike enthusiasts seeking a high-quality display model.",
+      "quantity": 1,
+      "id": 5
+    },
+    {
+      "userId": "FEmxUg5",
+      "productId": "7",
+      "name": "Honda CBR1000RR-R ",
+      "brand": "Honda",
+      "category": "Sport Bike",
+      "price": 1667.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/736x/56/5d/e3/565de31571fadb045993ebda876ff8f0.jpg",
+      "description": "A finely crafted miniature of the Honda CBR1000RR-R Fireblade SP featuring race-inspired styling, realistic fairings, and premium detailing. An ideal collectible for Honda fans and motorcycle enthusiasts.",
+      "quantity": 1,
+      "id": 6
+    },
+    {
+      "userId": "FEmxUg5",
+      "productId": "18",
+      "name": "Yamaha MT-09 SP",
+      "brand": "Yamaha",
+      "category": "Naked Bike",
+      "price": 1661.99,
+      "stock": 12,
+      "image": "https://i.pinimg.com/1200x/3f/32/1a/3f321a2c7bf78da542031401fce7d621.jpg",
+      "description": "A premium miniature replica of the Yamaha MT-09 SP, featuring its aggressive naked-bike styling, detailed engine components, and high-quality finish. Perfect for collectors and enthusiasts who appreciate Yamaha's performance-focused Hyper Naked series.",
+      "quantity": 1,
+      "id": 7
+    },
+    {
+      "userId": "j2p8Ag3",
+      "productId": "1",
+      "name": "Himalayan 450 Kamet White",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 2557.99,
+      "stock": 16,
+      "image": "https://i.pinimg.com/736x/4e/c0/ca/4ec0caa811ffbe0e4527a649bc8b7d69.jpg",
+      "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance.",
+      "quantity": 1,
+      "id": 8
+    }
+  ],
+  "wishlist": [
+    {
+      "userId": "XwSkyn9vZVE",
+      "productId": "1",
+      "name": "Himalayan 450 Kamet White",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 2557.99,
+      "stock": 16,
+      "image": "https://i.pinimg.com/736x/4e/c0/ca/4ec0caa811ffbe0e4527a649bc8b7d69.jpg",
+      "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance.",
+      "id": 1
+    },
+    {
+      "userId": "FEmxUg5",
+      "productId": "18",
+      "name": "Yamaha MT-09 SP",
+      "brand": "Yamaha",
+      "category": "Naked Bike",
+      "price": 1661.99,
+      "stock": 12,
+      "image": "https://i.pinimg.com/1200x/3f/32/1a/3f321a2c7bf78da542031401fce7d621.jpg",
+      "description": "A premium miniature replica of the Yamaha MT-09 SP, featuring its aggressive naked-bike styling, detailed engine components, and high-quality finish. Perfect for collectors and enthusiasts who appreciate Yamaha's performance-focused Hyper Naked series.",
+      "id": 2
+    },
+    {
+      "userId": "FEmxUg5",
+      "productId": "5",
+      "name": "Ducati Panigale V4 S",
+      "brand": "Ducati",
+      "category": "Super Bike",
+      "price": 1669.99,
+      "stock": 10,
+      "image": "https://i.pinimg.com/736x/c7/cd/37/c7cd3786bdd61a19dbd159339ae77184.jpg",
+      "description": "A premium miniature replica of the Ducati Panigale V4 S, featuring aerodynamic styling, realistic bodywork, and precision detailing. Designed for collectors who appreciate iconic Italian superbikes.",
+      "id": 3
+    },
+    {
+      "userId": "j2p8Ag3",
+      "productId": "2",
+      "name": "Himalayan 450 Hanle Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 3552.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+      "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+      "id": 4
+    }
+  ],
+  "orders": [
+    {
+      "userId": "XwSkyn9vZVE",
+      "customer": {
+        "name": "THAHIR _",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9999999999",
+        "address": "Vadakkum parambil(H)",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "XwSkyn9vZVE",
+          "productId": "2",
+          "name": "Himalayan 450 Hanle Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 3552.99,
+          "stock": 14,
+          "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+          "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+          "quantity": 1,
+          "id": 3
+        }
+      ],
+      "subtotal": 3552.99,
+      "total": 3553,
+      "orderDate": "2026-08-04T05:35:56.917Z",
+      "status": "Pending",
+      "id": 1
+    },
+    {
+      "userId": "FEmxUg5",
+      "customer": {
+        "name": "mansoor",
+        "email": "opmansoor@gmail.com",
+        "phone": "8136808842",
+        "address": "op house",
+        "city": "pallikkal basar",
+        "state": "Kerala",
+        "pinCode": "673634",
+        "country": "india"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "FEmxUg5",
+          "productId": "6",
+          "name": "BMW S 1000 RR",
+          "brand": "BMW Motorrad",
+          "category": "Super Bike",
+          "price": 1772.99,
+          "stock": 8,
+          "image": "https://i.pinimg.com/736x/08/96/95/08969534b1a4907fa564bd8175f09f1d.jpg",
+          "description": "A premium miniature replica of the BMW S 1000 RR, showcasing aggressive styling, aerodynamic fairings, and authentic detailing. Crafted for collectors and superbike enthusiasts seeking a high-quality display model.",
+          "quantity": 2,
+          "id": 5
+        }
+      ],
+      "subtotal": 3545.98,
+      "total": 3546,
+      "orderDate": "2026-08-04T05:43:20.833Z",
+      "status": "Pending",
+      "id": 2
+    },
+    {
+      "userId": "j2p8Ag3",
+      "customer": {
+        "name": "afla",
+        "email": "afla@gmail.com",
+        "phone": "8888888888",
+        "address": "Vadakkum parambil(H)",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "77777",
+        "country": "india"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "j2p8Ag3",
+          "productId": "1",
+          "name": "Himalayan 450 Kamet White",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 2557.99,
+          "stock": 16,
+          "image": "https://i.pinimg.com/736x/4e/c0/ca/4ec0caa811ffbe0e4527a649bc8b7d69.jpg",
+          "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance.",
+          "quantity": 1,
+          "id": 8
+        }
+      ],
+      "subtotal": 2557.99,
+      "total": 2558,
+      "orderDate": "2026-08-04T05:48:41.197Z",
+      "status": "Pending",
+      "id": 3
+    },
+    {
+      "userId": "XwSkyn9vZVE",
+      "customer": {
+        "name": "THAHIR _",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9999999999",
+        "address": "Vadakkum parambil(H)",
+        "city": "madeera",
+        "state": "asdlkfn",
+        "pinCode": "7777",
+        "country": "india"
+      },
+      "paymentMethod": "bank",
+      "products": [
+        {
+          "userId": "XwSkyn9vZVE",
+          "productId": "2",
+          "name": "Himalayan 450 Hanle Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 3552.99,
+          "stock": 14,
+          "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+          "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+          "quantity": 4,
+          "id": 3
+        },
+        {
+          "userId": "XwSkyn9vZVE",
+          "productId": "3",
+          "name": "Himalayan 450  Mana Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 2773.99,
+          "stock": 9,
+          "image": "https://i.pinimg.com/736x/5b/78/ec/5b78ec6ef8e57ea9547ce6465240d7d6.jpg",
+          "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models.",
+          "quantity": 4,
+          "id": 4
+        }
+      ],
+      "subtotal": 25307.92,
+      "total": 25308,
+      "orderDate": "2026-08-04T05:52:39.651Z",
+      "status": "Pending",
+      "id": 4
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,15 +1,19 @@
 import api from "./api";
 export const getCart = async () => {
-  const response = await api.get("/cart");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const response = await api.get(`/cart?userId=${user.id}`);
+
   return response.data;
 };
 
 
-export const getCartItem = async (productId) => {
+export const getCartItem = async (productId,userId) => {
   const response = await api.get("/cart");
 
   return response.data.find(
-    (item) => item.productId === productId
+    (item) => item.productId === productId &&
+       item.userId === userId
   );
 };
 

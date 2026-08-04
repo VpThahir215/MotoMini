@@ -23,6 +23,8 @@ const ProductCard = ({ product }) => {
   const handleAddToCart = async () => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
+   
+      
 
       if (!user) {
         toast.error("Please login to add products to your cart.");
@@ -33,7 +35,10 @@ const ProductCard = ({ product }) => {
       // Redux (optional)
       // dispatch(addToCart(product));
 
-      const existingItem = await getCartItem(product.id);
+    const existingItem = await getCartItem(
+ product.id,
+  user.id
+);
 
       if (existingItem) {
         await updateCartItem(existingItem.id, {
@@ -42,6 +47,7 @@ const ProductCard = ({ product }) => {
         });
       } else {
         await addCartItem({
+          userId: user.id,
           productId: product.id,
           name: product.name,
           brand: product.brand,
@@ -64,20 +70,24 @@ const ProductCard = ({ product }) => {
   // ===========================
   // Wishlist
   // ===========================
- const handleWishlist = async (e) => {
+ const handleWishlist = async () => {
   console.log("called handleWishlist");
   
-  e.preventDefault();
+  event.preventDefault();
 
   const user = JSON.parse(localStorage.getItem("user"));
+
+  
 
   if (!user) {
     toast.error("Please login first.");
     navigate("/login");
     return;
   }
-
-  const existingItem = await getWishlistItem(product.id);
+  const existingItem = await getCartItem(
+  product.id,
+  user.id
+);
 console.log("add existingItem");
 
   if (existingItem) {
@@ -87,6 +97,7 @@ console.log("add existingItem");
 console.log( "befor add");
 
   await addWishlistItem({
+       userId: user.id,
     productId: product.id,
     name: product.name,
     brand: product.brand,

@@ -37,6 +37,8 @@ const WishList = () => {
 
   const handleAddToCart = async (item) => {
     const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user,"userrrrrrrrrr");
+    
 
     if (!user) {
       toast.error("Please login first.");
@@ -44,8 +46,10 @@ const WishList = () => {
       return;
     }
 
-    const existingItem = await getCartItem(item.productId);
-
+   const existingItem = await getCartItem(
+  item.productId,
+  user.id
+);
     if (existingItem) {
       await updateCartItem(existingItem.id, {
         ...existingItem,
@@ -53,6 +57,7 @@ const WishList = () => {
       });
     } else {
       await addCartItem({
+          userId: user.id,
         productId: item.productId,
         name: item.name,
         brand: item.brand,

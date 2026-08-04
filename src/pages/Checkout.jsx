@@ -102,7 +102,11 @@ const Checkout = () => {
     : items;
 
   // Create order object
+  const user=JSON.parse(localStorage.getItem("user"));
+  console.log(user.id,"idddusrrrr");
+  
   const order = {
+      userId: user.id,
     customer: formData,
     paymentMethod: payment,
     products: orderProducts,

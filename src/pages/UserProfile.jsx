@@ -7,33 +7,30 @@ const UserProfile = () => {
      const user = JSON.parse(localStorage.getItem("user"));
      const navigate=useNavigate()
 
-     const clearUserData = async () => {
-  try {
-    const [cart, wishlist, orders] = await Promise.all([
-      api.get("/cart"),
-      api.get("/wishlist"),
-      api.get("/orders"),
-    ]);
+//      const clearUserData = async () => {
+//   try {
+//     const [cart, wishlist, orders] = await Promise.all([
+//       api.get("/cart"),
+//       api.get("/wishlist"),
+//       api.get("/orders"),
+//     ]);
 
-    await Promise.all([
-      ...cart.data.map((item) => api.delete(`/cart/${item.id}`)),
-      ...wishlist.data.map((item) => api.delete(`/wishlist/${item.id}`)),
-      ...orders.data.map((item) => api.delete(`/orders/${item.id}`)),
-    ]);
-  } catch (error) {
-    console.log(error);
-  }
+//     await Promise.all([
+//       ...cart.data.map((item) => api.delete(`/cart/${item.id}`)),
+//       ...wishlist.data.map((item) => api.delete(`/wishlist/${item.id}`)),
+//       ...orders.data.map((item) => api.delete(`/orders/${item.id}`)),
+//     ]);
+//   } catch (error) {
+//     console.log(error);
+//   }
 
  
-};
- const handleLogout = async () => {
-  await clearUserData();
+// };
+//  const handleLogout = async () => {
+//   await clearUserData();
 
-  localStorage.removeItem("user");
-   toast.success("Logged out successfully");
-
-  navigate("/login");
-};  
+ 
+// };  
   return (
     <div>
       <section className="min-h-screen bg-black flex items-center justify-center px-6 py-20">
@@ -119,7 +116,12 @@ const UserProfile = () => {
           Explore Collection →
         </button>
         <button
-  onClick={()=>handleLogout()}
+  onClick={()=>{
+ localStorage.removeItem("user");
+   toast.success("Logged out successfully");
+
+  navigate("/login");
+  }}
   className="mt-4 w-full border border-red-500 text-red-500 py-4 font-bold uppercase hover:bg-red-500 hover:text-white transition"
 >
   Logout
