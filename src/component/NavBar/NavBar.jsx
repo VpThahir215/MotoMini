@@ -7,6 +7,7 @@ import {
 import {Link,useLocation} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
    const location = useLocation();
@@ -74,12 +75,14 @@ const [menuOpen, setMenuOpen] = useState(false);
           </button>
 
           <button
+          onClick={()=>navigate('/wishlist')}
             className="w-full text-left px-5 py-3 hover:bg-[#242424] text-white"
           >
             ❤ Wishlist
           </button>
 
           <button
+          onClick={()=>navigate('/order')}
             className="w-full text-left px-5 py-3 hover:bg-[#242424] text-white"
           >
             📦 Orders
@@ -122,43 +125,78 @@ const [menuOpen, setMenuOpen] = useState(false);
         </div>
 
         <div className="flex items-center gap-6">
-          <FiHeart
+         
+        {user ? (
+  <div className="flex items-center gap-4">
+     <FiHeart
+     
+          onClick={()=>navigate('/wishlist')}
              size={22}
   className={`cursor-pointer hover:text-[#D3AF37] ${
     isHome ? "text-black" : "text-white"
   }`}
           />
-         {user ? (
-  <div
-    onClick={() => navigate("/profile")}
-    className={`flex items-center gap-2 cursor-pointer hover:text-[#D3AF37] ${
-      isHome ? "text-black" : "text-white"
-    }`}
-  >
-    <FiUser size={22} />
-    <span className="font-medium">
-      {user.name.split(" ")[0]}
-    </span>
+    
+    {/* Profile */}
+    <div
+      onClick={() => navigate("/profile")}
+      className={`flex items-center gap-2 cursor-pointer hover:text-[#D3AF37] ${
+        isHome ? "text-black" : "text-white"
+      }`}
+    >
+      <FiUser size={22} />
+      <span className="font-medium">
+        {user.name.split(" ")[0]}
+      </span>
+    </div>
+
+    {/* Cart */}
+    <FiShoppingBag
+      onClick={() => navigate("/cart")}
+      size={22}
+      className={`cursor-pointer hover:text-[#D3AF37] ${
+        isHome ? "text-black" : "text-white"
+      }`}
+    />
   </div>
 ) : (
-  <FiUser
-    onClick={() => navigate("/login")}
-    size={22}
-    className={`cursor-pointer hover:text-[#D3AF37] ${
-      isHome ? "text-black" : "text-white"
-    }`}
-  />
+  <>
+    {/* Login */}
+    <FiUser
+      onClick={() =>{
+          toast.error("Please login to add products to your cart.");
+        navigate("/login")}}
+      size={22}
+      className={`cursor-pointer hover:text-[#D3AF37] ${
+        isHome ? "text-black" : "text-white"
+      }`}
+    />
+
+    {/* Cart */}
+    <FiShoppingBag
+      onClick={() => {
+          toast.error("Please login to add products to your cart.");
+        navigate("/login")}}
+      size={22}
+      className={`cursor-pointer hover:text-[#D3AF37] ${
+        isHome ? "text-black" : "text-white"
+      }`}
+    />
+     <FiHeart
+          onClick={()=>{
+              toast.error("Please login to add products to your cart.");
+            navigate('/login')}}
+             size={22}
+  className={`cursor-pointer hover:text-[#D3AF37] ${
+    isHome ? "text-black" : "text-white"
+  }`}
+          />
+  </>
 )}
 
           
 
-         <FiShoppingBag
-         onClick={()=>navigate('/shop')}
-  size={22}
-  className={`cursor-pointer hover:text-[#D3AF37] ${
-    isHome ? "text-black" : "text-white"
-  }`}
-/>
+     
         </div>
 
       </div>

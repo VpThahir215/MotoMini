@@ -1,36 +1,77 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import {
+  addCartItem,
+  getCartItem,
+  updateCartItem,
+} from "../../services/cartServices";
 
-const  AddToCartButton = () => {
-  const navigate=useNavigate()
+const AddToCartButton = ({ product }) => {
+  const navigate = useNavigate();
 
-       const handleAddToCart = () => {
-        console.log("clicked");
-        
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
+
+  const handleAddToCart = async () => {
+    console.log("button clicked");
     
 
     if (!user) {
       toast.error("Please login to add products to your cart.");
       navigate("/login");
-     
       return;
     }
 
+    try {
+      const existingItem = await getCartItem(product.id);
+      console.log("product id to existingItem");
+      
 
-    toast.success("Product added to cart!");
+      if (existingItem) {
+      
+        
+        await updateCartItem(existingItem.id, {
+          ...existingItem,
+          quantity: existingItem.quantity + 1,
+          
+    
+        
+          
+        });
+          console.log("incrase quandity");
+      } else {
+        await addCartItem({
+          productId: product.id,
+          name: product.name,
+          brand: product.brand,
+          category: product.category,
+          price: product.price,
+          stock: product.stock,
+          image: product.image,
+          description: product.description,
+          quantity: 1,
+        });
+      }
+      
+       toast.success("Product added to cart!");
+console.log('added to json');
+
+     
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong.");
+    }
   };
-  return (
-    <div>
- <button 
- onClick={handleAddToCart}
- className="w-full bg-[#D3AF37] text-black font-semibold py-3 rounded-lg mt-6 hover:opacity-90 transition">
-      Add To Cart
-    </button>      
-    </div>
-  )
-}
 
-export default  AddToCartButton
+  return (
+    <button
+      type="button"
+      onClick={handleAddToCart}
+      className="w-full bg-[#D3AF37] text-black font-semibold py-3 rounded-lg mt-6 hover:opacity-90 transition"
+    >
+      Add To Cart
+    </button>
+  );
+};
+
+export default AddToCartButton;

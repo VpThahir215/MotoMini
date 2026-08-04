@@ -295,8 +295,34 @@
       "email": "kmrwrafi@gmail.com",
       "password": "1234",
       "id": "rp2eoqdXmb8"
+    },
+    {
+      "name": "ronaldo",
+      "email": "vpthahir3062003@gmail.com",
+      "password": "123",
+      "id": "4y07lod"
+    },
+    {
+      "name": "vpthahir",
+      "email": "vpthahir3062003@gmail.com",
+      "password": "123",
+      "id": "0fA2Ibg"
+    },
+    {
+      "name": "felix",
+      "email": "vpthahir3062003@gmail.com",
+      "password": "123",
+      "id": "HnRZcH5"
+    },
+    {
+      "name": "felix",
+      "email": "felix@gmail.com",
+      "password": "123",
+      "id": "bMzha_N"
     }
   ],
+  "cart": [],
+  "wishlist": [],
   "orders": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

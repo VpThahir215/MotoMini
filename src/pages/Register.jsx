@@ -16,6 +16,9 @@ const Register = () => {
       let [email,setEmail]=useState("")
         let [password,setPassword]=useState("")
         let [confirmPassword, setConfirmPassword] = useState("");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+
 
 
           function ErrorHandle(e) {
@@ -26,10 +29,10 @@ const Register = () => {
     return;
   }
 
-  if (email === "") {
-    toast.error("Enter a valid email");
-    return;
-  }
+ if (!emailRegex.test(email)) {
+  toast.error("Please enter a valid email address.");
+  return;
+}
 
   if (password === "") {
     toast.error("Password is required");
@@ -52,12 +55,12 @@ async function saveUser() {
     };
 
     await registerUser(newUser);
-      alert("Registration successful! Welcome to MotoMini.")
-  //  toast.success("Registration successful! Welcome to MotoMini.")
+      // alert("Registration successful! Welcome to MotoMini.")
+   toast.success("Registration successful! Welcome to MotoMini.")
     navigate("/login"); 
   } catch (error) {
-  //  toast.error("Unable to create your MotoMini account. Please try again.")
-  alert("Unable to create your MotoMini account. Please try again.")
+   toast.error("Unable to create your MotoMini account. Please try again.")
+  // alert("Unable to create your MotoMini account. Please try again.")
     console.error(error);
   }
 }

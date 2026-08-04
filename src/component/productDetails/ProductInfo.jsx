@@ -1,6 +1,5 @@
 import React from 'react'
 import { FiStar } from 'react-icons/fi'
-import QuantitySelector from './QuantitySelector'
 import AddToCartButton from './ AddToCartButton'
 import BuyNowButton from './BuyNowButton'
 
@@ -37,9 +36,8 @@ const ProductInfo = ({product}) => {
       <p className="text-gray-400 mt-6 leading-7">
        {product.description}
       </p>
-      <QuantitySelector/>
-      <AddToCartButton/>
-        <BuyNowButton/>
+      <AddToCartButton product={product}/>
+        <BuyNowButton  product={product} />
       
       </div>
     </div>

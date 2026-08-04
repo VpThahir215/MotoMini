@@ -4,6 +4,7 @@ import ProductInfo from '../component/productDetails/ProductInfo'
 import { useParams } from 'react-router-dom'
 import { getOneProduct } from '../services/productService'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function ProductDetails() {
 const {id} =useParams()
