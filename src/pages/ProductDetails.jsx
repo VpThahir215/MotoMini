@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ProductGallery from '../component/productDetails/ProductGallery'
 import ProductInfo from '../component/productDetails/ProductInfo'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { getOneProduct } from '../services/productService'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +10,12 @@ function ProductDetails() {
 const {id} =useParams()
   console.log(id);
   const [product,setProduct]=useState(null)
- const [loading, setLoading] = useState(true);
+
+  const [loading, setLoading] = useState(true);
+  const locatoin=useLocation()
+  const feature=locatoin.state?.product;
+  
+  
 
 
 
@@ -63,9 +68,9 @@ const {id} =useParams()
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <ProductGallery product={product}/>
+          <ProductGallery product={product} feature={feature} />
 
-          <ProductInfo product={product}/>
+          <ProductInfo product={product}   feature={feature} />
 
         </div>
 

@@ -28,6 +28,7 @@ const ProductGrid = ({
     const matchesBrand =
       selectedBrand === "" ||
       product.brand === selectedBrand;
+      
 
     const matchesCategory =
       selectedCategory === "" ||
@@ -79,7 +80,7 @@ const ProductGrid = ({
     return (
       <div className="flex items-center justify-center h-60">
         <h2 className="text-2xl text-gray-400">
-          No miniature motorcycles match your search.
+          No miniature motorcycles match your search. 
         </h2>
       </div>
     );

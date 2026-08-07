@@ -386,7 +386,7 @@
       "stock": 14,
       "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
       "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
-      "quantity": 4,
+      "quantity": 5,
       "id": 3
     },
     {
@@ -440,11 +440,22 @@
       "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance.",
       "quantity": 1,
       "id": 8
-    }
-  ],
-  "wishlist": [
+    },
     {
       "userId": "XwSkyn9vZVE",
+      "productId": "3",
+      "name": "Himalayan 450  Mana Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 2773.99,
+      "stock": 9,
+      "image": "https://i.pinimg.com/736x/5b/78/ec/5b78ec6ef8e57ea9547ce6465240d7d6.jpg",
+      "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models.",
+      "quantity": 1,
+      "id": 9
+    },
+    {
+      "userId": "tdttzch",
       "productId": "1",
       "name": "Himalayan 450 Kamet White",
       "brand": "Royal Enfield",
@@ -453,45 +464,24 @@
       "stock": 16,
       "image": "https://i.pinimg.com/736x/4e/c0/ca/4ec0caa811ffbe0e4527a649bc8b7d69.jpg",
       "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance.",
-      "id": 1
+      "quantity": 1,
+      "id": 10
     },
     {
-      "userId": "FEmxUg5",
-      "productId": "18",
-      "name": "Yamaha MT-09 SP",
+      "userId": "XwSkyn9vZVE",
+      "productId": "4",
+      "name": "Yamaha YZF-R1 Race Edition",
       "brand": "Yamaha",
-      "category": "Naked Bike",
-      "price": 1661.99,
-      "stock": 12,
-      "image": "https://i.pinimg.com/1200x/3f/32/1a/3f321a2c7bf78da542031401fce7d621.jpg",
-      "description": "A premium miniature replica of the Yamaha MT-09 SP, featuring its aggressive naked-bike styling, detailed engine components, and high-quality finish. Perfect for collectors and enthusiasts who appreciate Yamaha's performance-focused Hyper Naked series.",
-      "id": 2
-    },
-    {
-      "userId": "FEmxUg5",
-      "productId": "5",
-      "name": "Ducati Panigale V4 S",
-      "brand": "Ducati",
-      "category": "Super Bike",
-      "price": 1669.99,
-      "stock": 10,
-      "image": "https://i.pinimg.com/736x/c7/cd/37/c7cd3786bdd61a19dbd159339ae77184.jpg",
-      "description": "A premium miniature replica of the Ducati Panigale V4 S, featuring aerodynamic styling, realistic bodywork, and precision detailing. Designed for collectors who appreciate iconic Italian superbikes.",
-      "id": 3
-    },
-    {
-      "userId": "j2p8Ag3",
-      "productId": "2",
-      "name": "Himalayan 450 Hanle Black",
-      "brand": "Royal Enfield",
-      "category": "Adventure",
-      "price": 3552.99,
-      "stock": 14,
-      "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
-      "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
-      "id": 4
+      "category": "Sport Bike",
+      "price": 1554.99,
+      "stock": 18,
+      "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
+      "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
+      "quantity": 1,
+      "id": 11
     }
   ],
+  "wishlist": [],
   "orders": [
     {
       "userId": "XwSkyn9vZVE",

@@ -11,15 +11,20 @@ import SearchBar from "../component/product/SearchBar";
 import FilterSidebar from "../component/product/FilterSidebar";
 import ProductGrid from "../component/product/ProductGrid";
 import Pagination from "../component/product/Pagination";
+import { useLocation } from "react-router-dom";
 
 function Shop() {
   const dispatch = useDispatch();
 
   const [search, setSearch] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+
 
   const [currentPage, setCurrentPage] = useState(1);
+  const location=useLocation()
+  // const catagory=location.state?.category || "";
+  // console.log(catagory)
+    const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,6 +38,17 @@ function Shop() {
 
     fetchProducts();
   }, [dispatch]);
+
+
+
+useEffect(() => {
+    console.log("Category from Home:", location.state?.category);
+  if (location.state?.category) {
+    setSelectedCategory(location.state.category);
+    console.log(location);
+    
+  }
+}, [location]);
 
   return (
     <section className="bg-black min-h-screen pt-28 pb-16">

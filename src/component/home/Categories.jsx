@@ -1,40 +1,47 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   {
     name: "Sport Bike",
     image:
       "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop",
+      category:"Sport Bike"
   },
   {
-    name: "Classic",
+    name: "Advanture",
     image:
       "https://images.unsplash.com/photo-1517846693594-1567da72af75?q=80&w=1200&auto=format&fit=crop",
+      category:"Adventure"
   },
   {
     name: "Super Bike",
     image:
       "https://i.pinimg.com/736x/e8/45/9f/e8459fe21d04fcbbccc87b296f796838.jpg",
+      category:"Super Bike"
   },
   {
     name: "Naked Bike",
     image:
       "https://images.unsplash.com/photo-1515777315835-281b94c9589f?q=80&w=1200&auto=format&fit=crop",
+      category:"Naked Bike"
   },
   {
     name: "Limited",
     image:
       "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=1200&auto=format&fit=crop",
+      category:"Sport Bike"
   },
   {
     name: "Adventure",
     image:
       "https://i.pinimg.com/736x/1d/65/9f/1d659f9afd74847a0e6937ab2adb5e81.jpg",
+      category:"Adventure"
   },
 ];
 
 export default function Categories() {
+  const navigate=useNavigate()
     
   return (
     <div>
@@ -51,6 +58,9 @@ export default function Categories() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((item) => (
             <div
+            onClick={()=>navigate('/shop',{
+              state:{category:item.category}
+            })}
               key={item.name}
               className="group relative overflow-hidden rounded-2xl h-64 cursor-pointer"
             >

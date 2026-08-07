@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FilterSidebar = ({ selectedBrand, setSelectedBrand,selectedCategory,setSelectedCategory}) => {
+const   FilterSidebar = ({ selectedBrand, setSelectedBrand,selectedCategory,setSelectedCategory}) => {
    const brands = [
     "Royal Enfield",
     "Yamaha",

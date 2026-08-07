@@ -1,6 +1,7 @@
 import React from 'react'
 import {ArrowRight} from 'lucide-react'
 import {CalendarDays,Clock3} from 'lucide-react'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,7 +18,8 @@ const products = [
     title: "BMW R nine T motorcycle",
     description:
       "These diecast are often sold by brands like CM Model ",
-    price: "$149.99",
+    price: "149.99",
+    
   },
   {
     id: 2,
@@ -29,7 +31,7 @@ const products = [
     title: "Maisto 1:18 scale model",
     description:
       "This model features detailled diecast metal constrictions",
-    price: "$189.99",
+    price: "189.99",
   },
   {
     id: 3,
@@ -41,11 +43,12 @@ const products = [
     title: "1:18 scale red dirt bike ",
     description:
       "This features realistic details such as spoked wheels and a textured seat",
-    price: "$229.99",
+    price: "229.99",
   },
 ];
 
 const  FeaturedProducts = () => {
+  const naivgate=useNavigate()
   return (
     <div>
        <section className="bg-black py-24 px-6">
@@ -62,11 +65,18 @@ const  FeaturedProducts = () => {
 
           {products.map((product) => (
             <div
+             onClick={()=>naivgate(`/productDetails/${product.id}`,{
+                state:{
+                  product:product,
+                }
+              })}
               key={product.id}
               className="bg-[#151515] rounded-3xl overflow-hidden border border-zinc-800 hover:border-[#D3AF37] transition-all duration-300 group"
             >
 
-              <div className="relative overflow-hidden">
+              <div 
+             
+              className="relative overflow-hidden">
 
                 <img
                   src={product.image}

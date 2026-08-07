@@ -14,7 +14,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         Prev
       </button>
 
-      {/* Page Numbers */}
       {Array.from({ length: totalPages }, (_, index) => {
         const page = index + 1;
 
@@ -33,7 +32,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         );
       })}
 
-      {/* Next */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}

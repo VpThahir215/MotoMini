@@ -67,9 +67,7 @@ const ProductCard = ({ product }) => {
     }
   };
 
-  // ===========================
-  // Wishlist
-  // ===========================
+ 
  const handleWishlist = async () => {
   console.log("called handleWishlist");
   
@@ -115,7 +113,6 @@ console.log("after add");
   return (
     <div className="relative bg-[#161616] rounded-xl overflow-hidden border border-gray-800 hover:border-[#D3AF37] transition duration-300">
 
-      {/* Wishlist Button */}
       <button
         onClick={handleWishlist}
         className="absolute top-3 right-3 z-20 bg-black/70 p-2 rounded-full text-white hover:bg-[#D3AF37] hover:text-black transition"
