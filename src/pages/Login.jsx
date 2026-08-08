@@ -35,9 +35,20 @@ async function handleLogin(e) {
       toast.error("Invalid Email or Password");
       return;
     }
-localStorage.setItem("user", JSON.stringify(user));
+  if(user.role==="user"){
+    localStorage.setItem("user", JSON.stringify(user));
     toast.success(`Hy ${user.name}! Welcome back to Moto Mini.`);
     navigate('/')
+
+  }else if(user.role==="admin"){
+     localStorage.setItem("admin", JSON.stringify(user));
+    toast.success(`Hy ${user.name}! Welcome to Admin Module`)
+    navigate('/admin')
+  }
+   
+
+
+
 
   } catch (error) {
     console.log(error);
