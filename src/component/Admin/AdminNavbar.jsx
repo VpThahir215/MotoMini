@@ -7,6 +7,8 @@ import {
 } from "react-icons/fi";
 
 const AdminNavbar = () => {
+    const user=JSON.parse(localStorage.getItem("admin"))
+    console.log(user.name,"userrrrrrrrrrrr");
   return (
     <div>
           <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[#29230d] bg-[#080808] px-6">
@@ -23,7 +25,7 @@ const AdminNavbar = () => {
 
 
         {/* Search */}
-       
+{/*        
        <div className="flex w-80 items-center gap-3 border border-[#29230d] px-4 py-2.5">
        
                  <FiSearch
@@ -37,7 +39,7 @@ const AdminNavbar = () => {
                    className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-700"
                  />
        
-               </div>
+               </div> */}
      
         {/* Notification */}
         <button
@@ -66,7 +68,7 @@ const AdminNavbar = () => {
 
           {/* Avatar */}
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D3AF37] text-xs font-bold text-black">
-            AD
+            {user?.name?.charAt(0)}
           </div>
 
           {/* Admin Info */}
@@ -76,7 +78,7 @@ const AdminNavbar = () => {
             </p>
 
             <p className="text-[10px] text-gray-600">
-              Administrator
+            {user.name}
             </p>
           </div>
 

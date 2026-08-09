@@ -6,6 +6,7 @@ import Products from '../pages/admin/ Products'
 import Orders from '../pages/admin/ Orders'
 import Users from '../pages/admin/Users'
 import Settings from '../pages/admin/Settings'
+import AddProduct from '../pages/admin/AddProduct'
 
 const AdminRoute = () => {
   return (
@@ -15,6 +16,7 @@ const AdminRoute = () => {
               <Route index element={<Dashboard/>}/>
               <Route path='/orders' element={<Orders/>}/>
                <Route path='/products' element={<Products/>}/>
+               <Route path='/products/add' element={<AddProduct/>}/>
                <Route path='/users' element={<Users/>}/>
                <Route path='/settings' element={<Settings/>}/>
                
