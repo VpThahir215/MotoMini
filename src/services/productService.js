@@ -15,3 +15,7 @@ export const addProduct=async (product)=>{
 export const deleteProduct=async (id)=>{
   await api.delete(`/products/${id}`)
 }
+
+export const editProduct=async (id,product)=>{
+  await api.put(`/products/${id}`,product)
+}

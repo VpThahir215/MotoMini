@@ -1,58 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FiSearch,
   FiFilter,
   FiMoreHorizontal,
   FiEye,
 } from "react-icons/fi";
+import { getOredersAdmin } from "../../services/ orderService";
+import Orders from "../../pages/admin/ Orders";
 const OrderTable = () => {
-     const orders = [
-    {
-      id: "#MM-1024",
-      customer: "Thahir Vp",
-      email: "thahir@gmail.com",
-      product: "Honda Monkey 125",
-      date: "08 Aug 2026",
-      amount: "₹2,499",
-      status: "Delivered",
-    },
-    {
-      id: "#MM-1023",
-      customer: "Ahamed",
-      email: "ahamed@gmail.com",
-      product: "Royal Enfield Classic 350",
-      date: "07 Aug 2026",
-      amount: "₹3,299",
-      status: "Processing",
-    },
-    {
-      id: "#MM-1022",
-      customer: "Shamil",
-      email: "shamil@gmail.com",
-      product: "Yamaha R1",
-      date: "06 Aug 2026",
-      amount: "₹1,999",
-      status: "Shipped",
-    },
-    {
-      id: "#MM-1021",
-      customer: "Rashid",
-      email: "rashid@gmail.com",
-      product: "Ducati Panigale V4",
-      date: "05 Aug 2026",
-      amount: "₹4,599",
-      status: "Pending",
-    },
-    {
-      id: "#MM-1020",
-      customer: "Fahad",
-      email: "fahad@gmail.com",
-      product: "BMW S1000RR",
-      date: "04 Aug 2026",
-      amount: "₹3,899",
-      status: "Cancelled",
-    },
-  ];
+  const [order,setOrder]=useState([])
+  const [search,setSearch]=useState("")
+  const [searchDebounce,setSearchDebouce]=useState("")
+
+  console.log(search);
+  useEffect(()=>{
+    const timer=setTimeout(() => {
+      setSearchDebouce(search)
+    }, 1000);
+    return clearTimeout(timer)
+  },[search])
+console.log("debounce",searchDebounce);
+
+
+useEffect(()=>{
+async function fetchOrder(){
+  const data=await getOredersAdmin()
+ 
+  setOrder(data)
+   console.log("orderrrr",order);
+  
+  
+}
+fetchOrder()
+},[])
+
 
   const getStatusStyle = (status) => {
     switch (status) {
@@ -102,7 +83,7 @@ const OrderTable = () => {
           </p>
 
           <p className="mt-1 text-xl font-semibold text-[#D3AF37]">
-            1,284
+            {order.length}
           </p>
         </div>
 
@@ -123,8 +104,10 @@ const OrderTable = () => {
           />
 
           <input
+             value={search}
+             onChange={(e)=>setSearch(e.target.value)}
             type="text"
-            placeholder="Search orders..."
+            placeholder="Search Order Id or Product Name..."
             className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-700"
           />
 
@@ -135,13 +118,7 @@ const OrderTable = () => {
 
         <div className="flex items-center gap-3">
 
-          <button className="flex items-center gap-2 border border-[#29230d] px-4 py-2.5 text-xs text-gray-500 transition hover:border-[#D3AF37] hover:text-[#D3AF37]">
-
-            <FiFilter size={14} />
-
-            Filter
-
-          </button>
+        
 
 
           <select className="border border-[#29230d] bg-black px-4 py-2.5 text-xs text-gray-500 outline-none">
@@ -181,10 +158,10 @@ const OrderTable = () => {
               <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
                 PRODUCT
               </th>
-
+{/* 
               <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
                 DATE
-              </th>
+              </th> */}
 
               <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
                 AMOUNT
@@ -205,112 +182,104 @@ const OrderTable = () => {
 
           <tbody>
 
-            {orders.map((order) => (
+        {order.map((order) => (
+  <tr
+    key={order.id}
+    className="border-b border-[#1c1c1c] transition hover:bg-[#0d0d0d]"
+  >
 
-              <tr
-                key={order.id}
-                className="border-b border-[#1c1c1c] transition hover:bg-[#0d0d0d]"
-              >
+    {/* Order ID */}
+    <td className="px-5 py-5">
+      <span className="text-sm font-medium text-[#D3AF37]">
+        #{order.userId}
+      </span>
+    </td>
 
-                {/* Order ID */}
+    {/* Customer */}
+    <td className="px-5 py-5">
+      <p className="text-sm text-gray-300">
+        {order.customer.name}
+      </p>
 
-                <td className="px-5 py-5">
+      <p className="mt-1 text-[10px] text-gray-700">
+        {order.customer.phone}
+      </p>
 
-                  <span className="text-sm font-medium text-[#D3AF37]">
-                    {order.id}
-                  </span>
+      <p className="mt-1 text-[10px] text-gray-700">
+        {order.customer.city}, {order.customer.state}
+      </p>
+    </td>
 
-                </td>
+    {/* Products */}
+    <td className="px-5 py-5">
+      <div className="flex flex-col gap-3">
 
+        {order.products.map((product) => (
+          <div
+            key={product.id}
+            className="flex items-center gap-3"
+          >
 
-                {/* Customer */}
+            <div className="h-10 w-10 overflow-hidden border border-[#29230d] bg-[#111]">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-full w-full object-cover"
+              />
+            </div>
 
-                <td className="px-5 py-5">
+            <div>
+              <p className="text-sm text-gray-300">
+                {product.name}
+              </p>
 
-                  <p className="text-sm text-gray-300">
-                    {order.customer}
-                  </p>
+              <p className="text-[10px] text-gray-600">
+                Qty: {product.quantity}
+              </p>
+            </div>
 
-                  <p className="mt-1 text-[10px] text-gray-700">
-                    {order.email}
-                  </p>
+          </div>
+        ))}
 
-                </td>
-
-
-                {/* Product */}
-
-                <td className="px-5 py-5">
-
-                  <div className="flex items-center gap-3">
-
-                    <div className="flex h-10 w-10 items-center justify-center border border-[#29230d] bg-[#111] text-lg">
-                      🏍️
-                    </div>
-
-                    <span className="text-sm text-gray-400">
-                      {order.product}
-                    </span>
-
-                  </div>
-
-                </td>
-
-
-                {/* Date */}
-
-                <td className="px-5 py-5 text-xs text-gray-600">
-                  {order.date}
-                </td>
-
-
-                {/* Amount */}
-
-                <td className="px-5 py-5">
-
-                  <span className="text-sm font-semibold text-white">
-                    {order.amount}
-                  </span>
-
-                </td>
+      </div>
+    </td>
 
 
-                {/* Status */}
+    {/* Amount */}
+    <td className="px-5 py-5">
+      <span className="text-sm font-semibold text-white">
+        ₹{order.total}
+      </span>
+    </td>
 
-                <td className="px-5 py-5">
+    {/* Status */}
+    <td className="px-5 py-5">
+      <span
+        className={`inline-block border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider ${getStatusStyle(
+          order.status
+        )}`}
+      >
+        {order.status}
+      </span>
+    </td>
 
-                  <span
-                    className={`inline-block border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider ${getStatusStyle(
-                      order.status
-                    )}`}
-                  >
-                    {order.status}
-                  </span>
+    {/* Action */}
+    <td className="px-5 py-5">
+      <div className="flex items-center gap-3">
 
-                </td>
+        <button className="text-gray-600 transition hover:text-[#D3AF37]">
+          <FiEye size={17} />
+        </button>
 
+        <button className="text-gray-600 transition hover:text-[#D3AF37]">
+          <FiMoreHorizontal size={17} />
+        </button>
 
-                {/* Action */}
+      </div>
+    </td>
 
-                <td className="px-5 py-5">
-
-                  <div className="flex items-center gap-3">
-
-                    <button className="text-gray-600 transition hover:text-[#D3AF37]">
-                      <FiEye size={17} />
-                    </button>
-
-                    <button className="text-gray-600 transition hover:text-[#D3AF37]">
-                      <FiMoreHorizontal size={17} />
-                    </button>
-
-                  </div>
-
-                </td>
-
-              </tr>
-
-            ))}
+  </tr>
+))}
 
           </tbody>
 

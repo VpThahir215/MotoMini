@@ -1,14 +1,33 @@
 import React from "react";
+import toast from "react-hot-toast";
 import {
   FiSearch,
   FiBell,
   FiMaximize,
   FiLogOut,
 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
+
 
 const AdminNavbar = () => {
     const user=JSON.parse(localStorage.getItem("admin"))
     console.log(user.name,"userrrrrrrrrrrr");
+    const navigate=useNavigate()
+
+      const handleLogout = () => {
+        console.log("hyyyyyy");
+        
+    localStorage.removeItem("admin");
+     toast.success(
+         <div>
+    <p>Leaving MotoMini?</p>
+    <p>Your ride will be waiting when you return.</p>
+  </div>
+    )
+    navigate("/login");
+  };
+
   return (
     <div>
           <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[#29230d] bg-[#080808] px-6">
@@ -64,7 +83,13 @@ const AdminNavbar = () => {
         <div className="h-7 w-px bg-[#29230d]" />
 
         {/* Admin Profile */}
-        <div className="flex items-center gap-3">
+        <div 
+         onClick={()=>navigate('/admin/userProfile',{
+          state:{
+            user:user
+          }
+         })}
+        className="flex items-center gap-3">
 
           {/* Avatar */}
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D3AF37] text-xs font-bold text-black">
@@ -72,7 +97,9 @@ const AdminNavbar = () => {
           </div>
 
           {/* Admin Info */}
-          <div className="hidden sm:block">
+          <div 
+         
+          className="hidden sm:block">
             <p className="text-xs font-medium text-white">
               Admin
             </p>
@@ -86,6 +113,7 @@ const AdminNavbar = () => {
 
         {/* Logout */}
         <button
+        onClick={handleLogout}
           type="button"
           className="text-gray-500 transition hover:text-red-500"
         >

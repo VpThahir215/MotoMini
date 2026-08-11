@@ -1,16 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Himalayan 450 Kamet White",
-      "brand": "Royal Enfield",
-      "category": "Adventure",
-      "price": 2557.99,
-      "stock": 16,
-      "image": "https://i.pinimg.com/736x/4e/c0/ca/4ec0caa811ffbe0e4527a649bc8b7d69.jpg",
-      "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance."
-    },
-    {
       "id": "2",
       "name": "Himalayan 450 Hanle Black",
       "brand": "Royal Enfield",
@@ -199,6 +189,16 @@
       "image": "https://i.pinimg.com/236x/b4/76/0e/b4760e41f241c61c8189c87309e1233e.jpg",
       "description": "\nThe Royal Enfield Thunderbird was a cruiser style motorcycle produced by MotoMini Motors in India from 2002 to 2020. ",
       "id": "AjSl5MX"
+    },
+    {
+      "name": "Marlboro Jisan",
+      "brand": "Honda",
+      "category": "Super Bikes",
+      "price": "3000",
+      "stock": "12",
+      "image": "https://i.pinimg.com/736x/ff/fb/ee/fffbee6e497fcba7038de72940da78a5.jpg",
+      "description": "Mercenary Garage Custom Motorcycle Workshop Honda CX500 CX650 V Twin Custom Cafe Racer Marlboro Scale Model Kitbash by Kiwi Cam Hobbies\n",
+      "id": "JieqVf_"
     }
   ],
   "users": [
@@ -210,11 +210,47 @@
       "role": "admin"
     },
     {
-      "name": "VpThahir",
-      "email": "vpthahir@gmail.com",
+      "name": "Rizal",
+      "email": "rizal@gmail.com",
       "password": "123",
       "role": "user",
-      "id": "QkxZzsS"
+      "id": "PrZwFHy"
+    },
+    {
+      "name": "Jalala",
+      "email": "jalala@gmail.com",
+      "password": "123",
+      "role": "user",
+      "id": "81hE5bS"
+    },
+    {
+      "name": "Afla",
+      "email": "afla@gmail.com",
+      "password": "123",
+      "role": "admin",
+      "id": "7Ceuypo"
+    },
+    {
+      "name": "Sharmil",
+      "email": "sharmil@gmail.com",
+      "password": "123",
+      "role": "user",
+      "id": "_ZessI6",
+      "access": "blocked"
+    },
+    {
+      "name": "Fahad",
+      "email": "fahad@gmail.com",
+      "password": "123",
+      "role": "admin",
+      "id": "y4bcD5O"
+    },
+    {
+      "name": "Thahir",
+      "email": "thahir@gmail.com",
+      "password": "123",
+      "role": "user",
+      "id": "jC0zCcJ"
     }
   ],
   "cart": [
@@ -229,18 +265,6 @@
       "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
       "quantity": 1,
       "id": 1
-    },
-    {
-      "productId": "1",
-      "name": "Himalayan 450 Kamet White",
-      "brand": "Royal Enfield",
-      "category": "Adventure",
-      "price": 2557.99,
-      "stock": 16,
-      "image": "https://i.pinimg.com/736x/4e/c0/ca/4ec0caa811ffbe0e4527a649bc8b7d69.jpg",
-      "description": "A premium miniature replica of the Himalayan 450, featuring a modern naked-bike design, sculpted fuel tank, and finely detailed components. A stylish collectible that blends classic character with contemporary performance.",
-      "quantity": 4,
-      "id": 2
     },
     {
       "userId": "XwSkyn9vZVE",
@@ -280,6 +304,84 @@
       "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
       "quantity": 1,
       "id": 11
+    },
+    {
+      "userId": "PrZwFHy",
+      "productId": "8",
+      "name": "KTM 1290 Super Duke R",
+      "brand": "KTM",
+      "category": "Naked Bike",
+      "price": 664.99,
+      "stock": 11,
+      "image": "https://i.pinimg.com/1200x/08/7e/c1/087ec1e1ebd910e294aacfcf27c3ac4f.jpg",
+      "description": "A premium miniature replica of the KTM 1290 Super Duke R, featuring its signature aggressive naked-bike design, sharp bodywork, and realistic detailing. Perfect for collectors who appreciate high-performance street motorcycles.",
+      "quantity": 1,
+      "id": 12
+    },
+    {
+      "userId": "PrZwFHy",
+      "productId": "9",
+      "name": "Aprilia RSV4 Factory",
+      "brand": "Aprilia",
+      "category": "Super Bike",
+      "price": 1774.99,
+      "stock": 9,
+      "image": "https://i.pinimg.com/1200x/f6/f7/49/f6f749206f244e61bfc85c849fae6a8d.jpg",
+      "description": "A premium miniature replica of the Aprilia RSV4 Factory, showcasing its aggressive racing design, aerodynamic fairings, and precision detailing. Built for collectors who appreciate Italian engineering and world-class superbikes.",
+      "quantity": 1,
+      "id": 13
+    },
+    {
+      "userId": "PrZwFHy",
+      "productId": "10",
+      "name": "Suzuki GSX-R1000R",
+      "brand": "Suzuki",
+      "category": "Sport Bike",
+      "price": 1666.99,
+      "stock": 13,
+      "image": "https://i.pinimg.com/736x/b0/7c/bc/b07cbc392b1b52041f81f7a2f3e39774.jpg",
+      "description": "A high-quality miniature replica of the Suzuki GSX-R1000R, featuring race-inspired styling, sharp bodywork, and realistic detailing. Perfect for collectors and sport bike enthusiasts looking to add an iconic Japanese superbike to their collection.",
+      "quantity": 1,
+      "id": 14
+    },
+    {
+      "userId": "jC0zCcJ",
+      "productId": "2",
+      "name": "Himalayan 450 Hanle Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 3552.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+      "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+      "quantity": 1,
+      "id": 15
+    },
+    {
+      "userId": "jC0zCcJ",
+      "productId": "4",
+      "name": "Yamaha YZF-R1 Race Edition",
+      "brand": "Yamaha",
+      "category": "Sport Bike",
+      "price": 1554.99,
+      "stock": 18,
+      "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
+      "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
+      "quantity": 1,
+      "id": 16
+    },
+    {
+      "userId": "jC0zCcJ",
+      "productId": "3",
+      "name": "Himalayan 450  Mana Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 2773.99,
+      "stock": 9,
+      "image": "https://i.pinimg.com/736x/5b/78/ec/5b78ec6ef8e57ea9547ce6465240d7d6.jpg",
+      "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models.",
+      "quantity": 1,
+      "id": 17
     }
   ],
   "wishlist": [],
@@ -362,8 +464,212 @@
       "subtotal": 25307.92,
       "total": 25308,
       "orderDate": "2026-08-04T05:52:39.651Z",
-      "status": "Pending",
+      "status": "Shipped",
       "id": 4
+    },
+    {
+      "userId": "PrZwFHy",
+      "customer": {
+        "name": "Rizal",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "upi",
+      "products": [
+        {
+          "userId": "PrZwFHy",
+          "productId": "8",
+          "name": "KTM 1290 Super Duke R",
+          "brand": "KTM",
+          "category": "Naked Bike",
+          "price": 664.99,
+          "stock": 11,
+          "image": "https://i.pinimg.com/1200x/08/7e/c1/087ec1e1ebd910e294aacfcf27c3ac4f.jpg",
+          "description": "A premium miniature replica of the KTM 1290 Super Duke R, featuring its signature aggressive naked-bike design, sharp bodywork, and realistic detailing. Perfect for collectors who appreciate high-performance street motorcycles.",
+          "quantity": 1,
+          "id": 12
+        }
+      ],
+      "subtotal": 664.99,
+      "total": 665,
+      "orderDate": "2026-08-11T10:01:53.650Z",
+      "status": "Processing",
+      "id": 5
+    },
+    {
+      "userId": "PrZwFHy",
+      "customer": {
+        "name": "Afla",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "bank",
+      "products": [
+        {
+          "userId": "PrZwFHy",
+          "productId": "9",
+          "name": "Aprilia RSV4 Factory",
+          "brand": "Aprilia",
+          "category": "Super Bike",
+          "price": 1774.99,
+          "stock": 9,
+          "image": "https://i.pinimg.com/1200x/f6/f7/49/f6f749206f244e61bfc85c849fae6a8d.jpg",
+          "description": "A premium miniature replica of the Aprilia RSV4 Factory, showcasing its aggressive racing design, aerodynamic fairings, and precision detailing. Built for collectors who appreciate Italian engineering and world-class superbikes.",
+          "quantity": 1,
+          "id": 13
+        }
+      ],
+      "subtotal": 1774.99,
+      "total": 1775,
+      "orderDate": "2026-08-11T10:08:16.498Z",
+      "status": "Delivered",
+      "id": 6
+    },
+    {
+      "userId": "PrZwFHy",
+      "customer": {
+        "name": "Jalala",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "card",
+      "products": [
+        {
+          "userId": "PrZwFHy",
+          "productId": "10",
+          "name": "Suzuki GSX-R1000R",
+          "brand": "Suzuki",
+          "category": "Sport Bike",
+          "price": 1666.99,
+          "stock": 13,
+          "image": "https://i.pinimg.com/736x/b0/7c/bc/b07cbc392b1b52041f81f7a2f3e39774.jpg",
+          "description": "A high-quality miniature replica of the Suzuki GSX-R1000R, featuring race-inspired styling, sharp bodywork, and realistic detailing. Perfect for collectors and sport bike enthusiasts looking to add an iconic Japanese superbike to their collection.",
+          "quantity": 1,
+          "id": 14
+        }
+      ],
+      "subtotal": 1666.99,
+      "total": 1667,
+      "orderDate": "2026-08-11T10:09:06.328Z",
+      "status": "Cancelled",
+      "id": 7
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "Sharmil",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
+          "productId": "2",
+          "name": "Himalayan 450 Hanle Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 3552.99,
+          "stock": 14,
+          "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+          "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+          "quantity": 1,
+          "id": 15
+        }
+      ],
+      "subtotal": 3552.99,
+      "total": 3553,
+      "orderDate": "2026-08-11T10:11:24.911Z",
+      "status": "Pending",
+      "id": 8
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "Fahad",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
+          "productId": "4",
+          "name": "Yamaha YZF-R1 Race Edition",
+          "brand": "Yamaha",
+          "category": "Sport Bike",
+          "price": 1554.99,
+          "stock": 18,
+          "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
+          "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
+          "quantity": 1,
+          "id": 16
+        }
+      ],
+      "subtotal": 1554.99,
+      "total": 1555,
+      "orderDate": "2026-08-11T10:12:14.255Z",
+      "status": "Pending",
+      "id": 9
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "Sudu",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
+          "productId": "3",
+          "name": "Himalayan 450  Mana Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 2773.99,
+          "stock": 9,
+          "image": "https://i.pinimg.com/736x/5b/78/ec/5b78ec6ef8e57ea9547ce6465240d7d6.jpg",
+          "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models.",
+          "quantity": 1,
+          "id": 17
+        }
+      ],
+      "subtotal": 2773.99,
+      "total": 2774,
+      "orderDate": "2026-08-11T10:13:10.628Z",
+      "status": "Pending",
+      "id": 10
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

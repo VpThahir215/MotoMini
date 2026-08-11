@@ -24,3 +24,7 @@ export const getOrders = async () => {
 
   return response.data;
 };
+export const getOredersAdmin=async ()=>{
+  const respons=await api.get('/orders')
+  return respons.data
+}

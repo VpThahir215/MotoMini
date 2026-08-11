@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiUpload, FiArrowLeft, FiSave } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { addProduct } from "../../services/productService";
-
+import { useLocation } from "react-router-dom";
+import { getOneProduct, editProduct } from "../../services/productService";
 const Add = () => {
+  const location = useLocation()
+  const editId = location.state?.id;
+  console.log(editId);
+  async function editBtn() {
+    const edit = await getOneProduct(editId)
+    console.log(edit);
 
-      const navigate = useNavigate();
+  }
+  editBtn()
+
+
+  useEffect(() => {
+    if (!editId) return;
+    async function fetchProduct() {
+      const data = await getOneProduct(editId)
+      console.log(data);
+      setProduct(data)
+
+    }
+    fetchProduct()
+  }, [editId])
+
+
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState({
     name: "",
@@ -16,7 +39,7 @@ const Add = () => {
     stock: "",
     image: "",
     description: "",
-  });   
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,60 +50,86 @@ const Add = () => {
     });
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
 
+
+
+
+
+
     if (!product.name.trim()) {
-        toast.error("Please Enter Product Name");
-        return;
-      }
-    
-      if (!product.brand) {
-        toast.error("Please Add Brand");
-        return;
-      }
-    
-      if (!product.category) {
-        toast.error("Please Add Catogory");
-        return;
-      }
-    
-      if (!product.price.trim()) {
-        toast.error("Please Add Product Price");
-        return;
-      }
-    
-      if (!product.stock.trim()) {
-        toast.error("Please Add Stock");
-        return;
-      }
-    
-      if (!product.image.trim()) {
-        toast.error("Please Add Image URL.");
-        return;
-      }
-    
-      if (!product.description.trim()) {
-        toast.error("Please Add Description");
-        return;
-      }
-    try{
-        const data= await addProduct(product)
-        console.log(data);
-          toast.success("Successfully Added the product to cart");
-          navigate("/admin/products")
-        
-    }   
-    catch(error){
-        console.log(error);
-        
+      toast.error("Please Enter Product Name");
+      return;
     }
-    
+
+    if (!product.brand) {
+      toast.error("Please Add Brand");
+      return;
+    }
+
+    if (!product.category) {
+      toast.error("Please Add Catogory");
+      return;
+    }
+
+    if (!product.price) {
+      toast.error("Please Add Product Price");
+      return;
+    }
+
+    if (!product.stock) {
+      toast.error("Please Add Stock");
+      return;
+    }
+
+    if (!product.image.trim()) {
+      toast.error("Please Add Image URL.");
+      return;
+    }
+
+    if (!product.description.trim()) {
+      toast.error("Please Add Description");
+      return;
+    }
+    try {
+
+
+      if (editId) {
+
+          await editProduct(editId, product)
+          toast.success("Successfully Edited your product");
+          navigate("/admin/products")
+          return
+        
+
+      }
+
+
+
+
+      const data = await addProduct(product)
+      console.log(data);
+      toast.success("Successfully Added the product to cart");
+      navigate("/admin/products")
+
+    }
+    catch (error) {
+      console.log(error);
+
+    }
+
+
+
+
+
 
   };
   return (
-     <div className="min-h-screen bg-black px-8 py-8 text-white">
+    <div className="min-h-screen bg-black px-8 py-8 text-white">
 
       {/* ================= HEADER ================= */}
 
@@ -183,12 +232,12 @@ const Add = () => {
                     <option value="Honda">Honda</option>
                     <option value="Ducati">Ducati</option>
                     <option value="BMW">BMW</option>
-                      <option value="Triumph">Triumph</option>
-                        <option value="KTM">KTM</option>
-                          <option value="BMW">Aprilla</option>
-                            <option value="BMW">Suzuki</option>
-                              <option value="BMW">Kawasaki</option>
-                                <option value="BMW">MV Agusa</option>
+                    <option value="Triumph">Triumph</option>
+                    <option value="KTM">KTM</option>
+                    <option value="BMW">Aprilla</option>
+                    <option value="BMW">Suzuki</option>
+                    <option value="BMW">Kawasaki</option>
+                    <option value="BMW">MV Agusa</option>
 
                   </select>
 
@@ -213,7 +262,7 @@ const Add = () => {
                     <option value="Super Bikes">Super Bikes</option>
                     <option value="Adventure">Adventure</option>
                     <option value="Naked">Naked</option>
-                  
+
 
                   </select>
 
@@ -446,7 +495,7 @@ const Add = () => {
 
     </div>
   );
-  
+
 }
 
 export default Add

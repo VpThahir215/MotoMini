@@ -7,7 +7,8 @@ import Orders from '../pages/admin/ Orders'
 import Users from '../pages/admin/Users'
 import Settings from '../pages/admin/Settings'
 import AddProduct from '../pages/admin/AddProduct'
-
+import ProfileUser from '../pages/admin/ProfileUser'
+import EditUser from '../pages/admin/EditUser'
 const AdminRoute = () => {
   return (
     <div>
@@ -19,6 +20,10 @@ const AdminRoute = () => {
                <Route path='/products/add' element={<AddProduct/>}/>
                <Route path='/users' element={<Users/>}/>
                <Route path='/settings' element={<Settings/>}/>
+                  <Route path='/userProfile' element={<ProfileUser/>}/>
+                   <Route path='/editUser' element={<EditUser/>}/>
+
+               
                
               </Route>
 

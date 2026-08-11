@@ -34,6 +34,7 @@ const ProductForm = () => {
         async function fetchProduct() {
             const data = await getProducts()
            
+        console.log("deyyyyyyyyyy",data);
         
             
 setProducts(data)
@@ -46,7 +47,7 @@ fetchProduct()
     useEffect(()=>{
         const timer=setTimeout(() => {
             setDebounced(search)
-        }, 3000);
+        }, 1000);
         return ()=>{
             clearTimeout(timer)
         }
@@ -372,12 +373,18 @@ fetchProduct()
                                 <td className="px-5 py-4">
 
                                     <div className="flex items-center gap-4">
-
+{/* 
                                         <button className="text-gray-600 transition hover:text-[#D3AF37]">
                                             <FiEye size={16} />
-                                        </button>
+                                        </button> */}
 
-                                        <button className="text-gray-600 transition hover:text-[#D3AF37]">
+                                        <button 
+                                        onClick={()=>navigate('/admin/products/add',{
+                                            state:{
+                                                id:product.id
+                                            }
+                                        })}
+                                        className="text-gray-600 transition hover:text-[#D3AF37]">
                                             <FiEdit2 size={16} />
                                         </button>
 

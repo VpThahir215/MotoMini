@@ -30,11 +30,18 @@ async function handleLogin(e) {
         u.email === email &&
         u.password === password
     );
+   
+    
 
     if (!user) {
       toast.error("Invalid Email or Password");
       return;
     }
+     if (user.access === "blocked") {
+      toast.error("Your MotoMini account has been blocked.");
+      return;
+    }
+
   if(user.role==="user"){
     localStorage.setItem("user", JSON.stringify(user));
     toast.success(`Hy ${user.name}! Welcome back to Moto Mini.`);
