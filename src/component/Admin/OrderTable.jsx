@@ -7,19 +7,23 @@ import {
 } from "react-icons/fi";
 import { getOredersAdmin } from "../../services/ orderService";
 import Orders from "../../pages/admin/ Orders";
+import { UpdateOrder } from "../../services/ orderService";
+import toast from "react-hot-toast";
 const OrderTable = () => {
   const [order,setOrder]=useState([])
   const [search,setSearch]=useState("")
   const [searchDebounce,setSearchDebouce]=useState("")
+  const [status, setStatus] = useState("All Status");
 
   console.log(search);
   useEffect(()=>{
     const timer=setTimeout(() => {
       setSearchDebouce(search)
-    }, 1000);
-    return clearTimeout(timer)
+    },1000);
+    return ()=> clearTimeout(timer)
+   
   },[search])
-console.log("debounce",searchDebounce);
+
 
 
 useEffect(()=>{
@@ -33,6 +37,7 @@ async function fetchOrder(){
 }
 fetchOrder()
 },[])
+
 
 
   const getStatusStyle = (status) => {
@@ -56,6 +61,69 @@ fetchOrder()
         return "border-gray-800 text-gray-500";
     }
   };
+ const filteredOrder = order.filter((val) => {
+  const searchValue = searchDebounce.toLowerCase();
+
+  const matchesUserId = String(val.userId)
+    .toLowerCase()
+    .includes(searchValue);
+
+  const matchesStatus =
+    status === "All Status" || val.status === status;
+
+  return matchesUserId && matchesStatus;
+
+ 
+});
+const fetchOrder=async ()=>{
+  try{
+    const data=await getOredersAdmin()
+    setOrder(data)
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+// useEffect(()=>{
+//   fetchOrder()
+// },[])
+
+ const handleStatusChange = async (orderId, newStatus) => {
+  console.log("Order:", orderId);
+  console.log("New status:", newStatus);
+try{
+  await UpdateOrder(orderId,newStatus)
+  console.log("status updated");
+  await fetchOrder()
+
+
+// let date=new Date()
+// console.log(date);
+// setOrder((prevOrder)=>{
+//   console.log("before update",prevOrder);
+//  const updated= prevOrder.map((val)=>{
+//   order.id===orderId?{...order,status:newStatus}:order
+//   })
+//   console.log("after update",prevOrder);
+//   return updated
+// })
+
+// setOrder((prvOrder)=>
+  // console.log("Before Update",prvOrder);
+  
+//  prvOrder.map((val)=>
+//    order.id===orderId?{...order,status:newStatus}:order
+// ))
+//  toast.success("Order status updated");
+
+}catch(error){
+  console.log(error);
+
+    toast.error("Failed to update status");
+  
+}
+ 
+};
   return (
     <div className="min-h-screen bg-black px-8 py-8 text-white">
 
@@ -107,7 +175,7 @@ fetchOrder()
              value={search}
              onChange={(e)=>setSearch(e.target.value)}
             type="text"
-            placeholder="Search Order Id or Product Name..."
+            placeholder="Search Order Id..."
             className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-700"
           />
 
@@ -121,7 +189,10 @@ fetchOrder()
         
 
 
-          <select className="border border-[#29230d] bg-black px-4 py-2.5 text-xs text-gray-500 outline-none">
+          <select
+           value={status}
+  onChange={(e) => setStatus(e.target.value)}
+          className="border border-[#29230d] bg-black px-4 py-2.5 text-xs text-gray-500 outline-none">
 
             <option>All Status</option>
             <option>Delivered</option>
@@ -182,7 +253,7 @@ fetchOrder()
 
           <tbody>
 
-        {order.map((order) => (
+       {filteredOrder.map((order) => (
   <tr
     key={order.id}
     className="border-b border-[#1c1c1c] transition hover:bg-[#0d0d0d]"
@@ -197,30 +268,30 @@ fetchOrder()
 
     {/* Customer */}
     <td className="px-5 py-5">
-      <p className="text-sm text-gray-300">
-        {order.customer.name}
-      </p>
+      <div>
+        <p className="text-sm text-gray-300">
+          {order.customer?.name}
+        </p>
 
-      <p className="mt-1 text-[10px] text-gray-700">
-        {order.customer.phone}
-      </p>
+        <p className="mt-1 text-[10px] text-gray-600">
+          {order.customer?.phone}
+        </p>
 
-      <p className="mt-1 text-[10px] text-gray-700">
-        {order.customer.city}, {order.customer.state}
-      </p>
+        <p className="mt-1 text-[10px] text-gray-600">
+          {order.customer?.city}, {order.customer?.state}
+        </p>
+      </div>
     </td>
 
     {/* Products */}
     <td className="px-5 py-5">
       <div className="flex flex-col gap-3">
-
-        {order.products.map((product) => (
+        {order.products?.map((product) => (
           <div
             key={product.id}
             className="flex items-center gap-3"
           >
-
-            <div className="h-10 w-10 overflow-hidden border border-[#29230d] bg-[#111]">
+            <div className="h-10 w-10 shrink-0 overflow-hidden border border-[#29230d] bg-[#111]">
               <img
                 src={product.image}
                 alt={product.name}
@@ -228,26 +299,23 @@ fetchOrder()
               />
             </div>
 
-            <div>
-              <p className="text-sm text-gray-300">
+            <div className="min-w-0">
+              <p className="truncate text-sm text-gray-300">
                 {product.name}
               </p>
 
-              <p className="text-[10px] text-gray-600">
+              <p className="mt-1 text-[10px] text-gray-600">
                 Qty: {product.quantity}
               </p>
             </div>
-
           </div>
         ))}
-
       </div>
     </td>
 
-
     {/* Amount */}
     <td className="px-5 py-5">
-      <span className="text-sm font-semibold text-white">
+      <span className="text-sm font-semibold text-[#D3AF37]">
         ₹{order.total}
       </span>
     </td>
@@ -255,7 +323,7 @@ fetchOrder()
     {/* Status */}
     <td className="px-5 py-5">
       <span
-        className={`inline-block border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider ${getStatusStyle(
+        className={`inline-flex border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider ${getStatusStyle(
           order.status
         )}`}
       >
@@ -263,20 +331,35 @@ fetchOrder()
       </span>
     </td>
 
-    {/* Action */}
-    <td className="px-5 py-5">
+    {/* Actions */}
+    {/* <td className="px-5 py-5">
       <div className="flex items-center gap-3">
-
-        <button className="text-gray-600 transition hover:text-[#D3AF37]">
+        <button
+          className="text-gray-600 transition hover:text-[#D3AF37]"
+          title="View Order"
+        >
           <FiEye size={17} />
-        </button>
+        </button> */}
 
-        <button className="text-gray-600 transition hover:text-[#D3AF37]">
-          <FiMoreHorizontal size={17} />
-        </button>
-
-      </div>
-    </td>
+        
+        
+      {/* </div> */}
+    {/* </td> */}
+    <td className="px-5 py-5">
+  <select
+    value={order.status}
+    onChange={(e) => handleStatusChange(order.id, e.target.value)}
+    className={`border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider outline-none ${getStatusStyle(
+      order.status
+    )}`}
+  >
+    <option value="Pending">Pending</option>
+    <option value="Processing">Processing</option>
+    <option value="Shipped">Shipped</option>
+    <option value="Delivered">Delivered</option>
+    <option value="Cancelled">Cancelled</option>
+  </select>
+</td>
 
   </tr>
 ))}

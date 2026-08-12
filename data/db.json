@@ -227,8 +227,9 @@
       "name": "Afla",
       "email": "afla@gmail.com",
       "password": "123",
-      "role": "admin",
-      "id": "7Ceuypo"
+      "role": "user",
+      "id": "7Ceuypo",
+      "access": "blocked"
     },
     {
       "name": "Sharmil",
@@ -387,87 +388,6 @@
   "wishlist": [],
   "orders": [
     {
-      "userId": "XwSkyn9vZVE",
-      "customer": {
-        "name": "THAHIR _",
-        "email": "vpthahir3062003@gmail.com",
-        "phone": "9999999999",
-        "address": "Vadakkum parambil(H)",
-        "city": "Kodinhi",
-        "state": "Kerala",
-        "pinCode": "676309",
-        "country": "india"
-      },
-      "paymentMethod": "cod",
-      "products": [
-        {
-          "userId": "XwSkyn9vZVE",
-          "productId": "2",
-          "name": "Himalayan 450 Hanle Black",
-          "brand": "Royal Enfield",
-          "category": "Adventure",
-          "price": 3552.99,
-          "stock": 14,
-          "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
-          "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
-          "quantity": 1,
-          "id": 3
-        }
-      ],
-      "subtotal": 3552.99,
-      "total": 3553,
-      "orderDate": "2026-08-04T05:35:56.917Z",
-      "status": "Pending",
-      "id": 1
-    },
-    {
-      "userId": "XwSkyn9vZVE",
-      "customer": {
-        "name": "THAHIR _",
-        "email": "vpthahir3062003@gmail.com",
-        "phone": "9999999999",
-        "address": "Vadakkum parambil(H)",
-        "city": "madeera",
-        "state": "asdlkfn",
-        "pinCode": "7777",
-        "country": "india"
-      },
-      "paymentMethod": "bank",
-      "products": [
-        {
-          "userId": "XwSkyn9vZVE",
-          "productId": "2",
-          "name": "Himalayan 450 Hanle Black",
-          "brand": "Royal Enfield",
-          "category": "Adventure",
-          "price": 3552.99,
-          "stock": 14,
-          "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
-          "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
-          "quantity": 4,
-          "id": 3
-        },
-        {
-          "userId": "XwSkyn9vZVE",
-          "productId": "3",
-          "name": "Himalayan 450  Mana Black",
-          "brand": "Royal Enfield",
-          "category": "Adventure",
-          "price": 2773.99,
-          "stock": 9,
-          "image": "https://i.pinimg.com/736x/5b/78/ec/5b78ec6ef8e57ea9547ce6465240d7d6.jpg",
-          "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models.",
-          "quantity": 4,
-          "id": 4
-        }
-      ],
-      "subtotal": 25307.92,
-      "total": 25308,
-      "orderDate": "2026-08-04T05:52:39.651Z",
-      "status": "Shipped",
-      "id": 4
-    },
-    {
       "userId": "PrZwFHy",
       "customer": {
         "name": "Rizal",
@@ -498,7 +418,7 @@
       "subtotal": 664.99,
       "total": 665,
       "orderDate": "2026-08-11T10:01:53.650Z",
-      "status": "Processing",
+      "status": "Cancelled",
       "id": 5
     },
     {
@@ -566,7 +486,7 @@
       "subtotal": 1666.99,
       "total": 1667,
       "orderDate": "2026-08-11T10:09:06.328Z",
-      "status": "Cancelled",
+      "status": "Processing",
       "id": 7
     },
     {
@@ -600,7 +520,7 @@
       "subtotal": 3552.99,
       "total": 3553,
       "orderDate": "2026-08-11T10:11:24.911Z",
-      "status": "Pending",
+      "status": "Shipped",
       "id": 8
     },
     {
@@ -634,7 +554,7 @@
       "subtotal": 1554.99,
       "total": 1555,
       "orderDate": "2026-08-11T10:12:14.255Z",
-      "status": "Pending",
+      "status": "Processing",
       "id": 9
     },
     {

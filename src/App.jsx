@@ -8,13 +8,13 @@ import { useEffect } from 'react'
 function App() {
 
   
-   useEffect(()=>{
-    const fetchOneProduct=async ()=>{
-      const productOne=await getOneProduct(1)
+  //  useEffect(()=>{
+  //   const fetchOneProduct=async ()=>{
+  //     const productOne=await getOneProduct(1)
       
-    }
-    fetchOneProduct()
-  },[])
+  //   }
+  //   fetchOneProduct()
+  // },[])
  
 
   return (

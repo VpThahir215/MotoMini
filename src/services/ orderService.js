@@ -28,3 +28,9 @@ export const getOredersAdmin=async ()=>{
   const respons=await api.get('/orders')
   return respons.data
 }
+export const UpdateOrder=async (id,status)=>{
+const respons =  await api.patch(`/orders/${id}`,{status:status});
+   return {
+  status: status
+};
+}
