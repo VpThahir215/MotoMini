@@ -449,7 +449,7 @@ const getAccesStyle = (access) => {
 
       {/* ================= PAGINATION ================= */}
 
-      <div className="flex items-center justify-between border-x border-b border-[#29230d] bg-[#080808] px-5 py-4">
+      {/* <div className="flex items-center justify-between border-x border-b border-[#29230d] bg-[#080808] px-5 py-4">
 
         <p className="text-[10px] text-gray-600">
           Showing 1–5 of 3,471 users
@@ -479,7 +479,7 @@ const getAccesStyle = (access) => {
 
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   )

@@ -124,38 +124,125 @@ try{
 }
  
 };
+const pendingCount = order.filter(
+  (val) => val.status === "Pending"
+).length;
+console.log("pedndddddd",pendingCount);
+
+const processingCount = order.filter(
+  (val) => val.status === "Processing"
+).length;
+
+const shippedCount = order.filter(
+  (val) => val.status === "Shipped"
+).length;
+
+const deliveredCount = order.filter(
+  (val) => val.status === "Delivered"
+).length;
+
+const cancelledCount = order.filter(
+  (val) => val.status === "Cancelled"
+).length;
   return (
     <div className="min-h-screen bg-black px-8 py-8 text-white">
 
-      {/* ================= HEADER ================= */}
+     {/* ================= HEADER ================= */}
 
-      <div className="flex items-center justify-between">
+<div className="flex items-center justify-between">
 
-        <div>
-          <p className="text-[10px] tracking-[0.3em] text-gray-600">
-            MANAGEMENT
-          </p>
+  <div>
+    <p className="text-[10px] tracking-[0.3em] text-gray-600">
+      MANAGEMENT
+    </p>
 
-          <h1 className="mt-1 font-heading text-3xl tracking-widest text-[#D3AF37]">
-            ORDERS
-          </h1>
+    <h1 className="mt-1 font-heading text-3xl tracking-widest text-[#D3AF37]">
+      ORDERS
+    </h1>
 
-          <p className="mt-2 text-xs text-gray-600">
-            Manage and track all customer orders
-          </p>
-        </div>
+    <p className="mt-2 text-xs text-gray-600">
+      Manage and track all customer orders
+    </p>
+  </div>
 
-        <div className="border border-[#29230d] px-5 py-3">
-          <p className="text-[9px] tracking-widest text-gray-600">
-            TOTAL ORDERS
-          </p>
+  {/* Total Orders */}
+  <div className="border border-[#29230d] bg-[#080808] px-6 py-4">
+    <p className="text-[9px] tracking-widest text-gray-600">
+      TOTAL ORDERS
+    </p>
 
-          <p className="mt-1 text-xl font-semibold text-[#D3AF37]">
-            {order.length}
-          </p>
-        </div>
+    <p className="mt-1 text-2xl font-semibold text-[#D3AF37]">
+      {order.length}
+    </p>
+  </div>
 
-      </div>
+</div>
+
+
+{/* ================= ORDER STATUS ================= */}
+
+<div className="mt-8 grid grid-cols-5 gap-4">
+
+  {/* Pending */}
+  <div className="border border-[#29230d] bg-[#080808] px-5 py-4">
+    <p className="text-[9px] uppercase tracking-widest text-gray-600">
+      Pending
+    </p>
+
+    <p className="mt-2 text-2xl font-semibold text-[#D3AF37]">
+      {pendingCount}
+    </p>
+  </div>
+
+
+  {/* Processing */}
+  <div className="border border-[#29230d] bg-[#080808] px-5 py-4">
+    <p className="text-[9px] uppercase tracking-widest text-gray-600">
+      Processing
+    </p>
+
+    <p className="mt-2 text-2xl font-semibold text-yellow-500">
+      {processingCount}
+    </p>
+  </div>
+
+
+  {/* Shipped */}
+  <div className="border border-[#29230d] bg-[#080808] px-5 py-4">
+    <p className="text-[9px] uppercase tracking-widest text-gray-600">
+      Shipped
+    </p>
+
+    <p className="mt-2 text-2xl font-semibold text-blue-500">
+      {shippedCount}
+    </p>
+  </div>
+
+
+  {/* Delivered */}
+  <div className="border border-[#29230d] bg-[#080808] px-5 py-4">
+    <p className="text-[9px] uppercase tracking-widest text-gray-600">
+      Delivered
+    </p>
+
+    <p className="mt-2 text-2xl font-semibold text-green-500">
+      {deliveredCount}
+    </p>
+  </div>
+
+
+  {/* Cancelled */}
+  <div className="border border-[#29230d] bg-[#080808] px-5 py-4">
+    <p className="text-[9px] uppercase tracking-widest text-gray-600">
+      Cancelled
+    </p>
+
+    <p className="mt-2 text-2xl font-semibold text-red-500">
+      {cancelledCount}
+    </p>
+  </div>
+
+</div>
 
 
       {/* ================= FILTER BAR ================= */}
@@ -373,7 +460,7 @@ try{
 
       {/* ================= PAGINATION ================= */}
 
-      <div className="flex items-center justify-between border-x border-b border-[#29230d] bg-[#080808] px-5 py-4">
+      {/* <div className="flex items-center justify-between border-x border-b border-[#29230d] bg-[#080808] px-5 py-4">
 
         <p className="text-[10px] text-gray-600">
           Showing 1–5 of 1,284 orders
@@ -403,7 +490,7 @@ try{
 
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   )

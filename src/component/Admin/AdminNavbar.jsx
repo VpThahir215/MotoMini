@@ -60,24 +60,7 @@ const AdminNavbar = () => {
        
                </div> */}
      
-        {/* Notification */}
-        <button
-          type="button"
-          className="relative text-gray-500 transition hover:text-[#D3AF37]"
-        >
-          <FiBell size={19} />
-
-          {/* Notification dot */}
-          <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-[#D3AF37]" />
-        </button>
-
-        {/* Fullscreen */}
-        <button
-          type="button"
-          className="text-gray-500 transition hover:text-[#D3AF37]"
-        >
-          <FiMaximize size={18} />
-        </button>
+       
 
         {/* Divider */}
         <div className="h-7 w-px bg-[#29230d]" />

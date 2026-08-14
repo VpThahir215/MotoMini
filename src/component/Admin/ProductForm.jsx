@@ -12,6 +12,7 @@ import { data, useNavigate } from "react-router-dom";
 import { deleteProduct } from "../../services/productService";
 import toast from "react-hot-toast";
 
+
 const ProductForm = () => {
     const [products,setProducts]=useState([])
     const [catagory,setCatagory]=useState("All Categories")
@@ -82,9 +83,17 @@ fetchProduct()
   }
        
      }
+     const [CurrentPage,setCurrentPage]=useState(1)
+     const productPerPage=5;
+     const startIndex=(CurrentPage - 1)*productPerPage;
+     const endIndex=startIndex + productPerPage;
+     const correntProduct=fillteredProduct.slice(startIndex,endIndex);
+     const totalPages = Math.ceil(fillteredProduct.length / productPerPage);
      
 
-    // const getStatusStyle = (status) => {
+     
+
+    // const getStatusStyle = (satus) => {
     //     switch (status) {
     //         case "Active":
     //             return "border-green-800 bg-green-950/30 text-green-500";
@@ -285,7 +294,7 @@ fetchProduct()
 
                     <tbody>
                         
-                          {fillteredProduct.map((product) => (
+                          {correntProduct.map((product) => (
 
 
                             <tr
@@ -413,45 +422,67 @@ fetchProduct()
 
             {/* ================= PAGINATION ================= */}
 
-            <div className="flex items-center justify-between border-x border-b border-[#29230d] bg-[#080808] px-5 py-4">
 
-                <p className="text-[10px] text-gray-600">
-                    Showing 1–5 of 248 products
-                </p>
 
-                <div className="flex items-center gap-2">
+           <div className="flex items-center justify-between border-x border-b border-[#29230d] bg-[#080808] px-5 py-4">
 
-                    <button className="border border-[#29230d] px-3 py-2 text-xs text-gray-600">
-                        ←
-                    </button>
+  {/* Showing text */}
+  <p className="text-[10px] text-gray-600">
+    Showing {fillteredProduct.length === 0 ? 0 : startIndex + 1}–
+    {Math.min(endIndex, fillteredProduct.length)} of {fillteredProduct.length} products
+  </p>
 
-                    <button className="border border-[#D3AF37] bg-[#1c1a12] px-3 py-2 text-xs text-[#D3AF37]">
-                        1
-                    </button>
+  {/* Pagination */}
+  <div className="flex items-center gap-2">
 
-                    <button className="border border-[#29230d] px-3 py-2 text-xs text-gray-500">
-                        2
-                    </button>
+    {/* Previous */}
+    <button
+      onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+      disabled={CurrentPage === 1}
+      className="border border-[#29230d] px-3 py-2 text-xs text-gray-600 disabled:opacity-40"
+    >
+      ←
+    </button>
 
-                    <button className="border border-[#29230d] px-3 py-2 text-xs text-gray-500">
-                        3
-                    </button>
+    {/* Page Numbers */}
+    {Array.from({ length: totalPages }, (_, index) => (
+      <button
+        key={index}
+        onClick={() => setCurrentPage(index + 1)}
+        className={`border px-3 py-2 text-xs ${
+          CurrentPage === index + 1
+            ? "border-[#D3AF37] bg-[#1c1a12] text-[#D3AF37]"
+            : "border-[#29230d] text-gray-500 hover:border-[#D3AF37] hover:text-[#D3AF37]"
+        }`}
+      >
+        {index + 1}
+      </button>
+    ))}
 
-                    <button className="border border-[#29230d] px-3 py-2 text-xs text-gray-600">
-                        →
-                    </button>
+    {/* Next */}
+    <button
+      onClick={() =>
+        setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+      }
+      disabled={CurrentPage === totalPages}
+      className="border border-[#29230d] px-3 py-2 text-xs text-gray-600 disabled:opacity-40"
+    >
+      →
+    </button>
 
-                </div>
+  </div>
+</div>
 
-            </div>
+
 
         </div>
     )
-}
+}  
+
 
 export default ProductForm
 
-
+                                       
 
                         // {products.map((product) => (
 
