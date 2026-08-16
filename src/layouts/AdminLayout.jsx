@@ -1,26 +1,31 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import AdminSideBar from '../component/Admin/AdminSidebar'
-import AdminNavbar from '../component/Admin/AdminNavbar'
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import AdminSideBar from "../component/Admin/AdminSidebar";
+import AdminNavbar from "../component/Admin/AdminNavbar";
+
 const AdminLayout = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div>
-           <div className="min-h-screen bg-black">
-        <section  className="ml-52 ">
-            <AdminNavbar/>
-        </section>
-        
-      <section>
-        <AdminSideBar/>
-      </section>
-      <section>
-            <main className="ml-52 min-h-screen">
-        <Outlet/>
+    <div className="min-h-screen bg-black">
+      {/* Sidebar */}
+      <AdminSideBar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
+
+      {/* Main Content */}
+      <div className="lg:ml-52">
+        {/* Navbar (works on mobile + desktop) */}
+        <AdminNavbar setSidebarOpen={setSidebarOpen} />
+
+        {/* Page Content */}
+        <main className="min-h-screen p-4 md:p-6 lg:p-8">
+          <Outlet />
         </main>
-      </section>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminLayout
+export default AdminLayout;

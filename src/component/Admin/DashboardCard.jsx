@@ -8,29 +8,30 @@ import {
 import { useState,useEffect } from "react";
 import { getDashboardData } from "../../services/dashBoardServices";
 import { useNavigate } from "react-router-dom";
+import {BarChart,Bar,XAxis,Tooltip,ResponsiveContainer,YAxis} from "recharts"
 
 /* =========================================================
    MINI GRAPH
 ========================================================= */
 
-const MiniGraph = ({ points }) => {
-  return (
-    <svg
-      viewBox="0 0 100 35"
-      className="h-10 w-28"
-      preserveAspectRatio="none"
-    >
-      <polyline
-        points={points}
-        fill="none"
-        stroke="#D3AF37"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-};
+// const MiniGraph = ({ points }) => {
+//   return (
+//     <svg
+//       viewBox="0 0 100 35"
+//       className="h-10 w-28"
+//       preserveAspectRatio="none"
+//     >
+//       <polyline
+//         points={points}
+//         fill="none"
+//         stroke="#D3AF37"
+//         strokeWidth="2"
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//       />
+//     </svg>
+//   );
+// };
 
 
 /* =========================================================
@@ -62,6 +63,23 @@ const totalRevenue=orders.filter((val)=>val.status==="Delivered").reduce((sum,or
 const navigate=useNavigate()
 
 
+const monthNames = [
+  "Jan","Feb","Mar","Apr","May","Jun",
+  "Jul","Aug","Sep","Oct","Nov","Dec"
+];
+
+const monthlyTotals = {};
+
+orders.forEach((order) => {
+  const month = monthNames[new Date(order.orderDate).getMonth()];
+
+  monthlyTotals[month] =
+    (monthlyTotals[month] || 0) + order.total;
+});
+const revenueData = monthNames.map((month) => ({
+  month,
+  revenue: monthlyTotals[month]
+}));
 
 
 useEffect(() => {
@@ -218,37 +236,37 @@ const topProducts = products
      MONTHLY REVENUE
   ========================================================= */
 
-  const revenue = [
-    {
-      month: "MAR",
-      height: "65%",
-    },
+  // const revenue = [
+  //   {
+  //     month: "MAR",
+  //     height: "65%",
+  //   },
 
-    {
-      month: "APR",
-      height: "82%",
-    },
+  //   {
+  //     month: "APR",
+  //     height: "82%",
+  //   },
 
-    {
-      month: "MAY",
-      height: "58%",
-    },
+  //   {
+  //     month: "MAY",
+  //     height: "58%",
+  //   },
 
-    {
-      month: "JUN",
-      height: "86%",
-    },
+  //   {
+  //     month: "JUN",
+  //     height: "86%",
+  //   },
 
-    {
-      month: "JUL",
-      height: "86%",
-    },
+  //   {
+  //     month: "JUL",
+  //     height: "86%",
+  //   },
 
-    {
-      month: "AUG",
-      height: "92%",
-    },
-  ];
+  //   {
+  //     month: "AUG",
+  //     height: "92%",
+  //   },
+  // ];
 
 
   /* =========================================================
@@ -349,7 +367,7 @@ const recentOrders = [...orders]
         return "border-gray-800 text-gray-500";
     }
   };
-  const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
 
 // Create an object to store revenue for each month
 const monthlyRevenue = {};
@@ -384,11 +402,11 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
           HEADER
       ===================================================== */}
 
-      <header className="flex h-14 items-center justify-between border-b border-[#29230d] px-8">
+     <header className="flex h-14 items-center justify-between border-b border-[#29230d] px-4 md:px-6 lg:px-8">
 
         <div>
 
-          <h1 className="font-heading text-2xl tracking-widest">
+          <h1 className="font-heading text-xl md:text-2xl tracking-widest">
             DASHBOARD
           </h1>
 
@@ -423,13 +441,13 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
             STAT CARDS
         =================================================== */}
 
-        <section className="grid grid-cols-4 border border-[#29230d]">
+        <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
 
           {stats.map((stat, index) => (
 
             <div
               key={index}
-              className={`relative min-h-40 border-[#29230d] p-6 ${
+              className={`relative min-h-36 border border-[#29230d] bg-[#080808] p-5 ${
                 index !== stats.length - 1
                   ? "border-r"
                   : ""
@@ -472,56 +490,48 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
         {/* ===================================================
             ORDER STATUS
         =================================================== */}
+<section className="mt-8">
+  <div className="mb-4">
+    <h2 className="font-heading text-lg md:text-xl tracking-widest text-[#D3AF37]">
+      ORDER STATUS
+    </h2>
 
-        <section className="mt-8">
+    <p className="mt-1 text-xs text-gray-600">
+      Current order overview
+    </p>
+  </div>
 
-          <div className="mb-4">
+  <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+    {orderStatuses.map((item) => (
+      <div
+        key={item.name}
+        className="border border-[#29230d] bg-[#080808] p-4 md:p-5 transition hover:border-[#D3AF37]"
+      >
+        <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-600">
+          {item.name}
+        </p>
 
-            <h2 className="font-heading text-lg tracking-widest text-[#D3AF37]">
-              ORDER STATUS
-            </h2>
-
-            <p className="mt-1 text-xs text-gray-600">
-              Current order overview
-            </p>
-
-          </div>
-
-
-         <div className="grid grid-cols-5 gap-4 mt-8">
-
-  {orderStatuses.map((item) => (
-    <div
-      key={item.name}
-      className="border border-[#29230d] bg-[#080808] p-5"
-    >
-      <p className="text-[10px] uppercase tracking-widest text-gray-600">
-        {item.name}
-      </p>
-
-      <p className="mt-3 text-2xl font-semibold text-[#D3AF37]">
-        {item.count}
-      </p>
-    </div>
-  ))}
-
-</div>
-
-        </section>
+        <p className="mt-2 text-xl md:text-2xl font-semibold text-[#D3AF37]">
+          {item.count}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
 
 
         {/* ===================================================
             RECENT ORDERS + LOW STOCK
         =================================================== */}
 
-        <section className="mt-8 grid grid-cols-3 gap-6">
+        <section className="mt-8 grid grid-cols-1 xl:grid-cols-3 gap-6">
 
 
           {/* =================================================
               RECENT ORDERS
           ================================================= */}
 
-          <div className="col-span-2 border border-[#29230d]">
+          <div className="xl:col-span-2 border border-[#29230d] overflow-x-auto">
 
             <div className="flex items-center justify-between border-b border-[#29230d] p-6">
 
@@ -762,14 +772,14 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
             REVENUE + TOP PRODUCTS
         =================================================== */}
 
-        <section className="mt-8 grid grid-cols-3 gap-6">
+        {/* <section className="mt-8 grid grid-cols-3 gap-6"> */}
 
 
           {/* =================================================
               REVENUE CHART
           ================================================= */}
 
-       <div className="col-span-3 min-h-[420px] border border-[#29230d] p-6">
+       {/* <div className="col-span-3 min-h-[420px] border border-[#29230d] p-6">
 
             <div className="flex items-start justify-between">
 
@@ -795,9 +805,9 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
             {/* Chart */}
 
-            <div className="mt-10 flex h-64 items-end gap-3 px-1">
+            {/* <div className="mt-10 flex h-64 items-end gap-3 px-1"> */}
 
-              {revenue.map((item, index) => (
+              {/* {revenue.map((item, index) => (
 
                 <div
                   key={index}
@@ -821,11 +831,23 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
                 </div>
 
-              ))}
+              ))} */}
 
-            </div>
+            {/* </div> */}
 
-          </div>
+          {/* </div>  */}
+
+
+         <div className="mt-8 h-64 sm:h-72 md:h-80 border border-[#29230d] p-4 md:p-6">
+  <ResponsiveContainer width="100%" height="100%">
+    <BarChart data={revenueData}>
+      <XAxis dataKey="month" />
+      <YAxis />
+      <Tooltip />
+      <Bar dataKey="revenue" fill="#D3AF37" radius={[4, 4, 0, 0]} />
+    </BarChart>
+  </ResponsiveContainer>
+</div>
 
 
           {/* =================================================
@@ -874,7 +896,7 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
           </div> */}
 
-        </section>
+        {/* </section> */}
 
       </main>
 

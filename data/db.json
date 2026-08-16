@@ -355,7 +355,7 @@
       "stock": 14,
       "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
       "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
-      "quantity": 1,
+      "quantity": 7,
       "id": 15
     },
     {
@@ -385,7 +385,20 @@
       "id": 17
     }
   ],
-  "wishlist": [],
+  "wishlist": [
+    {
+      "userId": "jC0zCcJ",
+      "productId": "6",
+      "name": "BMW S 1000 RR",
+      "brand": "BMW Motorrad",
+      "category": "Super Bike",
+      "price": 1772.99,
+      "stock": 8,
+      "image": "https://i.pinimg.com/736x/08/96/95/08969534b1a4907fa564bd8175f09f1d.jpg",
+      "description": "A premium miniature replica of the BMW S 1000 RR, showcasing aggressive styling, aerodynamic fairings, and authentic detailing. Crafted for collectors and superbike enthusiasts seeking a high-quality display model.",
+      "id": 1
+    }
+  ],
   "orders": [
     {
       "userId": "PrZwFHy",
@@ -418,7 +431,7 @@
       "subtotal": 664.99,
       "total": 665,
       "orderDate": "2026-08-11T10:01:53.650Z",
-      "status": "Cancelled",
+      "status": "Shipped",
       "id": 5
     },
     {
@@ -451,7 +464,7 @@
       ],
       "subtotal": 1774.99,
       "total": 1775,
-      "orderDate": "2026-08-11T10:08:16.498Z",
+      "orderDate": "2026-01-11T10:08:16.498Z",
       "status": "Delivered",
       "id": 6
     },
@@ -485,7 +498,7 @@
       ],
       "subtotal": 1666.99,
       "total": 1667,
-      "orderDate": "2026-08-11T10:09:06.328Z",
+      "orderDate": "2026-07-11T10:09:06.328Z",
       "status": "Delivered",
       "id": 7
     },
@@ -519,7 +532,7 @@
       ],
       "subtotal": 3552.99,
       "total": 3553,
-      "orderDate": "2026-08-11T10:11:24.911Z",
+      "orderDate": "2026-01-11T10:11:24.911Z",
       "status": "Cancelled",
       "id": 8
     },
@@ -553,7 +566,7 @@
       ],
       "subtotal": 1554.99,
       "total": 1555,
-      "orderDate": "2026-08-11T10:12:14.255Z",
+      "orderDate": "2026-06-11T10:12:14.255Z",
       "status": "Shipped",
       "id": 9
     },
@@ -587,9 +600,145 @@
       ],
       "subtotal": 2773.99,
       "total": 2774,
-      "orderDate": "2026-08-11T10:13:10.628Z",
+      "orderDate": "2026-05-11T10:13:10.628Z",
       "status": "Delivered",
       "id": 10
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "THAHIR _",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "card",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
+          "productId": "2",
+          "name": "Himalayan 450 Hanle Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 3552.99,
+          "stock": 14,
+          "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+          "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+          "quantity": 1,
+          "id": 15
+        }
+      ],
+      "subtotal": 3552.99,
+      "total": 3553,
+      "orderDate": "2026-04-16T07:29:41.601Z",
+      "status": "Pending",
+      "id": 11
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "THAHIR _",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "india"
+      },
+      "paymentMethod": "bank",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
+          "productId": "4",
+          "name": "Yamaha YZF-R1 Race Edition",
+          "brand": "Yamaha",
+          "category": "Sport Bike",
+          "price": 1554.99,
+          "stock": 18,
+          "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
+          "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
+          "quantity": 1,
+          "id": 16
+        }
+      ],
+      "subtotal": 1554.99,
+      "total": 1555,
+      "orderDate": "2026-02-16T07:30:24.305Z",
+      "status": "Pending",
+      "id": 12
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "THAHIR _",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "portugal"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
+          "productId": "4",
+          "name": "Yamaha YZF-R1 Race Edition",
+          "brand": "Yamaha",
+          "category": "Sport Bike",
+          "price": 1554.99,
+          "stock": 18,
+          "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
+          "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
+          "quantity": 1,
+          "id": 16
+        }
+      ],
+      "subtotal": 1554.99,
+      "total": 1555,
+      "orderDate": "2026-03-16T07:31:01.886Z",
+      "status": "Pending",
+      "id": 13
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "THAHIR _",
+        "email": "vpthahir3062003@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "Portugal"
+      },
+      "paymentMethod": "cod",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
+          "productId": "2",
+          "name": "Himalayan 450 Hanle Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 3552.99,
+          "stock": 14,
+          "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+          "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
+          "quantity": 7,
+          "id": 15
+        }
+      ],
+      "subtotal": 24870.93,
+      "total": 24871,
+      "orderDate": "2026-08-16T07:34:41.535Z",
+      "status": "Pending",
+      "id": 14
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

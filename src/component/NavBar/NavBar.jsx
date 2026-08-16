@@ -23,10 +23,12 @@ const [menuOpen, setMenuOpen] = useState(false);
   navigate("/login");
 };
   return (
-    <header className={`fixed top-0 pb-0 left-0 w-full z-50  ${
-    isHome ? "bg-transparent" : "bg-black"
-  }`}>
-      <div className="h-20 px-8 flex items-center justify-between">
+    <header
+  className={`fixed top-0 left-0 z-50 w-full ${
+    isHome ? "bg-transparent" : "bg-black border-b border-[#29230d]"
+  }`}
+>
+  <div className="flex h-20 items-center justify-between px-4 md:px-6 lg:px-8">
 
        <div
   className={`flex items-center gap-3 cursor-pointer hover:text-[#D3AF37]  ${
@@ -35,18 +37,18 @@ const [menuOpen, setMenuOpen] = useState(false);
 >
   <div className="relative">
 
-  <div
-    onClick={() => setMenuOpen(!menuOpen)}
-    className={`flex items-center gap-3 cursor-pointer ${
-      isHome ? "text-black" : "text-white"
-    }`}
-  >
-    <FiMenu size={24} />
-    <span className="text-sm">Menu</span>
-  </div>
+ <div
+  onClick={() => setMenuOpen(!menuOpen)}
+  className={`flex cursor-pointer items-center gap-2 ${
+    isHome ? "text-black" : "text-white"
+  }`}
+>
+  <FiMenu size={24} />
+  <span className="hidden text-sm sm:block">Menu</span>
+</div>
 
   {menuOpen && (
-    <div className="absolute top-12 left-0 w-72 bg-[#161616] rounded-xl shadow-xl border border-gray-700 overflow-hidden">
+   <div className="absolute left-0 top-12 w-64 overflow-hidden rounded-xl border border-[#29230d] bg-[#161616] shadow-xl sm:w-72">
 
       {user ? (
         <>
@@ -115,17 +117,16 @@ const [menuOpen, setMenuOpen] = useState(false);
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
           
 
-          <h1 className="text-lg tracking-[0.35em] text-amber-50">
-            MOTOMINI
-          </h1>
+         <h1 className="font-heading text-sm tracking-[0.25em] text-amber-50 sm:text-base md:text-lg">
+  MOTOMINI
+</h1>
 
-          <p className="text-[10px] tracking-[0.3em] text-[#D3AF37]">
-           SMALL BIKES. ENDLESS PASSION.
-          </p>
+<p className="hidden text-[9px] tracking-[0.25em] text-[#D3AF37] sm:block">
+  SMALL BIKES. ENDLESS PASSION.
+</p>
         </div>
 
-        <div className="flex items-center gap-6">
-         
+      <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
         {user ? (
   <div className="flex items-center gap-4">
      <FiHeart

@@ -109,20 +109,20 @@ fetchProduct()
     //     }
     // };
     return (
-        <div className="min-h-screen bg-black px-8 py-8 text-white">
+       <div className="min-h-screen bg-black px-4 py-4 text-white md:px-6 md:py-6 lg:px-8 lg:py-8">
 
             {/* ================= HEADER ================= */}
 
-            <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                 <div>
                     <p className="text-[10px] tracking-[0.3em] text-gray-600">
                         MANAGEMENT
                     </p>
 
-                    <h1 className="mt-1 font-heading text-3xl tracking-widest text-[#D3AF37]">
-                        PRODUCTS
-                    </h1>
+                   <h1 className="mt-1 font-heading text-2xl md:text-3xl tracking-widest text-[#D3AF37]">
+  PRODUCTS
+</h1>
 
                     <p className="mt-2 text-xs text-gray-600">
                         Manage your miniature motorcycle collection
@@ -143,7 +143,7 @@ fetchProduct()
 
             {/* ================= SUMMARY ================= */}
 
-            <div className="mt-8 grid grid-cols-4 border border-[#29230d]">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
                 <div className="border-r border-[#29230d] p-5">
                     <p className="text-[9px] tracking-widest text-gray-600">
@@ -246,16 +246,16 @@ fetchProduct()
                     </select>
 
                   
-                </div>
+                </div>  
 
             </div>
 
 
             {/* ================= PRODUCT TABLE ================= */}
 
-            <div className="mt-5 overflow-hidden border border-[#29230d]">
+         <div className="mt-5 overflow-x-auto rounded-lg border border-[#29230d] bg-[#080808]">
 
-                <table className="w-full border-collapse">
+                <table className="min-w-[900px] w-full border-collapse">
 
                     <thead>
 

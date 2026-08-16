@@ -1,114 +1,206 @@
+// import React from "react";
+// import toast from "react-hot-toast";
+// import {
+//   FiSearch,
+//   FiBell,
+//   FiMaximize,
+//   FiLogOut,
+// } from "react-icons/fi";
+// import { useNavigate } from "react-router-dom";
+
+
+
+// const AdminNavbar = () => {
+//     const user=JSON.parse(localStorage.getItem("admin"))
+//     console.log(user.name,"userrrrrrrrrrrr");
+//     const navigate=useNavigate()
+
+//       const handleLogout = () => {
+//         console.log("hyyyyyy");
+        
+//     localStorage.removeItem("admin");
+//      toast.success(
+//          <div>
+//     <p>Leaving MotoMini?</p>
+//     <p>Your ride will be waiting when you return.</p>
+//   </div>
+//     )
+//     navigate("/login");
+//   };
+
+//   return (
+//     <div>
+//           <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[#29230d] bg-[#080808] px-6">
+
+//       {/* Left Side */}
+//       <div>
+       
+//       </div>
+
+//       {/* Right Side */}
+ 
+//       <div className="flex items-center gap-5">
+          
+
+
+//         {/* Search */}
+// {/*        
+//        <div className="flex w-80 items-center gap-3 border border-[#29230d] px-4 py-2.5">
+       
+//                  <FiSearch
+//                    size={16}
+//                    className="text-gray-600"
+//                  />
+       
+//                  <input
+//                    type="text"
+//                    placeholder="Search orders..."
+//                    className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-700"
+//                  />
+       
+//                </div> */}
+     
+       
+
+//         {/* Divider */}
+//         <div className="h-7 w-px bg-[#29230d]" />
+
+//         {/* Admin Profile */}
+//         <div 
+//          onClick={()=>navigate('/admin/userProfile',{
+//           state:{
+//             user:user
+//           }
+//          })}
+//         className="flex items-center gap-3">
+
+//           {/* Avatar */}
+//           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D3AF37] text-xs font-bold text-black">
+//             {user?.name?.charAt(0)}
+//           </div>
+
+//           {/* Admin Info */}
+//           <div 
+         
+//           className="hidden sm:block">
+//             <p className="text-xs font-medium text-white">
+//               Admin
+//             </p>
+
+//             <p className="text-[10px] text-gray-600">
+//             {user.name}
+//             </p>
+//           </div>
+
+//         </div>
+
+//         {/* Logout */}
+//         <button
+//         onClick={handleLogout}
+//           type="button"
+//           className="text-gray-500 transition hover:text-red-500"
+//         >
+//           <FiLogOut size={18} />
+//         </button>
+
+//       </div>
+
+//     </header>
+  
+//     </div>
+//   )
+// }
+
+// export default AdminNavbar
 import React from "react";
 import toast from "react-hot-toast";
-import {
-  FiSearch,
-  FiBell,
-  FiMaximize,
-  FiLogOut,
-} from "react-icons/fi";
+import { FiMenu, FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
+const AdminNavbar = ({ setSidebarOpen }) => {
+  const user = JSON.parse(localStorage.getItem("admin"));
+  const navigate = useNavigate();
 
-
-const AdminNavbar = () => {
-    const user=JSON.parse(localStorage.getItem("admin"))
-    console.log(user.name,"userrrrrrrrrrrr");
-    const navigate=useNavigate()
-
-      const handleLogout = () => {
-        console.log("hyyyyyy");
-        
+  const handleLogout = () => {
     localStorage.removeItem("admin");
-     toast.success(
-         <div>
-    <p>Leaving MotoMini?</p>
-    <p>Your ride will be waiting when you return.</p>
-  </div>
-    )
+
+    toast.success(
+      <div>
+        <p>Leaving MotoMini?</p>
+        <p>Your ride will be waiting when you return.</p>
+      </div>
+    );
+
     navigate("/login");
   };
 
   return (
-    <div>
-          <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[#29230d] bg-[#080808] px-6">
-
+    <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[#29230d] bg-[#080808] px-4 md:px-6">
       {/* Left Side */}
-      <div>
-       
+
+      <div className="flex items-center gap-3">
+        {/* Mobile Hamburger */}
+
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="text-[#D3AF37] lg:hidden"
+        >
+          <FiMenu size={22} />
+        </button>
+
+        <h1 className="font-heading text-lg tracking-wider text-[#D3AF37] lg:hidden">
+          MOTOMINI
+        </h1>
       </div>
 
       {/* Right Side */}
- 
-      <div className="flex items-center gap-5">
-          
 
-
-        {/* Search */}
-{/*        
-       <div className="flex w-80 items-center gap-3 border border-[#29230d] px-4 py-2.5">
-       
-                 <FiSearch
-                   size={16}
-                   className="text-gray-600"
-                 />
-       
-                 <input
-                   type="text"
-                   placeholder="Search orders..."
-                   className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-700"
-                 />
-       
-               </div> */}
-     
-       
-
+      <div className="flex items-center gap-3 md:gap-5">
         {/* Divider */}
-        <div className="h-7 w-px bg-[#29230d]" />
+
+        <div className="hidden h-7 w-px bg-[#29230d] sm:block" />
 
         {/* Admin Profile */}
-        <div 
-         onClick={()=>navigate('/admin/userProfile',{
-          state:{
-            user:user
-          }
-         })}
-        className="flex items-center gap-3">
 
+        <button
+          onClick={() =>
+            navigate("/admin/userProfile", {
+              state: { user },
+            })
+          }
+          className="flex items-center gap-2 md:gap-3"
+        >
           {/* Avatar */}
+
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D3AF37] text-xs font-bold text-black">
             {user?.name?.charAt(0)}
           </div>
 
-          {/* Admin Info */}
-          <div 
-         
-          className="hidden sm:block">
+          {/* Name (Hidden on Mobile) */}
+
+          <div className="hidden md:block text-left">
             <p className="text-xs font-medium text-white">
               Admin
             </p>
 
             <p className="text-[10px] text-gray-600">
-            {user.name}
+              {user?.name}
             </p>
           </div>
-
-        </div>
+        </button>
 
         {/* Logout */}
+
         <button
-        onClick={handleLogout}
-          type="button"
+          onClick={handleLogout}
           className="text-gray-500 transition hover:text-red-500"
+          title="Logout"
         >
           <FiLogOut size={18} />
         </button>
-
       </div>
-
     </header>
-  
-    </div>
-  )
-}
+  );
+};
 
-export default AdminNavbar
+export default AdminNavbar;

@@ -129,11 +129,11 @@ const Add = () => {
 
   };
   return (
-    <div className="min-h-screen bg-black px-8 py-8 text-white">
+   <div className="min-h-screen bg-black px-4 py-4 text-white md:px-6 md:py-6 lg:px-8 lg:py-8">
 
       {/* ================= HEADER ================= */}
 
-      <div className="flex items-center justify-between">
+   <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
         <div>
 
@@ -166,12 +166,12 @@ const Add = () => {
 
       <form onSubmit={handleSubmit}>
 
-        <div className="mt-8 grid grid-cols-3 gap-6">
+        <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-3">
 
 
           {/* ================= LEFT - PRODUCT INFO ================= */}
 
-          <div className="col-span-2 border border-[#29230d] bg-[#080808]">
+         <div className="xl:col-span-2 rounded-lg border border-[#29230d] bg-[#080808]">
 
             <div className="border-b border-[#29230d] px-6 py-5">
 
@@ -186,7 +186,7 @@ const Add = () => {
             </div>
 
 
-            <div className="space-y-6 p-6">
+            <div className="space-y-6 p-4 md:p-6">
 
 
               {/* Product Name */}

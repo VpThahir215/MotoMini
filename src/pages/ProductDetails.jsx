@@ -13,8 +13,9 @@ const {id} =useParams()
 
   const [loading, setLoading] = useState(true);
   const locatoin=useLocation()
-  const feature=locatoin.state?.product;
+ 
   
+
   
 
 
@@ -22,13 +23,14 @@ const {id} =useParams()
  
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProduct =  () => {
       try {
         setLoading(true);
+ const feature=locatoin.state?.product;
+        console.log("daataataa",feature);
+          console.log("fffffff",feature.id);
 
-        const data = await getOneProduct(id);
-
-        setProduct(data);
+        setProduct(feature);
       } catch (error) {
         console.error(error);
         setProduct(null);
@@ -68,9 +70,9 @@ const {id} =useParams()
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <ProductGallery product={product} feature={feature} />
+          <ProductGallery product={product} feature={product} />
 
-          <ProductInfo product={product}   feature={feature} />
+          <ProductInfo product={product}   feature={product} />
 
         </div>
 

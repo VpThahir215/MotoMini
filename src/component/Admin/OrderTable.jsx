@@ -145,20 +145,18 @@ const cancelledCount = order.filter(
   (val) => val.status === "Cancelled"
 ).length;
   return (
-    <div className="min-h-screen bg-black px-8 py-8 text-white">
+   <div className="min-h-screen bg-black px-4 py-4 text-white md:px-6 md:py-6 lg:px-8 lg:py-8">
 
      {/* ================= HEADER ================= */}
-
-<div className="flex items-center justify-between">
+<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
   <div>
     <p className="text-[10px] tracking-[0.3em] text-gray-600">
       MANAGEMENT
     </p>
-
-    <h1 className="mt-1 font-heading text-3xl tracking-widest text-[#D3AF37]">
-      ORDERS
-    </h1>
+<h1 className="mt-1 font-heading text-2xl md:text-3xl tracking-widest text-[#D3AF37]">
+  ORDERS
+</h1>
 
     <p className="mt-2 text-xs text-gray-600">
       Manage and track all customer orders
@@ -166,7 +164,7 @@ const cancelledCount = order.filter(
   </div>
 
   {/* Total Orders */}
-  <div className="border border-[#29230d] bg-[#080808] px-6 py-4">
+  <div className="w-full border border-[#29230d] bg-[#080808] px-5 py-4 sm:w-auto sm:min-w-[160px]">
     <p className="text-[9px] tracking-widest text-gray-600">
       TOTAL ORDERS
     </p>
@@ -180,11 +178,9 @@ const cancelledCount = order.filter(
 
 
 {/* ================= ORDER STATUS ================= */}
-
-<div className="mt-8 grid grid-cols-5 gap-4">
-
+<div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
   {/* Pending */}
-  <div className="border border-[#29230d] bg-[#080808] px-5 py-4">
+  <div className="border border-[#29230d] bg-[#080808] p-4 md:p-5 transition hover:border-[#D3AF37]">
     <p className="text-[9px] uppercase tracking-widest text-gray-600">
       Pending
     </p>
@@ -246,12 +242,11 @@ const cancelledCount = order.filter(
 
 
       {/* ================= FILTER BAR ================= */}
-
-      <div className="mt-8 flex items-center justify-between border border-[#29230d] bg-[#080808] px-5 py-4">
+<div className="mt-8 flex flex-col gap-4 border border-[#29230d] bg-[#080808] p-4 md:flex-row md:items-center md:justify-between md:px-5 md:py-4">
 
         {/* Search */}
 
-        <div className="flex w-80 items-center gap-3 border border-[#29230d] px-4 py-2.5">
+        <div className="flex w-full max-w-md items-center gap-3 border border-[#29230d] px-4 py-2.5">
 
           <FiSearch
             size={16}
@@ -279,7 +274,7 @@ const cancelledCount = order.filter(
           <select
            value={status}
   onChange={(e) => setStatus(e.target.value)}
-          className="border border-[#29230d] bg-black px-4 py-2.5 text-xs text-gray-500 outline-none">
+         className="w-full border border-[#29230d] bg-black px-4 py-2.5 text-xs text-gray-500 outline-none md:w-auto">
 
             <option>All Status</option>
             <option>Delivered</option>
@@ -297,166 +292,126 @@ const cancelledCount = order.filter(
 
       {/* ================= ORDERS TABLE ================= */}
 
-      <div className="mt-5 overflow-hidden border border-[#29230d]">
+  <div className="mt-5 overflow-x-auto rounded-lg border border-[#29230d] bg-[#080808]">
+  <table className="min-w-[850px] w-full border-collapse">
+    {/* Header */}
+    <thead>
+      <tr className="border-b border-[#29230d] bg-[#0d0d0d] text-left">
+        {["ORDER ID", "CUSTOMER", "PRODUCT", "AMOUNT", "STATUS", "ACTION"].map(
+          (heading) => (
+            <th
+              key={heading}
+              className="px-4 py-3 text-[10px] font-medium tracking-[0.2em] text-gray-500 md:px-5 md:py-4"
+            >
+              {heading}
+            </th>
+          )
+        )}
+      </tr>
+    </thead>
 
-        <table className="w-full border-collapse">
-
-          <thead>
-
-            <tr className="border-b border-[#29230d] bg-[#080808] text-left">
-
-              <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
-                ORDER ID
-              </th>
-
-              <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
-                CUSTOMER
-              </th>
-
-              <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
-                PRODUCT
-              </th>
-{/* 
-              <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
-                DATE
-              </th> */}
-
-              <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
-                AMOUNT
-              </th>
-
-              <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
-                STATUS
-              </th>
-
-              <th className="px-5 py-4 text-[10px] tracking-widest text-gray-600">
-                ACTION
-              </th>
-
-            </tr>
-
-          </thead>
-
-
-          <tbody>
-
-       {filteredOrder.map((order) => (
-  <tr
-    key={order.id}
-    className="border-b border-[#1c1c1c] transition hover:bg-[#0d0d0d]"
-  >
-
-    {/* Order ID */}
-    <td className="px-5 py-5">
-      <span className="text-sm font-medium text-[#D3AF37]">
-        #{order.userId}
-      </span>
-    </td>
-
-    {/* Customer */}
-    <td className="px-5 py-5">
-      <div>
-        <p className="text-sm text-gray-300">
-          {order.customer?.name}
-        </p>
-
-        <p className="mt-1 text-[10px] text-gray-600">
-          {order.customer?.phone}
-        </p>
-
-        <p className="mt-1 text-[10px] text-gray-600">
-          {order.customer?.city}, {order.customer?.state}
-        </p>
-      </div>
-    </td>
-
-    {/* Products */}
-    <td className="px-5 py-5">
-      <div className="flex flex-col gap-3">
-        {order.products?.map((product) => (
-          <div
-            key={product.id}
-            className="flex items-center gap-3"
-          >
-            <div className="h-10 w-10 shrink-0 overflow-hidden border border-[#29230d] bg-[#111]">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="min-w-0">
-              <p className="truncate text-sm text-gray-300">
-                {product.name}
-              </p>
-
-              <p className="mt-1 text-[10px] text-gray-600">
-                Qty: {product.quantity}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </td>
-
-    {/* Amount */}
-    <td className="px-5 py-5">
-      <span className="text-sm font-semibold text-[#D3AF37]">
-        ₹{order.total}
-      </span>
-    </td>
-
-    {/* Status */}
-    <td className="px-5 py-5">
-      <span
-        className={`inline-flex border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider ${getStatusStyle(
-          order.status
-        )}`}
-      >
-        {order.status}
-      </span>
-    </td>
-
-    {/* Actions */}
-    {/* <td className="px-5 py-5">
-      <div className="flex items-center gap-3">
-        <button
-          className="text-gray-600 transition hover:text-[#D3AF37]"
-          title="View Order"
+    {/* Body */}
+    <tbody>
+      {filteredOrder.map((order) => (
+        <tr
+          key={order.id}
+          className="border-b border-[#1c1c1c] transition-colors duration-200 hover:bg-[#111111]"
         >
-          <FiEye size={17} />
-        </button> */}
+          {/* Order ID */}
+          <td className="px-4 py-4 md:px-5 md:py-5">
+            <span className="text-xs font-semibold text-[#D3AF37] md:text-sm">
+              #{order.userId}
+            </span>
+          </td>
 
-        
-        
-      {/* </div> */}
-    {/* </td> */}
-    <td className="px-5 py-5">
-  <select
-    value={order.status}
-    onChange={(e) => handleStatusChange(order.id, e.target.value)}
-    className={`border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider outline-none ${getStatusStyle(
-      order.status
-    )}`}
-  >
-    <option value="Pending">Pending</option>
-    <option value="Processing">Processing</option>
-    <option value="Shipped">Shipped</option>
-    <option value="Delivered">Delivered</option>
-    <option value="Cancelled">Cancelled</option>
-  </select>
-</td>
+          {/* Customer */}
+          <td className="px-4 py-4 md:px-5 md:py-5">
+            <div className="space-y-1">
+              <p className="text-xs font-medium text-white md:text-sm">
+                {order.customer?.name}
+              </p>
 
-  </tr>
-))}
+              <p className="text-[10px] text-gray-500">
+                {order.customer?.phone}
+              </p>
 
-          </tbody>
+              <p className="text-[10px] text-gray-600">
+                {order.customer?.city}, {order.customer?.state}
+              </p>
+            </div>
+          </td>
 
-        </table>
+          {/* Products */}
+          <td className="px-4 py-4 md:px-5 md:py-5">
+            <div className="flex flex-col gap-3">
+              {order.products?.map((product) => (
+                <div
+                  key={product.id}
+                  className="flex items-center gap-3"
+                >
+                  <div className="h-10 w-10 shrink-0 overflow-hidden rounded border border-[#29230d] bg-[#111]">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
 
-      </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-xs text-gray-300 md:text-sm">
+                      {product.name}
+                    </p>
 
+                    <p className="mt-1 text-[10px] text-gray-600">
+                      Qty: {product.quantity}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </td>
+
+          {/* Amount */}
+          <td className="px-4 py-4 md:px-5 md:py-5">
+            <span className="text-xs font-semibold text-[#D3AF37] md:text-sm">
+              ₹{order.total}
+            </span>
+          </td>
+
+          {/* Current Status */}
+          <td className="px-4 py-4 md:px-5 md:py-5">
+            <span
+              className={`inline-flex rounded border px-2 py-1 text-[9px] font-semibold uppercase tracking-wider md:px-3 md:py-1.5 ${getStatusStyle(
+                order.status
+              )}`}
+            >
+              {order.status}
+            </span>
+          </td>
+
+          {/* Change Status */}
+          <td className="px-4 py-4 md:px-5 md:py-5">
+            <select
+              value={order.status}
+              onChange={(e) =>
+                handleStatusChange(order.id, e.target.value)
+              }
+              className={`w-full min-w-[120px] rounded border px-2 py-2 text-[10px] font-semibold uppercase outline-none transition-colors md:w-auto ${getStatusStyle(
+                order.status
+              )}`}
+            >
+              <option value="Pending">Pending</option>
+              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
       {/* ================= PAGINATION ================= */}
 
