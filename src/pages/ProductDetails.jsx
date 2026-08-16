@@ -10,6 +10,7 @@ function ProductDetails() {
 const {id} =useParams()
   console.log(id);
   const [product,setProduct]=useState(null)
+    const [feature,setFeature]=useState(null)
 
   const [loading, setLoading] = useState(true);
   const locatoin=useLocation()
@@ -26,11 +27,17 @@ const {id} =useParams()
     const fetchProduct =  () => {
       try {
         setLoading(true);
- const feature=locatoin.state?.product;
-        console.log("daataataa",feature);
-          console.log("fffffff",feature.id);
+ const product=locatoin.state?.product;
+ 
+        console.log("daataataa",product);
+          console.log("fffffff",product?.id);
+            setProduct(product);
+          const feature=locatoin.state?.feature;
+          console.log("feaatreeeeeeeeeeeeeeeeee",feature);
+          setFeature(feature)
+          
 
-        setProduct(feature);
+      
       } catch (error) {
         console.error(error);
         setProduct(null);
@@ -52,15 +59,16 @@ const {id} =useParams()
     );
   }
 
-  if (!product) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <h1 className="text-red-500 text-2xl">
-          Product not found.
-        </h1>
-      </div>
-    );
-  }
+  // if (!product) {
+  //   return (
+  //     <div className="min-h-screen bg-black flex items-center justify-center">
+  //       <h1 className="text-red-500 text-2xl">
+  //         Product not found.
+  //       </h1>
+  //     </div>
+  //   );
+  // }
+  console.log("workingg",feature);
   
   return (
     <div>
@@ -70,9 +78,9 @@ const {id} =useParams()
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <ProductGallery product={product} feature={product} />
+          <ProductGallery product={product} feature={feature} />
 
-          <ProductInfo product={product}   feature={product} />
+          <ProductInfo product={product}   feature={feature} />
 
         </div>
 

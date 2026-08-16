@@ -14,6 +14,9 @@ import {
 
 
 const ProductGallery = ({ product,feature}) => {
+
+
+  
   const navigate = useNavigate();
 
   

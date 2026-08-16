@@ -67,7 +67,8 @@ const  FeaturedProducts = () => {
             <div
              onClick={()=>naivgate(`/productDetails/${product.id}`,{
                 state:{
-                  product:product,
+                  feature:product,
+                  showAddToCartButton:false
                 }
               })}
               key={product.id}

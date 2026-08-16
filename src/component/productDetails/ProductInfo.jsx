@@ -10,8 +10,8 @@ import { CalendarDays,Clock3 } from 'lucide-react'
 
 const ProductInfo = ({product,feature}) => {
    
-  console.log(product.name);
-  
+  console.log(product?.name);
+  console.log("compareeeeeeeeeeeeeeeeee",{ product, feature });
   
   return (
   <div>
@@ -19,7 +19,7 @@ const ProductInfo = ({product,feature}) => {
       <div className="text-white">
 
         <h1 className="text-4xl font-bold">
-          {feature.title}
+          {feature?.title}
         </h1>
 
      
@@ -33,11 +33,11 @@ const ProductInfo = ({product,feature}) => {
         </div>
 
         <h2 className="text-3xl font-bold mt-3">
-          ₹{feature.price}
+          ₹{feature?.price}
         </h2>
 
         <p className="text-gray-400 mt-6 leading-7">
-          {product.description}
+          {feature?.description}
         </p>
 
           <div className="flex items-center gap-3 pt-10 text-[#D3AF37]">
@@ -63,12 +63,12 @@ const ProductInfo = ({product,feature}) => {
       <div className="text-white">
 
         <h1 className="text-4xl font-bold">
-          {product.name}
+          {product?.name}
         </h1>
 
-        <h1 className="mt-4 text-2xl">Brand : {product.brand}</h1>
-        <h1 className="mt-2 text-2xl">Category : {product.category}</h1>
-        <h1 className="mt-2 text-2xl">Stock : {product.stock}</h1>
+        <h1 className="mt-4 text-2xl">Brand : {product?.brand}</h1>
+        <h1 className="mt-2 text-2xl">Category : {product?.category}</h1>
+        <h1 className="mt-2 text-2xl">Stock : {product?.stock}</h1>
 
         <div className="flex items-center gap-2 mt-9">
           <FiStar className="text-yellow-400 fill-yellow-400" />
@@ -80,11 +80,11 @@ const ProductInfo = ({product,feature}) => {
         </div>
 
         <h2 className="text-3xl font-bold mt-3">
-          ₹{product.price}
+          ₹{product?.price}
         </h2>
 
         <p className="text-gray-400 mt-6 leading-7">
-          {product.description}
+          {product?.description}
         </p>
 
         <AddToCartButton product={product} />

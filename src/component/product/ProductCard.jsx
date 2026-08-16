@@ -121,7 +121,13 @@ console.log("after add");
       </button>
 
       {/* Product */}
-      <Link to={`/productDetails/${product.id}`}>
+      {/* <Link to={`/productDetails/${product.id}`}> */}
+      <div onClick={()=>navigate(`/productDetails/${product.id}`,{
+        state:{
+          product:product,
+          showAddToCartButton:true
+        }
+      })}>
         <img
           src={product.image}
           alt={product.name}
@@ -141,7 +147,9 @@ console.log("after add");
             ₹{product.price}
           </div>
         </div>
-      </Link>
+      {/* </Link> */}
+      </div>
+
 
       {/* Add To Cart */}
       <div className="px-4 pb-4">
