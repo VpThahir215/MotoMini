@@ -34,3 +34,6 @@ const respons =  await api.patch(`/orders/${id}`,{status:status});
   status: status
 };
 }
+export const deleteOrder=async (id)=>{
+  await api.delete(`/orders/${id}`)
+}

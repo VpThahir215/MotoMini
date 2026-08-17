@@ -199,6 +199,16 @@
       "image": "https://i.pinimg.com/736x/ff/fb/ee/fffbee6e497fcba7038de72940da78a5.jpg",
       "description": "Mercenary Garage Custom Motorcycle Workshop Honda CX500 CX650 V Twin Custom Cafe Racer Marlboro Scale Model Kitbash by Kiwi Cam Hobbies\n",
       "id": "JieqVf_"
+    },
+    {
+      "name": "Marboro New",
+      "brand": "Royal Enfield",
+      "category": "Sport Bikes",
+      "price": "2000",
+      "stock": "12",
+      "image": "https://i.pinimg.com/736x/ff/fb/ee/fffbee6e497fcba7038de72940da78a5.jpg",
+      "description": "New Himalayan",
+      "id": "uQCEVug"
     }
   ],
   "users": [
@@ -355,7 +365,7 @@
       "stock": 14,
       "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
       "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
-      "quantity": 7,
+      "quantity": 1,
       "id": 15
     },
     {
@@ -368,7 +378,7 @@
       "stock": 18,
       "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
       "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
-      "quantity": 2,
+      "quantity": 1,
       "id": 16
     },
     {
@@ -383,6 +393,19 @@
       "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models.",
       "quantity": 1,
       "id": 17
+    },
+    {
+      "userId": "jC0zCcJ",
+      "productId": "7",
+      "name": "Honda CBR1000RR-R ",
+      "brand": "Honda",
+      "category": "Sport Bike",
+      "price": 1667.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/736x/56/5d/e3/565de31571fadb045993ebda876ff8f0.jpg",
+      "description": "A finely crafted miniature of the Honda CBR1000RR-R Fireblade SP featuring race-inspired styling, realistic fairings, and premium detailing. An ideal collectible for Honda fans and motorcycle enthusiasts.",
+      "quantity": 1,
+      "id": 18
     }
   ],
   "wishlist": [
@@ -567,7 +590,7 @@
       "subtotal": 1554.99,
       "total": 1555,
       "orderDate": "2026-06-11T10:12:14.255Z",
-      "status": "Shipped",
+      "status": "Cancelled",
       "id": 9
     },
     {
@@ -635,76 +658,8 @@
       "subtotal": 3552.99,
       "total": 3553,
       "orderDate": "2026-04-16T07:29:41.601Z",
-      "status": "Pending",
+      "status": "Cancelled",
       "id": 11
-    },
-    {
-      "userId": "jC0zCcJ",
-      "customer": {
-        "name": "THAHIR _",
-        "email": "vpthahir3062003@gmail.com",
-        "phone": "9946659082",
-        "address": "Malappuram",
-        "city": "Kodinhi",
-        "state": "Kerala",
-        "pinCode": "676309",
-        "country": "india"
-      },
-      "paymentMethod": "bank",
-      "products": [
-        {
-          "userId": "jC0zCcJ",
-          "productId": "4",
-          "name": "Yamaha YZF-R1 Race Edition",
-          "brand": "Yamaha",
-          "category": "Sport Bike",
-          "price": 1554.99,
-          "stock": 18,
-          "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
-          "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
-          "quantity": 1,
-          "id": 16
-        }
-      ],
-      "subtotal": 1554.99,
-      "total": 1555,
-      "orderDate": "2026-02-16T07:30:24.305Z",
-      "status": "Pending",
-      "id": 12
-    },
-    {
-      "userId": "jC0zCcJ",
-      "customer": {
-        "name": "THAHIR _",
-        "email": "vpthahir3062003@gmail.com",
-        "phone": "9946659082",
-        "address": "Malappuram",
-        "city": "Kodinhi",
-        "state": "Kerala",
-        "pinCode": "676309",
-        "country": "portugal"
-      },
-      "paymentMethod": "cod",
-      "products": [
-        {
-          "userId": "jC0zCcJ",
-          "productId": "4",
-          "name": "Yamaha YZF-R1 Race Edition",
-          "brand": "Yamaha",
-          "category": "Sport Bike",
-          "price": 1554.99,
-          "stock": 18,
-          "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
-          "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
-          "quantity": 1,
-          "id": 16
-        }
-      ],
-      "subtotal": 1554.99,
-      "total": 1555,
-      "orderDate": "2026-03-16T07:31:01.886Z",
-      "status": "Pending",
-      "id": 13
     },
     {
       "userId": "jC0zCcJ",
@@ -722,6 +677,40 @@
       "products": [
         {
           "userId": "jC0zCcJ",
+          "productId": "7",
+          "name": "Honda CBR1000RR-R ",
+          "brand": "Honda",
+          "category": "Sport Bike",
+          "price": 1667.99,
+          "stock": 14,
+          "image": "https://i.pinimg.com/736x/56/5d/e3/565de31571fadb045993ebda876ff8f0.jpg",
+          "description": "A finely crafted miniature of the Honda CBR1000RR-R Fireblade SP featuring race-inspired styling, realistic fairings, and premium detailing. An ideal collectible for Honda fans and motorcycle enthusiasts.",
+          "quantity": 1,
+          "id": 18
+        }
+      ],
+      "subtotal": 1667.99,
+      "total": 1668,
+      "orderDate": "2026-08-17T10:34:08.420Z",
+      "status": "Cancelled",
+      "id": 12
+    },
+    {
+      "userId": "jC0zCcJ",
+      "customer": {
+        "name": "THAHIR _",
+        "email": "suduuu@gmail.com",
+        "phone": "9946659082",
+        "address": "Malappuram",
+        "city": "Kodinhi",
+        "state": "Kerala",
+        "pinCode": "676309",
+        "country": "Portugal"
+      },
+      "paymentMethod": "card",
+      "products": [
+        {
+          "userId": "jC0zCcJ",
           "productId": "2",
           "name": "Himalayan 450 Hanle Black",
           "brand": "Royal Enfield",
@@ -730,15 +719,54 @@
           "stock": 14,
           "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
           "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles.",
-          "quantity": 7,
+          "quantity": 1,
           "id": 15
+        },
+        {
+          "userId": "jC0zCcJ",
+          "productId": "4",
+          "name": "Yamaha YZF-R1 Race Edition",
+          "brand": "Yamaha",
+          "category": "Sport Bike",
+          "price": 1554.99,
+          "stock": 18,
+          "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
+          "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts.",
+          "quantity": 1,
+          "id": 16
+        },
+        {
+          "userId": "jC0zCcJ",
+          "productId": "3",
+          "name": "Himalayan 450  Mana Black",
+          "brand": "Royal Enfield",
+          "category": "Adventure",
+          "price": 2773.99,
+          "stock": 9,
+          "image": "https://i.pinimg.com/736x/5b/78/ec/5b78ec6ef8e57ea9547ce6465240d7d6.jpg",
+          "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models.",
+          "quantity": 1,
+          "id": 17
+        },
+        {
+          "userId": "jC0zCcJ",
+          "productId": "7",
+          "name": "Honda CBR1000RR-R ",
+          "brand": "Honda",
+          "category": "Sport Bike",
+          "price": 1667.99,
+          "stock": 14,
+          "image": "https://i.pinimg.com/736x/56/5d/e3/565de31571fadb045993ebda876ff8f0.jpg",
+          "description": "A finely crafted miniature of the Honda CBR1000RR-R Fireblade SP featuring race-inspired styling, realistic fairings, and premium detailing. An ideal collectible for Honda fans and motorcycle enthusiasts.",
+          "quantity": 1,
+          "id": 18
         }
       ],
-      "subtotal": 24870.93,
-      "total": 24871,
-      "orderDate": "2026-08-16T07:34:41.535Z",
-      "status": "Pending",
-      "id": 14
+      "subtotal": 9549.96,
+      "total": 9550,
+      "orderDate": "2026-08-17T10:41:54.191Z",
+      "status": "Cancelled",
+      "id": 13
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

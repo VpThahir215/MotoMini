@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getOrders } from "../services/ orderService";
+import { deleteOrder } from "../services/ orderService";
+import { LogIn } from "lucide-react";
+import { UpdateOrder } from "../services/ orderService";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
+  const can="Cancelled"
 
   useEffect(() => {
     loadOrders();
@@ -16,6 +20,12 @@ const MyOrders = () => {
       console.log(error);
     }
   };
+ async function cancelHandle(id){
+console.log("idddddd",id);
+await UpdateOrder(id,can)
+loadOrders()
+
+ }
 
   return (
     <div className="min-h-screen bg-black text-white py-20">
@@ -44,25 +54,30 @@ const MyOrders = () => {
 
               {/* Header */}
 
-              <div className="flex justify-between items-center border-b border-yellow-900 px-6 py-5">
+             <div className="flex justify-between items-center border-b border-yellow-900 px-6 py-5">
+  <div>
+    <h2 className="text-yellow-500 text-2xl font-bold">
+      ORDER #{order.id}
+    </h2>
 
-                <div>
+    <p className="text-gray-500 mt-1">
+      {new Date(order.orderDate).toLocaleDateString()}
+    </p>
+  </div>
 
-                  <h2 className="text-yellow-500 text-2xl font-bold">
-                    ORDER #{order.id}
-                  </h2>
+  <div className="flex gap-2">
+    <span className="px-5 py-2 bg-green-700 text-white uppercase text-sm rounded">
+      {order.status}
+    </span>
 
-                  <p className="text-gray-500 mt-1">
-                    {new Date(order.orderDate).toLocaleDateString()}
-                  </p>
-
-                </div>
-
-                <span className="px-5 py-2 bg-green-700 text-white uppercase text-sm rounded">
-                  Delivered
-                </span>
-
-              </div>
+    <span
+      onClick={() => cancelHandle(order.id)}
+      className="px-5 py-2 bg-red-700 text-white uppercase text-sm rounded cursor-pointer"
+    >
+      Cancel
+    </span>
+  </div>
+</div>
 
               {/* Products */}
 
@@ -72,6 +87,8 @@ const MyOrders = () => {
                   key={item.id}
                   className="flex gap-5 p-6 border-b border-yellow-900"
                 >
+                  
+                 
 
                   <img
                     src={item.image}

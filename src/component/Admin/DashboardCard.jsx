@@ -5,10 +5,10 @@ import {
   FiUsers,
   FiClock,
 } from "react-icons/fi";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getDashboardData } from "../../services/dashBoardServices";
 import { useNavigate } from "react-router-dom";
-import {BarChart,Bar,XAxis,Tooltip,ResponsiveContainer,YAxis} from "recharts"
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, YAxis } from "recharts"
 
 /* =========================================================
    MINI GRAPH
@@ -47,108 +47,108 @@ const Dashboard = () => {
   const time = now.toLocaleTimeString();
 
   const [dashboardData, setDashboardData] = useState({
-  users: [],
-  products: [],
-  orders: [],
-});
-
-const [loading, setLoading] = useState(true);
-const { users, products, orders } = dashboardData;
-console.log("DashBoard",users.length);
-console.log("products",products.length);
-console.log("orders",orders.length);
-
-const totalRevenue=orders.filter((val)=>val.status==="Delivered").reduce((sum,order)=>sum+order.total,0)
-
-const navigate=useNavigate()
-
-
-const monthNames = [
-  "Jan","Feb","Mar","Apr","May","Jun",
-  "Jul","Aug","Sep","Oct","Nov","Dec"
-];
-
-const monthlyTotals = {};
-
-orders.forEach((order) => {
-  const month = monthNames[new Date(order.orderDate).getMonth()];
-
-  monthlyTotals[month] =
-    (monthlyTotals[month] || 0) + order.total;
-});
-const revenueData = monthNames.map((month) => ({
-  month,
-  revenue: monthlyTotals[month]
-}));
-
-
-useEffect(() => {
-  const fetchDashboard = async () => {
-    try {
-      const data = await getDashboardData();
-
-      setDashboardData(data);
-    } catch (error) {
-      console.log("Dashboard error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchDashboard();
-}, []);
-const totalUsers = users.length;
-const totalProducts = orders.length;
-const totalOrders = orders.length;
-
-const pendingCount = orders.filter(
-  (order) => order.status === "Pending"
-).length;
-
-const processingCount = orders.filter(
-  (order) => order.status === "Processing"
-).length;
-
-const shippedCount = orders.filter(
-  (order) => order.status === "Shipped"
-).length;
-
-const deliveredCount = orders.filter(
-  (order) => order.status === "Delivered"
-).length;
-
-const cancelledCount = orders.filter(
-  (order) => order.status === "Cancelled"
-).length;
-
-
-
-const productSales = {};
-
-orders.forEach((order) => {
-  order.products?.forEach((item) => {
-    if (!productSales[item.productId]) {
-      productSales[item.productId] = 0;
-    }
-
-    productSales[item.productId] += item.quantity;
+    users: [],
+    products: [],
+    orders: [],
   });
-});
+
+  const [loading, setLoading] = useState(true);
+  const { users, products, orders } = dashboardData;
+  console.log("DashBoard", users.length);
+  console.log("products", products.length);
+  console.log("orders", orders.length);
+
+  const totalRevenue = orders.filter((val) => val.status === "Delivered").reduce((sum, order) => sum + order.total, 0)
+
+  const navigate = useNavigate()
 
 
-const topProducts = products
-  .map((product) => {
-    const sold = productSales[product.id] || 0;
+  const monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
 
-    return {
-      ...product,
-      sold,
-      lowStock: product.stock <= 5,
-      width: `${Math.min((sold / Math.max(...Object.values(productSales), 1)) * 100, 100)}%`,
+  const monthlyTotals = {};
+
+  orders.forEach((order) => {
+    const month = monthNames[new Date(order.orderDate).getMonth()];
+
+    monthlyTotals[month] =
+      (monthlyTotals[month] || 0) + order.total;
+  });
+  const revenueData = monthNames.map((month) => ({
+    month,
+    revenue: monthlyTotals[month]
+  }));
+
+
+  useEffect(() => {
+    const fetchDashboard = async () => {
+      try {
+        const data = await getDashboardData();
+
+        setDashboardData(data);
+      } catch (error) {
+        console.log("Dashboard error:", error);
+      } finally {
+        setLoading(false);
+      }
     };
-  })
-  .sort((a, b) => b.sold - a.sold)
-  .slice(0, 4);
+
+    fetchDashboard();
+  }, []);
+  const totalUsers = users.length;
+  const totalProducts = orders.length;
+  const totalOrders = orders.length;
+
+  const pendingCount = orders.filter(
+    (order) => order.status === "Pending"
+  ).length;
+
+  const processingCount = orders.filter(
+    (order) => order.status === "Processing"
+  ).length;
+
+  const shippedCount = orders.filter(
+    (order) => order.status === "Shipped"
+  ).length;
+
+  const deliveredCount = orders.filter(
+    (order) => order.status === "Delivered"
+  ).length;
+
+  const cancelledCount = orders.filter(
+    (order) => order.status === "Cancelled"
+  ).length;
+
+
+
+  const productSales = {};
+
+  orders.forEach((order) => {
+    order.products?.forEach((item) => {
+      if (!productSales[item.productId]) {
+        productSales[item.productId] = 0;
+      }
+
+      productSales[item.productId] += item.quantity;
+    });
+  });
+
+
+  const topProducts = products
+    .map((product) => {
+      const sold = productSales[product.id] || 0;
+
+      return {
+        ...product,
+        sold,
+        lowStock: product.stock <= 5,
+        width: `${Math.min((sold / Math.max(...Object.values(productSales), 1)) * 100, 100)}%`,
+      };
+    })
+    .sort((a, b) => b.sold - a.sold)
+    .slice(0, 4);
 
 
 
@@ -208,28 +208,28 @@ const topProducts = products
      ORDER STATUS
   ========================================================= */
 
- const orderStatuses = [
-  {
-    name: "Pending",
-    count: pendingCount,
-  },
-  {
-    name: "Processing",
-    count: processingCount,
-  },
-  {
-    name: "Shipped",
-    count: shippedCount,
-  },
-  {
-    name: "Delivered",
-    count: deliveredCount,
-  },
-  {
-    name: "Cancelled",
-    count: cancelledCount,
-  },
-];
+  const orderStatuses = [
+    {
+      name: "Pending",
+      count: pendingCount,
+    },
+    {
+      name: "Processing",
+      count: processingCount,
+    },
+    {
+      name: "Shipped",
+      count: shippedCount,
+    },
+    {
+      name: "Delivered",
+      count: deliveredCount,
+    },
+    {
+      name: "Cancelled",
+      count: cancelledCount,
+    },
+  ];
 
 
   /* =========================================================
@@ -309,35 +309,35 @@ const topProducts = products
   //     status: "Delivered",
   //   },
   // ];
-const recentOrders = [...orders]
-  .sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))
-  .slice(0, 5);
+  const recentOrders = [...orders]
+    .sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))
+    .slice(0, 5);
 
   /* =========================================================
      LOW STOCK PRODUCTS
   ========================================================= */
 
-  const lowStockProducts = [
-    {
-      name: "Himalayan 450",
-      stock: 3,
-    },
+  // const lowStockProducts = [
+  //   {
+  //     name: "Himalayan 450",
+  //     stock: 3,
+  //   },
 
-    {
-      name: "Aprilia RSV4",
-      stock: 2,
-    },
+  //   {
+  //     name: "Aprilia RSV4",
+  //     stock: 2,
+  //   },
 
-    {
-      name: "Yamaha R1",
-      stock: 4,
-    },
+  //   {
+  //     name: "Yamaha R1",
+  //     stock: 4,
+  //   },
 
-    {
-      name: "Ducati Panigale V4",
-      stock: 5,
-    },
-  ];
+  //   {
+  //     name: "Ducati Panigale V4",
+  //     stock: 5,
+  //   },
+  // ];
 
 
   /* =========================================================
@@ -369,28 +369,28 @@ const recentOrders = [...orders]
   };
 
 
-// Create an object to store revenue for each month
-const monthlyRevenue = {};
+  // Create an object to store revenue for each month
+  const monthlyRevenue = {};
 
-orders.forEach((order) => {
-  const date = new Date(order.orderDate);
-  const month = monthNames[date.getMonth()];
+  orders.forEach((order) => {
+    const date = new Date(order.orderDate);
+    const month = monthNames[date.getMonth()];
 
-  if (!monthlyRevenue[month]) {
-    monthlyRevenue[month] = 0;
-  }
+    if (!monthlyRevenue[month]) {
+      monthlyRevenue[month] = 0;
+    }
 
-  monthlyRevenue[month] += Number(order.total || 0);
-});
+    monthlyRevenue[month] += Number(order.total || 0);
+  });
 
 
-const maxRevenue = Math.max(...Object.values(monthlyRevenue), 1);
+  const maxRevenue = Math.max(...Object.values(monthlyRevenue), 1);
 
-const revenuee = monthNames.slice(2, 8).map((month) => ({
-  month,
-  value: monthlyRevenue[month] || 0,
-  height: `${((monthlyRevenue[month] || 0) / maxRevenue) * 100}%`,
-}));
+  const revenuee = monthNames.slice(2, 8).map((month) => ({
+    month,
+    value: monthlyRevenue[month] || 0,
+    height: `${((monthlyRevenue[month] || 0) / maxRevenue) * 100}%`,
+  }));
 
 
   return (
@@ -402,7 +402,7 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
           HEADER
       ===================================================== */}
 
-     <header className="flex h-14 items-center justify-between border-b border-[#29230d] px-4 md:px-6 lg:px-8">
+      <header className="flex h-14 items-center justify-between border-b border-[#29230d] px-4 md:px-6 lg:px-8">
 
         <div>
 
@@ -419,7 +419,7 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
             {date}
           </span>
 
-        
+
 
           <span className="border border-[#D3AF37] px-3 py-1 text-[10px] tracking-wider text-[#D3AF37]">
             • LIVE
@@ -447,11 +447,10 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
             <div
               key={index}
-              className={`relative min-h-36 border border-[#29230d] bg-[#080808] p-5 ${
-                index !== stats.length - 1
+              className={`relative min-h-36 border border-[#29230d] bg-[#080808] p-5 ${index !== stats.length - 1
                   ? "border-r"
                   : ""
-              }`}
+                }`}
             >
 
               {/* Top */}
@@ -478,7 +477,7 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
               {/* Bottom */}
 
-             
+
 
             </div>
 
@@ -490,34 +489,34 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
         {/* ===================================================
             ORDER STATUS
         =================================================== */}
-<section className="mt-8">
-  <div className="mb-4">
-    <h2 className="font-heading text-lg md:text-xl tracking-widest text-[#D3AF37]">
-      ORDER STATUS
-    </h2>
+        <section className="mt-8">
+          <div className="mb-4">
+            <h2 className="font-heading text-lg md:text-xl tracking-widest text-[#D3AF37]">
+              ORDER STATUS
+            </h2>
 
-    <p className="mt-1 text-xs text-gray-600">
-      Current order overview
-    </p>
-  </div>
+            <p className="mt-1 text-xs text-gray-600">
+              Current order overview
+            </p>
+          </div>
 
-  <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
-    {orderStatuses.map((item) => (
-      <div
-        key={item.name}
-        className="border border-[#29230d] bg-[#080808] p-4 md:p-5 transition hover:border-[#D3AF37]"
-      >
-        <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-600">
-          {item.name}
-        </p>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+            {orderStatuses.map((item) => (
+              <div
+                key={item.name}
+                className="border border-[#29230d] bg-[#080808] p-4 md:p-5 transition hover:border-[#D3AF37]"
+              >
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-600">
+                  {item.name}
+                </p>
 
-        <p className="mt-2 text-xl md:text-2xl font-semibold text-[#D3AF37]">
-          {item.count}
-        </p>
-      </div>
-    ))}
-  </div>
-</section>
+                <p className="mt-2 text-xl md:text-2xl font-semibold text-[#D3AF37]">
+                  {item.count}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
 
         {/* ===================================================
@@ -548,9 +547,9 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
               </div>
 
 
-              <button 
-              onClick={()=>navigate('/admin/orders')}
-              className="text-[10px] tracking-widest text-gray-600 transition hover:text-[#D3AF37]">
+              <button
+                onClick={() => navigate('/admin/orders')}
+                className="text-[10px] tracking-widest text-gray-600 transition hover:text-[#D3AF37]">
                 VIEW ALL
               </button>
 
@@ -621,35 +620,35 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
               ))} */}
               {recentOrders.map((order) => (
-  <div
-    key={order.id}
-     className="grid grid-cols-4 items-center border-b border-[#1c1c1c] px-6 py-4 transition hover:bg-[#080808]"
+                <div
+                  key={order.id}
+                  className="grid grid-cols-4 items-center border-b border-[#1c1c1c] px-6 py-4 transition hover:bg-[#080808]"
                 >
 
-   
-       <p className="text-xs font-medium text-[#D3AF37]">
-        #{order.userId}
-      </p>
 
-       <p className="text-xs text-gray-400">
-        {order.customer?.name}
-      </p>
+                  <p className="text-xs font-medium text-[#D3AF37]">
+                    #{order.userId}
+                  </p>
 
-     <p className="text-xs font-semibold text-white">
-      ₹{order.total}
-    </p>
+                  <p className="text-xs text-gray-400">
+                    {order.customer?.name}
+                  </p>
 
-    <span
-        className={`inline-flex justify-center border px-2.5 py-1 text-[8px]  font-semibold uppercase tracking-wider ${getStatusStyle(
-                        order.status
-                      )}`}
-                    >
-    
-      {order.status}
-    </span>
+                  <p className="text-xs font-semibold text-white">
+                    ₹{order.total}
+                  </p>
 
-  </div>
-))}
+                  <span
+                    className={`inline-flex justify-center border px-2.5 py-1 text-[8px]  font-semibold uppercase tracking-wider ${getStatusStyle(
+                      order.status
+                    )}`}
+                  >
+
+                    {order.status}
+                  </span>
+
+                </div>
+              ))}
 
             </div>
 
@@ -722,7 +721,7 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
             </div>
 
           </div> */}
-           <div className="border border-[#29230d] p-6">
+          <div className="border border-[#29230d] p-6">
 
             <h2 className="font-heading text-lg tracking-widest text-[#D3AF37]">
               TOP PRODUCTS
@@ -730,37 +729,37 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
 
             {topProducts.map((product) => (
-  <div
-    key={product.id}
-    className="border-b border-[#1c1c1c] py-4 last:border-b-0"
-  >
-    <div className="flex items-start justify-between gap-3">
-      <p className="text-sm text-gray-300">
-        {product.name}
-      </p>
+              <div
+                key={product.id}
+                className="border-b border-[#1c1c1c] py-4 last:border-b-0"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <p className="text-sm text-gray-300">
+                    {product.name}
+                  </p>
 
-      <p className="whitespace-nowrap text-xs font-semibold text-[#D3AF37]">
-        ₹{Number(product.price).toLocaleString("en-IN")}
-      </p>
-    </div>
+                  <p className="whitespace-nowrap text-xs font-semibold text-[#D3AF37]">
+                    ₹{Number(product.price).toLocaleString("en-IN")}
+                  </p>
+                </div>
 
-    <div className="mt-3 flex gap-3 text-[10px] text-gray-600">
-      <span>{product.sold} sold</span>
+                <div className="mt-3 flex gap-3 text-[10px] text-gray-600">
+                  <span>{product.sold} sold</span>
 
-      <span className={product.lowStock ? "text-red-500" : ""}>
-        {product.lowStock && "⚠ "}
-        {product.stock} in stock
-      </span>
-    </div>
+                  <span className={product.lowStock ? "text-red-500" : ""}>
+                    {product.lowStock && "⚠ "}
+                    {product.stock} in stock
+                  </span>
+                </div>
 
-    <div className="mt-3 h-[2px] w-full bg-[#151515]">
-      <div
-        className="h-full bg-[#6b5b1c]"
-        style={{ width: product.width }}
-      />
-    </div>
-  </div>
-))}
+                <div className="mt-3 h-[2px] w-full bg-[#151515]">
+                  <div
+                    className="h-full bg-[#6b5b1c]"
+                    style={{ width: product.width }}
+                  />
+                </div>
+              </div>
+            ))}
 
           </div>
 
@@ -775,11 +774,11 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
         {/* <section className="mt-8 grid grid-cols-3 gap-6"> */}
 
 
-          {/* =================================================
+        {/* =================================================
               REVENUE CHART
           ================================================= */}
 
-       {/* <div className="col-span-3 min-h-[420px] border border-[#29230d] p-6">
+        {/* <div className="col-span-3 min-h-[420px] border border-[#29230d] p-6">
 
             <div className="flex items-start justify-between">
 
@@ -805,9 +804,9 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
             {/* Chart */}
 
-            {/* <div className="mt-10 flex h-64 items-end gap-3 px-1"> */}
+        {/* <div className="mt-10 flex h-64 items-end gap-3 px-1"> */}
 
-              {/* {revenue.map((item, index) => (
+        {/* {revenue.map((item, index) => (
 
                 <div
                   key={index}
@@ -833,70 +832,24 @@ const revenuee = monthNames.slice(2, 8).map((month) => ({
 
               ))} */}
 
-            {/* </div> */}
+        {/* </div> */}
 
-          {/* </div>  */}
-
-
-         <div className="mt-8 h-64 sm:h-72 md:h-80 border border-[#29230d] p-4 md:p-6">
-  <ResponsiveContainer width="100%" height="100%">
-    <BarChart data={revenueData}>
-      <XAxis dataKey="month" />
-      <YAxis />
-      <Tooltip />
-      <Bar dataKey="revenue" fill="#D3AF37" radius={[4, 4, 0, 0]} />
-    </BarChart>
-  </ResponsiveContainer>
-</div>
+        {/* </div>  */}
 
 
-          {/* =================================================
-              TOP PRODUCTS
-          ================================================= */}
-{/* 
-          <div className="border border-[#29230d] p-6">
+        <div className="mt-8 h-64 sm:h-72 md:h-80 border border-[#29230d] p-4 md:p-6">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={revenueData}>
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="revenue" fill="#D3AF37" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-            <h2 className="font-heading text-lg tracking-widest text-[#D3AF37]">
-              TOP PRODUCTS
-            </h2>
 
 
-            {topProducts.map((product) => (
-  <div
-    key={product.id}
-    className="border-b border-[#1c1c1c] py-4 last:border-b-0"
-  >
-    <div className="flex items-start justify-between gap-3">
-      <p className="text-sm text-gray-300">
-        {product.name}
-      </p>
-
-      <p className="whitespace-nowrap text-xs font-semibold text-[#D3AF37]">
-        ₹{Number(product.price).toLocaleString("en-IN")}
-      </p>
-    </div>
-
-    <div className="mt-3 flex gap-3 text-[10px] text-gray-600">
-      <span>{product.sold} sold</span>
-
-      <span className={product.lowStock ? "text-red-500" : ""}>
-        {product.lowStock && "⚠ "}
-        {product.stock} in stock
-      </span>
-    </div>
-
-    <div className="mt-3 h-[2px] w-full bg-[#151515]">
-      <div
-        className="h-full bg-[#6b5b1c]"
-        style={{ width: product.width }}
-      />
-    </div>
-  </div>
-))}
-
-          </div> */}
-
-        {/* </section> */}
 
       </main>
 
