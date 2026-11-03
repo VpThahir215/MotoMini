@@ -4,10 +4,16 @@ import 'dotenv/config'
 import mongoose from 'mongoose'
 import errorMiddleware from './middleware/errormiddleware.js'
 import cors from 'cors'
+import routeAuth from './routes/authRoute.js'
+
 
 const app=express()
 const PORT=process.env.PORT
+
 app.use(cors())
+
+app.use(express.json())
+app.use('/api/auth',routeAuth)
 app.get('/',(req,res,next)=>{
    try{
     res.status(201).json({
@@ -18,7 +24,7 @@ app.get('/',(req,res,next)=>{
     next(error)
    }
 })
-app.get('/register',(req,res,next)=>{
+app.get('/',(req,res,next)=>{
       try{
     res.status(201).json({
         massege:"Register page"
