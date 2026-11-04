@@ -11,20 +11,14 @@ import cookieParser from 'cookie-parser'
 const app=express()
 const PORT=process.env.PORT
 
-app.use(cors())
+app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true
+}))
 
 app.use(express.json())
+app.use(cookieParser())
 app.use('/api/auth',routeAuth)
-app.get('/',(req,res,next)=>{
-   try{
-    res.status(201).json({
-        massege:"Hyyyyyyy"
-    })
-  
-   }catch(error){
-    next(error)
-   }
-})
 app.get('/',(req,res,next)=>{
       try{
     res.status(201).json({

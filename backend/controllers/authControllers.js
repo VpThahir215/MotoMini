@@ -15,15 +15,23 @@ export const authRegister=async (req,res,next)=>{
     }
 }
 export const authLogin=async (req,res,next)=>{
-    try{
-        const user=await loginUser(req.body)
-         res.status(201).json({
-       massage:'Registration successfull',
-        data:user.token
-      })
+    try {
+        const user = await loginUser(req.body);
 
+        // Store JWT inside HttpOnly cookie
+        res.cookie('token', user.token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge:  60 * 1000
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'Login successful'
+        });
+
+    } catch (error) {
+        next(error);
     }
-     catch (error){
-        next(error)
-     }
 }
