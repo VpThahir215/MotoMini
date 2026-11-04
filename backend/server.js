@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import errorMiddleware from './middleware/errormiddleware.js'
 import cors from 'cors'
 import routeAuth from './routes/authRoute.js'
+import cookieParser from 'cookie-parser'
 
 
 const app=express()
