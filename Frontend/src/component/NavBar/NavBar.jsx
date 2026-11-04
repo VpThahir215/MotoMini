@@ -147,7 +147,7 @@ const [menuOpen, setMenuOpen] = useState(false);
     >
       <FiUser size={22} />
       <span className="font-medium">
-        {user.name.split(" ")[0]}
+        {user.name?.split(" ")[0]}
       </span>
     </div>
 
