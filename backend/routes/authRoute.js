@@ -5,10 +5,10 @@ import { authRegister,authLogin} from '../controllers/authControllers.js'
 const routeAuth=express.Router()
 routeAuth.post('/register',authRegister)
 routeAuth.post('/login',authLogin)
-routeAuth.get('/profile',authMiddleware,(req,res)=>{
-    res.status(201).json({
+routeAuth.get('/check-auth',authMiddleware,(req,res)=>{
+    res.status(200).json({
         success:true,
-        message:"Middleware is working",
+        message:"Authenticated",
         user:req.user
     })
 

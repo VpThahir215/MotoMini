@@ -1,6 +1,6 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom'
-import { getUsers } from "../services/userService";
+import { loginUser } from "../services/userService";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import {
@@ -23,33 +23,31 @@ async function handleLogin(e) {
   }
 
   try {
-    const users = await getUsers();
-
-    const user = users.find(
-      (u) =>
-        u.email === email &&
-        u.password === password
-    );
-   
+    const users = await loginUser(email,password);
+    const data=users.user
+    
+    console.log(data,"frontend");
     
 
-    if (!user) {
+  
+
+    if (!data) {
       toast.error("Invalid Email or Password");
       return;
     }
-     if (user.access === "blocked") {
+     if (data.isblocked === "blocked") {
       toast.error("Your MotoMini account has been blocked.");
       return;
     }
 
-  if(user.role==="user"){
-    localStorage.setItem("user", JSON.stringify(user));
-    toast.success(`Hy ${user.name}! Welcome back to Moto Mini.`);
+  if(data.role==="user"){
+    // localStorage.setItem("user", JSON.stringify(data));
+    toast.success(`Hy ${data.name}! Welcome back to Moto Mini.`);
     navigate('/')
 
-  }else if(user.role==="admin"){
-     localStorage.setItem("admin", JSON.stringify(user));
-    toast.success(`Hy ${user.name}! Welcome to Admin Module`)
+  }else if(data.role==="admin"){
+    //  localStorage.setItem("admin", JSON.stringify(data));
+    toast.success(`Hy ${data.name}! Welcome to Admin Module`)
     navigate('/admin')
   }
    

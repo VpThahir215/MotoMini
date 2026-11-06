@@ -27,7 +27,14 @@ const AppRoutes = () => {
         {/* USER ROUTES */}
         <Route path='/' element={<UserLayout />}>
 
-          <Route index element={<Home />} />
+         <Route
+  index
+  element={
+    <ProtectedRoute>
+      <Home />
+    </ProtectedRoute>
+  }
+/>
 
           <Route path="shop" element={<Shop />} />
 

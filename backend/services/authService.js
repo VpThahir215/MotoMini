@@ -3,24 +3,31 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import 'dotenv/config'
 
-export const register=async ({name,email,password})=>{
+export const register=async ({name,email,password,role,isblocked})=>{
     const hashedPassword=await bcrypt.hash(password,10)
     const data=await User.create({name,email,password:hashedPassword})
     return data
 }
-export const loginUser=async ({email,password})=>{
-    const data= await User.findOne({email})
+export const loginUser=async ({email , password})=>{
+
+    
+
+    console.log("nnneee",email);
+    
+    
+    const data = await User.findOne({email});
+    console.log(data,"check")
     if(!data){
-        throw new Error('Invalid your email!')
+        throw new Error('user is not exist') 
+
     }
     const isCompare=await bcrypt.compare(password,data.password)
     if(!isCompare){
-    throw new Error('Invalid email or password')
+    throw new Error('Invalid email or password!') 
 
 }
     const token=jwt.sign(
         {
-            userEmail:data.email,
             id:data._id
         },
         

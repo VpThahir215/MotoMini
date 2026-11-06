@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { getUserById } from "../../services/userService";
 import { editUser } from "../../services/userService";
 import Users from "../../pages/admin/Users";
-import { getUsers } from "../../services/userService";
+import { loginUser } from "../../services/userService";
 
 
 

@@ -56,7 +56,7 @@ async function saveUser() {
       name: name,
       email: email,
       password: confirmPassword,
-      role:"user"
+    
     };
 
     await registerUser(newUser);
