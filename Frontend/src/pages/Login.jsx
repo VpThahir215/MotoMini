@@ -41,7 +41,7 @@ async function handleLogin(e) {
     }
 
   if(data.role==="user"){
-    // localStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem("user", JSON.stringify(data));
     toast.success(`Hy ${data.name}! Welcome back to Moto Mini.`);
     navigate('/')
 

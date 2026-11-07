@@ -31,7 +31,12 @@ const userSchema = new mongoose.Schema(
     isBlocked: {
         type: Boolean,
         default: false
-    }
+    },
+    refreshTokenHash: {
+    type: String,
+    default: null,
+    select: false
+}
 
     },
     {

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 const authMiddleware = (req, res, next) => {
     try {
         // Get token from cookie
-        const token = req.cookies.token;
+        const token = req.cookies.accessToken;
 
         if (!token) {
             return res.status(401).json({
@@ -15,7 +15,7 @@ const authMiddleware = (req, res, next) => {
         // Verify JWT
         const decoded = jwt.verify(
             token,
-            process.env.JWT_SECRET
+            process.env.ACCESS_TOKEN_SECRET
         );
 
         // Store decoded user information
