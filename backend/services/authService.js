@@ -34,6 +34,8 @@ export const loginUser = async ({ email, password }) => {
     const payload = {
         id: data._id
     };
+    console.log("ACCESS:", !!process.env.ACCESS_TOKEN_SECRET);
+console.log("REFRESH:", !!process.env.REFRESH_TOKEN_SECRET);
 
     // Generate access token
     const accessToken = jwt.sign(
@@ -47,7 +49,7 @@ export const loginUser = async ({ email, password }) => {
     // Generate refresh token
     const refreshToken = jwt.sign(
         payload,
-        process.env.JWT_REFRESH_TOKEN,
+        process.env.REFRESH_TOKEN_SECRET,
         {
             expiresIn: '7d'
         }
@@ -59,6 +61,7 @@ export const loginUser = async ({ email, password }) => {
     // Store hashed refresh token in database
     data.refreshTokenHash = hashedRefreshToken;
     await data.save();
+    
 
     return {
         data,

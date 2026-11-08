@@ -22,7 +22,8 @@ api.interceptors.response.use(
             originalRequest._retry = true;
 
             try {
-                await api.post('/auth/refresh');
+                await api.post('/auth/refresh')
+                
 
                 return api(originalRequest);
 
