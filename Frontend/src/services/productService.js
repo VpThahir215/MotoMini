@@ -2,11 +2,11 @@ import api from "./api";
 
 export const getProducts= async ()=>{
     const respons=await api.get('/products');
-    return respons.data
+    return respons.data.products
 }
 export const getOneProduct= async (id)=>{
         const respons=await api.get(`/products/${id}`);
-        return respons.data
+        return respons.data.products
 }   
 export const addProduct=async (product)=>{
   const respons=  await api.post('/products',product);

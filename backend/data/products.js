@@ -1,0 +1,195 @@
+const products =[
+    {
+      "name": "Himalayan 450 Hanle Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 3552.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/1200x/4f/21/ac/4f21acf86bdeafb85ef94eb82fe46f19.jpg",
+      "description": "A beautifully crafted miniature replica of the Royal Enfield Continental Himalayan 450, featuring a timeless café racer design, detailed engine components, and premium finishing. An excellent collectible for fans of classic motorcycles."
+    },
+    {
+      "name": "Himalayan 450  Mana Black",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 2773.99,
+      "stock": 9,
+      "image": "https://i.pinimg.com/736x/5b/78/ec/5b78ec6ef8e57ea9547ce6465240d7d6.jpg",
+      "description": "A premium miniature replica of the Harley-Davidson Sportster S, featuring a muscular cruiser design, bold styling, and finely crafted details. Built for collectors who appreciate iconic American motorcycles and high-quality display models."
+    },
+    {
+      "name": "Yamaha YZF-R1 Race Edition",
+      "brand": "Yamaha",
+      "category": "Sport Bike",
+      "price": 1554.99,
+      "stock": 18,
+      "image": "https://i.pinimg.com/736x/42/45/d5/4245d5f2501ec42eaaeb49db30c14e6d.jpg",
+      "description": "A detailed miniature of the Yamaha YZF-R1 Race Edition featuring an aerodynamic design, vibrant racing graphics, and premium craftsmanship. An excellent collectible for sport bike enthusiasts."
+    },
+    {
+      "name": "Ducati Panigale V4 S",
+      "brand": "Ducati",
+      "category": "Super Bike",
+      "price": 1669.99,
+      "stock": 10,
+      "image": "https://i.pinimg.com/736x/c7/cd/37/c7cd3786bdd61a19dbd159339ae77184.jpg",
+      "description": "A premium miniature replica of the Ducati Panigale V4 S, featuring aerodynamic styling, realistic bodywork, and precision detailing. Designed for collectors who appreciate iconic Italian superbikes."
+    },
+    {
+      "name": "BMW S 1000 RR",
+      "brand": "BMW Motorrad",
+      "category": "Super Bike",
+      "price": 1772.99,
+      "stock": 8,
+      "image": "https://i.pinimg.com/736x/08/96/95/08969534b1a4907fa564bd8175f09f1d.jpg",
+      "description": "A premium miniature replica of the BMW S 1000 RR, showcasing aggressive styling, aerodynamic fairings, and authentic detailing. Crafted for collectors and superbike enthusiasts seeking a high-quality display model."
+    },
+    {
+      "name": "Honda CBR1000RR-R ",
+      "brand": "Honda",
+      "category": "Sport Bike",
+      "price": 1667.99,
+      "stock": 14,
+      "image": "https://i.pinimg.com/736x/56/5d/e3/565de31571fadb045993ebda876ff8f0.jpg",
+      "description": "A finely crafted miniature of the Honda CBR1000RR-R Fireblade SP featuring race-inspired styling, realistic fairings, and premium detailing. An ideal collectible for Honda fans and motorcycle enthusiasts."
+    },
+    {
+      "name": "KTM 1290 Super Duke R",
+      "brand": "KTM",
+      "category": "Naked Bike",
+      "price": 664.99,
+      "stock": 11,
+      "image": "https://i.pinimg.com/1200x/08/7e/c1/087ec1e1ebd910e294aacfcf27c3ac4f.jpg",
+      "description": "A premium miniature replica of the KTM 1290 Super Duke R, featuring its signature aggressive naked-bike design, sharp bodywork, and realistic detailing. Perfect for collectors who appreciate high-performance street motorcycles."
+    },
+    {
+      "name": "Aprilia RSV4 Factory",
+      "brand": "Aprilia",
+      "category": "Super Bike",
+      "price": 1774.99,
+      "stock": 9,
+      "image": "https://i.pinimg.com/1200x/f6/f7/49/f6f749206f244e61bfc85c849fae6a8d.jpg",
+      "description": "A premium miniature replica of the Aprilia RSV4 Factory, showcasing its aggressive racing design, aerodynamic fairings, and precision detailing. Built for collectors who appreciate Italian engineering and world-class superbikes."
+    },
+    {
+      "name": "Suzuki GSX-R1000R",
+      "brand": "Suzuki",
+      "category": "Sport Bike",
+      "price": 1666.99,
+      "stock": 13,
+      "image": "https://i.pinimg.com/736x/b0/7c/bc/b07cbc392b1b52041f81f7a2f3e39774.jpg",
+      "description": "A high-quality miniature replica of the Suzuki GSX-R1000R, featuring race-inspired styling, sharp bodywork, and realistic detailing. Perfect for collectors and sport bike enthusiasts looking to add an iconic Japanese superbike to their collection."
+    },
+    {
+      "name": "MV Agusta F3 800",
+      "brand": "MV Agusta",
+      "category": "Super Bike",
+      "price": 1771.99,
+      "stock": 7,
+      "image": "https://i.pinimg.com/736x/1b/e0/9f/1be09f4c28faf279e729896bb6808dd8.jpg",
+      "description": "A premium miniature replica of the MV Agusta F3 800, featuring sleek Italian styling, aerodynamic bodywork, and exceptional attention to detail. A perfect collectible for enthusiasts who appreciate performance and elegance."
+    },
+    {
+      "name": "Triumph Speed Triple 1200 ",
+      "brand": "Triumph",
+      "category": "Naked Bike",
+      "price": 1668.99,
+      "stock": 10,
+      "image": "https://i.pinimg.com/1200x/5f/1f/d5/5f1fd51c73dc97f89beb35efeaa39c7b.jpg",
+      "description": "A premium miniature replica of the Triumph Speed Triple 1200 RS, featuring aggressive naked-bike styling, precision-crafted details, and a high-quality finish. An excellent collectible for enthusiasts who appreciate British performance motorcycles."
+    },
+    {
+      "name": "X1 Spark L",
+      "brand": "MotoMini",
+      "category": "Adventure",
+      "price": 1449.99,
+      "stock": 15,
+      "image": "https://i.pinimg.com/1200x/7d/b9/43/7db943e92f9d34a3c66f465412908308.jpg",
+      "description": "Bring the power of the X1 Spark L to life with this detailed miniature motorcycle. Designed for collectors, hobbyists, and bike enthusiasts."
+    },
+    {
+      "name": "X1 Spark L",
+      "brand": "Kawasaki",
+      "category": "Sport Bike",
+      "price": 1449.99,
+      "stock": 10,
+      "image": "https://i.pinimg.com/1200x/7d/b9/43/7db943e92f9d34a3c66f465412908308.jpg",
+      "description": "Premium die-cast Kawasaki ZX-10R miniature with realistic detailing and collector-quality finish."
+    },
+    {
+      "name": "X1 Spark Electric Dirt Bike",
+      "brand": "Stark Future",
+      "category": "Adventure",
+      "price": 1559.99,
+      "stock": 15,
+      "image": "https://i.pinimg.com/1200x/49/4f/0f/494f0f2ea58e9d0549ce08e169200833.jpg",
+      "description": "A premium miniature replica of the X1 Spark electric dirt bike, featuring realistic bodywork, detailed wheels, and high-quality craftsmanship. Perfect for collectors and motorcycle enthusiasts looking to showcase a modern off-road design."
+    },
+    {
+      "name": " FTR 1200",
+      "brand": "Royal Enfield",
+      "category": "Naked Bike",
+      "price": 1669.99,
+      "stock": 11,
+      "image": "https://i.pinimg.com/736x/50/c7/a8/50c7a8594bb0c5a956e95d65fd01abb7.jpg",
+      "description": "A premium miniature replica of the Indian FTR 1200, inspired by flat-track racing. Featuring muscular styling, detailed craftsmanship, and a high-quality finish, this collectible is perfect for motorcycle enthusiasts and display collections."
+    },
+    {
+      "name": "Ducati Streetfighter V4",
+      "brand": "Ducati",
+      "category": "Naked Bike",
+      "price": 1774.99,
+      "stock": 8,
+      "image": "https://i.pinimg.com/1200x/c6/24/39/c624398b5ee471a1c7ffdd7053ae3f09.jpg",
+      "description": "A premium miniature replica of the Ducati Streetfighter V4, featuring an aggressive naked-bike design, aerodynamic bodywork, and exceptional detailing. Crafted for collectors who appreciate Italian performance and modern styling."
+    },
+    {
+      "name": "Yamaha MT-09 SP",
+      "brand": "Yamaha",
+      "category": "Naked Bike",
+      "price": 1661.99,
+      "stock": 12,
+      "image": "https://i.pinimg.com/1200x/3f/32/1a/3f321a2c7bf78da542031401fce7d621.jpg",
+      "description": "A premium miniature replica of the Yamaha MT-09 SP, featuring its aggressive naked-bike styling, detailed engine components, and high-quality finish. Perfect for collectors and enthusiasts who appreciate Yamaha's performance-focused Hyper Naked series."
+    },
+    {
+      "name": "Thunder",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 3000,
+      "stock": 12,
+      "image": "https://i.pinimg.com/236x/b4/76/0e/b4760e41f241c61c8189c87309e1233e.jpg",
+      "description": "The Royal Enfield Thunderbird was a cruiser style motorcycle produced by MotoMini Motors in India from 2002 to 2020",
+    },
+    {
+      "name": "THunder",
+      "brand": "Royal Enfield",
+      "category": "Adventure",
+      "price": 3000,
+      "stock": 10,
+      "image": "https://i.pinimg.com/236x/b4/76/0e/b4760e41f241c61c8189c87309e1233e.jpg",
+      "description": "\nThe Royal Enfield Thunderbird was a cruiser style motorcycle produced by MotoMini Motors in India from 2002 to 2020. ",
+     
+    },
+    {
+      "name": "Marlboro Jisan",
+      "brand": "Honda",
+      "category": "Super Bikes",
+      "price": 3000,
+      "stock": 12,
+      "image": "https://i.pinimg.com/736x/ff/fb/ee/fffbee6e497fcba7038de72940da78a5.jpg",
+      "description": "Mercenary Garage Custom Motorcycle Workshop Honda CX500 CX650 V Twin Custom Cafe Racer Marlboro Scale Model Kitbash by Kiwi Cam Hobbies\n",
+     
+    },
+    {
+      "name": "Marboro New",
+      "brand": "Royal Enfield",
+      "category": "Sport Bikes",
+      "price": 2000,
+      "stock": 12,
+      "image": "https://i.pinimg.com/736x/ff/fb/ee/fffbee6e497fcba7038de72940da78a5.jpg",
+      "description": "New Himalayan",
+     
+    }
+  ];
+  export default products

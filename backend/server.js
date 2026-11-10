@@ -6,6 +6,7 @@ import errorMiddleware from './middleware/errormiddleware.js'
 import cors from 'cors'
 import routeAuth from './routes/authRoute.js'
 import cookieParser from 'cookie-parser'
+import routerProduct from './routes/productRoutes.js'
 
 
 const app=express()
@@ -19,6 +20,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/auth',routeAuth)
+app.use('/api/products',routerProduct)
 app.get('/',(req,res,next)=>{
       try{
     res.status(201).json({

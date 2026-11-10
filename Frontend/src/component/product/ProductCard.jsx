@@ -16,6 +16,8 @@ import {
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+ 
+  
 
   // ===========================
   // Add To Cart
@@ -122,7 +124,7 @@ console.log("after add");
 
       {/* Product */}
       {/* <Link to={`/productDetails/${product.id}`}> */}
-      <div onClick={()=>navigate(`/productDetails/${product.id}`,{
+      <div onClick={()=>navigate(`/productDetails/${product._id}`,{
         state:{
           product:product,
           showAddToCartButton:true
