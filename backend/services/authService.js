@@ -60,7 +60,10 @@ console.log("REFRESH:", !!process.env.REFRESH_TOKEN_SECRET);
 
     // Store hashed refresh token in database
     data.refreshTokenHash = hashedRefreshToken;
+
+    console.log(" first  LOGIN HASH:", hashedRefreshToken);
     await data.save();
+    console.log("LOGIN HASH:", hashedRefreshToken);
     
 
     return {

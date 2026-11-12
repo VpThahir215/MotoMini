@@ -7,6 +7,7 @@ import cors from 'cors'
 import routeAuth from './routes/authRoute.js'
 import cookieParser from 'cookie-parser'
 import routerProduct from './routes/productRoutes.js'
+import routerCart from './routes/cartRoutes.js'
 
 
 const app=express()
@@ -19,6 +20,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(cookieParser())
+app.use("/api/cart",routerCart)
 app.use('/api/auth',routeAuth)
 app.use('/api/products',routerProduct)
 app.get('/',(req,res,next)=>{

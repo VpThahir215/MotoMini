@@ -48,18 +48,7 @@ const ProductCard = ({ product }) => {
           quantity: existingItem.quantity + 1,
         });
       } else {
-        await addCartItem({
-          userId: user.id,
-          productId: product.id,
-          name: product.name,
-          brand: product.brand,
-          category: product.category,
-          price: product.price,
-          stock: product.stock,
-          image: product.image,
-          description: product.description,
-          quantity: 1,
-        });
+        await addCartItem(product._id);
       }
 
       toast.success("Product added to cart!");
