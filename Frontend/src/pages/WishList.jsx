@@ -21,7 +21,10 @@ const WishList = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
 
   const fetchWishlist = async () => {
+        console.log("FETCH WISHLIST FUNCTION CALLED");
+
     const data = await getWishlist();
+     console.log("WISHLIST DATA:", data);
     setWishlistItems(data);
   };
 
@@ -36,41 +39,25 @@ const WishList = () => {
   };
 
   const handleAddToCart = async (item) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user,"userrrrrrrrrr");
     
-
-    if (!user) {
-      toast.error("Please login first.");
-      navigate("/login");
-      return;
-    }
-
-   const existingItem = await getCartItem(
-  item.productId,
-  user.id
-);
-    if (existingItem) {
-      await updateCartItem(existingItem.id, {
-        ...existingItem,
-        quantity: existingItem.quantity + 1,
-      });
-    } else {
-      await addCartItem({
-          userId: user.id,
-        productId: item.productId,
-        name: item.name,
-        brand: item.brand,
-        category: item.category,
-        price: item.price,
-        stock: item.stock,
-        image: item.image,
-        description: item.description,
-        quantity: 1,
-      });
-    }
-
-    toast.success("Added to cart");
+      try {
+          await addCartItem(item._id);
+  
+          toast.success("Product added to cart!");
+  
+      } catch (error) {
+          console.error("Cart error:", error);
+  
+          if (error.response?.status === 401) {
+              toast.error("Please login first.");
+              navigate("/login");
+              return;
+          }
+  
+          toast.error(
+              error.response?.data?.message || "Something went wrong!"
+          );
+      }
   };
 
   if (wishlistItems.length === 0) {

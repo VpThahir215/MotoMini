@@ -1,18 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/slice/cartSlice";
-import {
-  addCartItem,
-  getCartItem,
-  updateCartItem,
-} from "../../services/cartServices";
-import {
-  getWishlistItem,
-  addWishlistItem,
-} from "../../services/wishlistServices";
 
+import {
+    addCartItem
+} from "../../services/cartServices";
+
+import {
+    addWishlistItem
+} from "../../services/wishlistServices.js";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,83 +19,51 @@ const ProductCard = ({ product }) => {
   // ===========================
   // Add To Cart
   // ===========================
-  const handleAddToCart = async () => {
+ const handleAddToCart = async () => {
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
-   
-      
+      const existingItem=  await addCartItem(product._id);
 
-      if (!user) {
-        toast.error("Please login to add products to your cart.");
-        navigate("/login");
-        return;
-      }
+        toast.success("Product added to cart!");
 
-      // Redux (optional)
-      // dispatch(addToCart(product));
-
-    const existingItem = await getCartItem(
- product.id,
-  user.id
-);
-
-      if (existingItem) {
-        await updateCartItem(existingItem.id, {
-          ...existingItem,
-          quantity: existingItem.quantity + 1,
-        });
-      } else {
-        await addCartItem(product._id);
-      }
-
-      toast.success("Product added to cart!");
     } catch (error) {
-      console.error(error);
-      toast.error("Something went wrong!");
+        console.error("Cart error:", error);
+
+        if (error.response?.status === 401) {
+            toast.error("Please login first.");
+            navigate("/login");
+            return;
+        }
+
+        toast.error(
+            error.response?.data?.message || "Something went wrong!"
+        );
     }
-  };
-
+};
  
- const handleWishlist = async () => {
-  console.log("called handleWishlist");
-  
-  event.preventDefault();
+ const handleWishlist = async (event) => {
+    event.stopPropagation();
+try {
+        const response = await addWishlistItem(product._id);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+        if (response.alreadyExists) {
+            toast.error("Already in your Wishlist ❤️");
+        } else {
+            toast.success("Added to Wishlist ❤️");
+        }
 
-  
+    } catch (error) {
+        console.error("Wishlist error:", error);
 
-  if (!user) {
-    toast.error("Please login first.");
-    navigate("/login");
-    return;
-  }
-  const existingItem = await getCartItem(
-  product.id,
-  user.id
-);
-console.log("add existingItem");
+        if (error.response?.status === 401) {
+            toast.error("Please login first.");
+            navigate("/login");
+            return;
+        }
 
-  if (existingItem) {
-    toast("Already in wishlist ❤️");
-    return;
-  }
-console.log( "befor add");
-
-  await addWishlistItem({
-       userId: user.id,
-    productId: product.id,
-    name: product.name,
-    brand: product.brand,
-    category: product.category,
-    price: product.price,
-    stock: product.stock,
-    image: product.image,
-    description: product.description,
-  });
-console.log("after add");
-
-  toast.success("Added to Wishlist ❤️");
+        toast.error(
+            error.response?.data?.message || "Something went wrong!"
+        );
+    } 
 };
 
   return (

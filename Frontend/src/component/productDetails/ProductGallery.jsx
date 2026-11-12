@@ -8,7 +8,7 @@ import {
   updateCartItem,
 } from "../../services/cartServices";
 import {
-  getWishlistItem,
+  getWishlist,
   addWishlistItem,
 } from "../../services/wishlistServices";
 

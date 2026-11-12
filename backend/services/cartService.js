@@ -26,7 +26,9 @@ export const addToCart = async (userId, productId) => {
         quantity: 1
     });
 
-    return cartItem;
+    return {cartItem,
+          alreadyExists: false
+    };
 };
 export const updateCartQuantity = async (userId, cartId, quantity) => {
     const cartItem = await Cart.findOneAndUpdate(
