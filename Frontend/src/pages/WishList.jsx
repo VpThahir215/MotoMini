@@ -19,14 +19,23 @@ const WishList = () => {
   const navigate = useNavigate();
 
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const fetchWishlist = async () => {
+const fetchWishlist = async () => {
+    try {
         console.log("FETCH WISHLIST FUNCTION CALLED");
 
-    const data = await getWishlist();
-     console.log("WISHLIST DATA:", data);
-    setWishlistItems(data);
-  };
+        const data = await getWishlist();
+
+        console.log("WISHLIST DATA:", data);
+
+        setWishlistItems(data);
+    } catch (error) {
+        console.error("Wishlist error:", error);
+    } finally {
+        setLoading(false);
+    }
+};
 
   useEffect(() => {
     fetchWishlist();
@@ -59,6 +68,19 @@ const WishList = () => {
           );
       }
   };
+  if (loading) {
+    return (
+        <div className="min-h-screen bg-black flex items-center justify-center">
+            <div className="text-center">
+                <div className="animate-spin rounded-full h-10 w-10 border-4 border-gray-300 border-t-blue-600 mx-auto"></div>
+
+                <p className="mt-4 text-gray-600">
+                    Loading your wishlist...
+                </p>
+            </div>
+        </div>
+    );
+}
 
   if (wishlistItems.length === 0) {
     return (

@@ -1,15 +1,10 @@
 
-
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import ProductCard from "./ProductCard";
 import Pagination from "./Pagination";
 
 const ProductGrid = ({
-  search,
-  selectedBrand,
-  selectedCategory,
   currentPage,
   setCurrentPage,
 }) => {
@@ -19,47 +14,20 @@ const ProductGrid = ({
 
   const productsPerPage = 6;
 
-  const filteredProducts = products.filter((product) => {
-
-    const matchesSearch = product.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
-
-    const matchesBrand =
-      selectedBrand === "" ||
-      product.brand === selectedBrand;
-      
-
-    const matchesCategory =
-      selectedCategory === "" ||
-      product.category === selectedCategory;
-
-    return (
-      matchesSearch &&
-      matchesBrand &&
-      matchesCategory
-    );
-  });
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, selectedBrand, selectedCategory, setCurrentPage]);
-
+  // Pagination
   const totalPages = Math.ceil(
-    filteredProducts.length / productsPerPage
+    products.length / productsPerPage
   );
 
-  const indexOfLastProduct =
-    currentPage * productsPerPage;
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
-  const indexOfFirstProduct =
-    indexOfLastProduct - productsPerPage;
-
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = products.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
+  // Loading
   if (loading) {
     return (
       <h2 className="text-white text-center py-10">
@@ -68,19 +36,12 @@ const ProductGrid = ({
     );
   }
 
+  // No products
   if (products.length === 0) {
-    return (
-      <h2 className="text-white text-center py-10">
-        No products found.
-      </h2>
-    );
-  }
-
-  if (filteredProducts.length === 0) {
     return (
       <div className="flex items-center justify-center h-60">
         <h2 className="text-2xl text-gray-400">
-          No miniature motorcycles match your search. 
+          No miniature motorcycles match your search.
         </h2>
       </div>
     );
@@ -91,7 +52,7 @@ const ProductGrid = ({
       <div className="grid md:grid-cols-3 gap-6">
         {currentProducts.map((product) => (
           <ProductCard
-            key={product.id}
+            key={product._id}
             product={product}
           />
         ))}

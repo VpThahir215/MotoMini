@@ -2,7 +2,15 @@ import { getAllProducts as getAllProductsService,getProductById} from '../servic
 
 export const getAllProducts = async (req, res, next) => {
     try {
-        const products = await getAllProductsService();
+        // Get filters from URL query parameters
+        const { search, brand, category } = req.query;
+
+        // Pass filters to the service
+        const products = await getAllProductsService({
+            search,
+            brand,
+            category
+        });
 
         res.status(200).json({
             success: true,
@@ -14,6 +22,7 @@ export const getAllProducts = async (req, res, next) => {
         next(error);
     }
 };
+
 export const getOneProduct = async (req, res, next) => {
     try {
         const product = await getProductById(req.params.id);

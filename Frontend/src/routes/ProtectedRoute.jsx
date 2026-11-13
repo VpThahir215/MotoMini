@@ -21,19 +21,19 @@ const ProtectedRoute = ({ children }) => {
     });
   }, []);
 
-  if (isAuthenticated === null) {
+if (isAuthenticated === null) {
     return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-gray-300 border-t-blue-600 mx-auto"></div>
+        <div className="min-h-screen bg-black flex items-center justify-center">
+            <div className="text-center">
+                <div className="animate-spin rounded-full h-10 w-10 border-4 border-gray-300 border-t-blue-600 mx-auto"></div>
 
-        <p className="mt-4 text-gray-600">
-          Checking authentication...
-        </p>
-      </div>
-    </div>
-  );
-  }
+                <p className="mt-4 text-gray-600">
+                    Checking authentication...
+                </p>
+            </div>
+        </div>
+    );
+}
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;

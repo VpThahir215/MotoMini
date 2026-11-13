@@ -21,16 +21,31 @@ function Shop() {
 
   const location = useLocation();
 
-  useEffect(() => {
+  
+useEffect(() => {
     const fetchProducts = async () => {
-      dispatch(setLoading(true));
-      const data = await getProducts();
-      dispatch(setProducts(data));
-      dispatch(setLoading(false));
+        try {
+            dispatch(setLoading(true));
+
+            const data = await getProducts({
+                search,
+                brand: selectedBrand,
+                category: selectedCategory
+            });
+
+            dispatch(setProducts(data));
+
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            dispatch(setLoading(false));
+        }
     };
 
     fetchProducts();
-  }, [dispatch]);
+
+}, [dispatch, search, selectedBrand, selectedCategory]);
+
 
   useEffect(() => {
     if (location.state?.category) {

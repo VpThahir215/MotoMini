@@ -17,14 +17,21 @@ const Cart = () => {
   // const total = subtotal + shipping;
   const navigate = useNavigate()
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchCart = async () => {
-      const data = await getCart();
-      setCartItems(data);
+        try {
+            const data = await getCart();
+            setCartItems(data);
+        } catch (error) {
+            console.error("Error fetching cart:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     fetchCart();
-  }, []);
+}, []);
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -72,33 +79,48 @@ const Cart = () => {
   });
 };
 
-  if (cartItems.length === 0) {
+  // FIRST: Check loading
+if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center px-6">
-        <div className="max-w-lg w-full text-center border border-yellow-700 rounded-xl p-10">
+        <div className="min-h-screen bg-black flex items-center justify-center">
+            <div className="text-center">
+                <div className="animate-spin rounded-full h-10 w-10 border-4 border-gray-300 border-t-blue-600 mx-auto"></div>
 
-          <h1 className="text-4xl font-bold text-white">
-            Your <span className="text-yellow-500">Cart</span> is Empty
-          </h1>
-
-          <p className="mt-5 text-gray-400 leading-7">
-            Looks like you haven't added any mini rides yet.
-            <br />
-            Start exploring and find your next favorite model.
-          </p>
-
-          <button
-            onClick={() => navigate("/shop")}
-            className="mt-8 bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold uppercase hover:bg-yellow-400 transition"
-          >
-            Explore Shop
-          </button>
-
+                <p className="mt-4 text-gray-600">
+                    Loading your cart...
+                </p>
+            </div>
         </div>
-      </div>
     );
-   
-  }
+}
+
+// SECOND: Check empty cart
+if (cartItems.length === 0) {
+    return (
+        <div className="min-h-screen bg-black flex items-center justify-center px-6">
+            <div className="max-w-lg w-full text-center border border-yellow-700 rounded-xl p-10">
+
+                <h1 className="text-4xl font-bold text-white">
+                    Your <span className="text-yellow-500">Cart</span> is Empty
+                </h1>
+
+                <p className="mt-5 text-gray-400 leading-7">
+                    Looks like you haven't added any mini rides yet.
+                    <br />
+                    Start exploring and find your next favorite model.
+                </p>
+
+                <button
+                    onClick={() => navigate("/shop")}
+                    className="mt-8 bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold uppercase hover:bg-yellow-400 transition"
+                >
+                    Explore Shop
+                </button>
+
+            </div>
+        </div>
+    );
+}
 
   return (
     <div className="min-h-screen bg-black text-white pt-28 pb-20">

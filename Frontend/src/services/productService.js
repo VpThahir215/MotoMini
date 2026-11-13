@@ -1,9 +1,11 @@
 import api from "./api";
+export const getProducts = async (filters = {}) => {
+    const response = await api.get("/products", {
+        params: filters
+    });
 
-export const getProducts= async ()=>{
-    const respons=await api.get('/products');
-    return respons.data.products
-}
+    return response.data.products;
+};
 export const getOneProduct= async (id)=>{
         const respons=await api.get(`/products/${id}`);
         return respons.data.products
