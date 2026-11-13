@@ -8,6 +8,7 @@ import {Link,useLocation} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { logoutUser } from "../../services/userService";
 
 const Navbar = () => {
    const location = useLocation();
@@ -18,9 +19,21 @@ const [menuOpen, setMenuOpen] = useState(false);
    
 
   const isHome = location.pathname === "/";
-  const handleLogout = () => {
-  localStorage.removeItem("user");
-  navigate("/login");
+  const handleLogout = async () => {
+    try {
+      console.log("logouttttt");
+      
+        await logoutUser();
+
+        localStorage.removeItem("user");
+
+        navigate("/login", { replace: true });
+
+        toast.success("Logged out successfully");
+    } catch (error) {
+        console.error("Logout failed:", error);
+        toast.error("Unable to logout. Please try again.");
+    }
 };
   return (
     <header
