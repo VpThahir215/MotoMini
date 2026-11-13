@@ -1,12 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import { getOrders } from "../services/ orderService";
-import { deleteOrder } from "../services/ orderService";
-import { LogIn } from "lucide-react";
-import { UpdateOrder } from "../services/ orderService";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
-  const can="Cancelled"
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadOrders();
@@ -15,17 +13,21 @@ const MyOrders = () => {
   const loadOrders = async () => {
     try {
       const data = await getOrders();
-      setOrders(data.reverse()); // newest order first
+      setOrders(data);
     } catch (error) {
-      console.log(error);
+      console.error("Failed to load orders:", error);
+    } finally {
+      setLoading(false);
     }
   };
- async function cancelHandle(id){
-console.log("idddddd",id);
-await UpdateOrder(id,can)
-loadOrders()
 
- }
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        Loading your orders...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black text-white py-20">
@@ -46,50 +48,34 @@ loadOrders()
         <div className="mt-12 space-y-8">
 
           {orders.map((order) => (
-
             <div
-              key={order.id}
+              key={order._id}
               className="border border-yellow-900 bg-[#111]"
             >
 
               {/* Header */}
+              <div className="flex justify-between items-center border-b border-yellow-900 px-6 py-5">
+                <div>
+                  <h2 className="text-yellow-500 text-2xl font-bold">
+                    ORDER #{order._id.slice(-6).toUpperCase()}
+                  </h2>
 
-             <div className="flex justify-between items-center border-b border-yellow-900 px-6 py-5">
-  <div>
-    <h2 className="text-yellow-500 text-2xl font-bold">
-      ORDER #{order.id}
-    </h2>
+                  <p className="text-gray-500 mt-1">
+                    {new Date(order.orderDate).toLocaleDateString()}
+                  </p>
+                </div>
 
-    <p className="text-gray-500 mt-1">
-      {new Date(order.orderDate).toLocaleDateString()}
-    </p>
-  </div>
-
-  <div className="flex gap-2">
-    <span className="px-5 py-2 bg-green-700 text-white uppercase text-sm rounded">
-      {order.status}
-    </span>
-
-    <span
-      onClick={() => cancelHandle(order.id)}
-      className="px-5 py-2 bg-red-700 text-white uppercase text-sm rounded cursor-pointer"
-    >
-      Cancel
-    </span>
-  </div>
-</div>
+                <span className="px-5 py-2 bg-green-700 text-white uppercase text-sm rounded">
+                  {order.status}
+                </span>
+              </div>
 
               {/* Products */}
-
-              {order.products.map((item) => (
-
+              {order.products.map((item, index) => (
                 <div
-                  key={item.id}
+                  key={`${item.product}-${index}`}
                   className="flex gap-5 p-6 border-b border-yellow-900"
                 >
-                  
-                 
-
                   <img
                     src={item.image}
                     alt={item.name}
@@ -97,45 +83,40 @@ loadOrders()
                   />
 
                   <div className="flex-1">
-
                     <h3 className="text-xl font-semibold">
                       {item.name}
                     </h3>
 
                     <p className="text-gray-400 mt-2">
-                      Quantity : {item.quantity}
+                      Quantity: {item.quantity}
                     </p>
 
                     <p className="text-yellow-500 font-bold mt-2">
                       ₹{item.price}
                     </p>
-
                   </div>
-
                 </div>
-
               ))}
 
               {/* Summary */}
-
               <div className="p-6 space-y-3">
 
                 <p className="text-gray-400">
-                  Customer :
+                  Customer:
                   <span className="text-white ml-2">
                     {order.customer.name}
                   </span>
                 </p>
 
                 <p className="text-gray-400">
-                  Payment :
+                  Payment:
                   <span className="text-white ml-2">
                     {order.paymentMethod}
                   </span>
                 </p>
 
                 <p className="text-gray-400">
-                  Address :
+                  Address:
                   <span className="text-white ml-2">
                     {order.customer.address},{" "}
                     {order.customer.city},{" "}
@@ -144,43 +125,24 @@ loadOrders()
                 </p>
 
                 <div className="flex justify-between mt-6">
-
-                  <span className="text-gray-400">
-                    Subtotal
-                  </span>
-
-                  <span>
-                    ₹{order.subtotal}
-                  </span>
-
+                  <span className="text-gray-400">Subtotal</span>
+                  <span>₹{order.subtotal}</span>
                 </div>
 
                 <div className="flex justify-between">
-
-                  <span className="text-gray-400">
-                    Shipping
-                  </span>
-
-                  <span className="text-green-400">
-                    FREE
-                  </span>
-
+                  <span className="text-gray-400">Shipping</span>
+                  <span className="text-green-400">FREE</span>
                 </div>
 
                 <div className="flex justify-between text-xl font-bold border-t border-yellow-900 pt-4">
-
                   <span>Total</span>
-
                   <span className="text-yellow-500">
                     ₹{order.total}
                   </span>
-
                 </div>
 
               </div>
-
             </div>
-
           ))}
 
           {orders.length === 0 && (
@@ -190,7 +152,6 @@ loadOrders()
           )}
 
         </div>
-
       </div>
     </div>
   );

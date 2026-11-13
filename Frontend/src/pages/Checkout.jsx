@@ -101,21 +101,22 @@ const Checkout = () => {
     ? [{ ...product, quantity }]
     : items;
 
-  // Create order object
-  const user=JSON.parse(localStorage.getItem("user"));
-  console.log(user.id,"idddusrrrr");
+  //
+  console.log("Order products:", orderProducts);
+
+console.log(
+    "Product IDs:",
+    orderProducts.map((item) => item._id)
+);
   
-  const order = {
-      userId: user.id,
+ const order = {
     customer: formData,
     paymentMethod: payment,
-    products: orderProducts,
-    subtotal,
-    total: finalTotal,
-    orderDate: new Date().toISOString(),
-    status: "Pending",
-  };
-
+    products: orderProducts.map((item) => ({
+        productId: item._id,
+        quantity: item.quantity
+    }))
+};
   try {
     // Save order to JSON Server
     await placeOrder(order);
