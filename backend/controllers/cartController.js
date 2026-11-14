@@ -3,6 +3,8 @@ import { getUserCart,addToCart,updateCartQuantity,removeCartItem } from "../serv
 export const getCart = async (req, res, next) => {
     try {
         const userId = req.user.id;
+        const ttt=req.user
+        console.log(ttt,"userrrrrrr")
 
         const cartItems = await getUserCart(userId);
 
@@ -13,6 +15,7 @@ export const getCart = async (req, res, next) => {
 
     } catch (error) {
         next(error);
+        
     }
 };
 export const addCart = async (req, res, next) => {

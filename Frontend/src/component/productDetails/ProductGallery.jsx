@@ -7,10 +7,10 @@ import {
   getCartItem,
   updateCartItem,
 } from "../../services/cartServices";
-import {
-  getWishlist,
-  addWishlistItem,
-} from "../../services/wishlistServices";
+// import {
+//   getWishlistItem,
+//   addWishlistItem,
+// } from "../../services/wishlistServices";
 
 
 const ProductGallery = ({ product,feature}) => {
@@ -79,12 +79,12 @@ console.log("after add");
           className="w-full max-w-lg object-contain"
         />) : (
           <>
-          <button
+          {/* <button
         onClick={handleWishlist}
         className="absolute top-4 right-4 z-10 bg-black/70 p-3 rounded-full text-white hover:bg-[#D3AF37] hover:text-black transition duration-300"
       >
         <FiHeart size={22} />
-      </button>
+      </button> */}
          <img
           src={product.image}
           alt={product.name}

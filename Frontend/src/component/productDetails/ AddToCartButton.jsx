@@ -1,71 +1,31 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import {
-  addCartItem,
-  getCartItem,
-  updateCartItem,
-} from "../../services/cartServices";
+
+import { addCartItem } from "../../services/cartServices";
 
 const AddToCartButton = ({ product }) => {
   const navigate = useNavigate();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-  
-    
-
   const handleAddToCart = async () => {
-    console.log("button clicked");
-    
-
-    if (!user) {
-      toast.error("Please login to add products to your cart.");
-      navigate("/login");
-      return;
-    }
-
     try {
-      const existingItem = await getCartItem(
-product.id,
-  user.id
-);
-      console.log("product id to existingItem");
-      
+      console.log("Product ID:", product._id);
 
-      if (existingItem) {
-      
-        
-        await updateCartItem(existingItem.id, {
-          ...existingItem,
-          quantity: existingItem.quantity + 1,
-          
-    
-        
-          
-        });
-          console.log("incrase quandity");
-      } else {
-        await addCartItem({
-            userId: user.id,
-          productId: product.id,
-          name: product.name,
-          brand: product.brand,
-          category: product.category,
-          price: product.price,
-          stock: product.stock,
-          image: product.image,
-          description: product.description,
-          quantity: 1,
-        });
-      }
-      
-       toast.success("Product added to cart!");
-console.log('added to json');
+      // Send only the MongoDB product ID
+      await addCartItem(product._id);
 
-     
+      toast.success("Product added to cart!");
     } catch (error) {
-      console.error(error);
-      toast.error("Something went wrong.");
+      console.error("Add to cart error:", error);
+
+      if (error.response?.status === 401) {
+        toast.error("Please login to add products to your cart.");
+        navigate("/login");
+        return;
+      }
+
+      toast.error("Unable to add product to cart.");
     }
   };
 
