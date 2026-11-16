@@ -7,15 +7,22 @@ routeAuth.post('/register',authRegister)
 routeAuth.post('/login',authLogin)
 routeAuth.post("/logout", logout);
 routeAuth.post('/refresh', refreshAccessToken);
-routeAuth.get('/check-auth',authMiddleware,(req,res)=>{
+routeAuth.get('/check-auth', authMiddleware, (req, res) => {
+
+    // Prevent browser from caching authentication responses
+    res.set({
+        "Cache-Control": "no-store, no-cache, must-revalidate, private",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    });
+
     res.status(200).json({
-        success:true,
-        message:"Authenticated",
-        user:req.user
-    })
+        success: true,
+        message: "Authenticated",
+        user: req.user
+    });
 
-
-})
+});
 
 
 export default routeAuth

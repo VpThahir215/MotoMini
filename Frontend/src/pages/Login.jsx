@@ -1,8 +1,10 @@
-import React from "react";
-import {useNavigate} from 'react-router-dom'
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/userService";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import api from "../services/api";
+
 import {
   FiMail,
   FiLock,
@@ -10,56 +12,89 @@ import {
 } from "react-icons/fi";
 
 const Login = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
 
-async function handleLogin(e) {
-  e.preventDefault();
+  // Check whether the user is already authenticated
+  useEffect(() => {
+    let isMounted = true;
 
-  if (!email || !password) {
-    toast.error("Please enter email and password.");
-    return;
-  }
+    const checkAuth = async () => {
+      try {
+        console.log("Checking existing authentication...");
 
-  try {
-    const users = await loginUser(email,password);
-    const data=users.user
-    
-    console.log(data,"frontend");
-    
+        const response = await api.get("/auth/check-auth");
 
-  
+        if (isMounted && response.data.success) {
+          console.log("User already authenticated");
 
-    if (!data) {
-      toast.error("Invalid Email or Password");
+          navigate("/", { replace: true });
+        }
+
+      } catch (error) {
+        console.log("User is not authenticated");
+      }
+    };
+
+    checkAuth();
+
+    return () => {
+      isMounted = false;
+    };
+
+  }, [navigate]);
+
+
+  // Handle login
+  async function handleLogin(e) {
+    e.preventDefault();
+
+    if (!email || !password) {
+      toast.error("Please enter email and password.");
       return;
     }
-     if (data.isblocked === "blocked") {
-      toast.error("Your MotoMini account has been blocked.");
-      return;
+
+    try {
+      const users = await loginUser(email, password);
+      const data = users.user;
+
+      console.log(data, "frontend");
+
+      if (!data) {
+        toast.error("Invalid Email or Password");
+        return;
+      }
+
+      if (data.isblocked === "blocked") {
+        toast.error("Your MotoMini account has been blocked.");
+        return;
+      }
+
+      if (data.role === "user") {
+        localStorage.setItem("user", JSON.stringify(data));
+
+        toast.success(`Hi ${data.name}! Welcome back to Moto Mini.`);
+
+        navigate("/", { replace: true });
+
+      } else if (data.role === "admin") {
+
+        toast.success(`Hi ${data.name}! Welcome to Admin Module`);
+
+        navigate("/admin", { replace: true });
+      }
+
+    } catch (error) {
+      console.log("Login error:", error);
+
+      toast.error(
+        error.response?.data?.message || "Something went wrong"
+      );
     }
-
-  if(data.role==="user"){
-    localStorage.setItem("user", JSON.stringify(data));
-    toast.success(`Hy ${data.name}! Welcome back to Moto Mini.`);
-    navigate('/')
-
-  }else if(data.role==="admin"){
-    //  localStorage.setItem("admin", JSON.stringify(data));
-    toast.success(`Hy ${data.name}! Welcome to Admin Module`)
-    navigate('/admin')
   }
-   
 
-
-
-
-  } catch (error) {
-    console.log(error);
-    toast.error("Something went wrong");
-  }
-}
 
   return (
     <section className="w-full h-screen flex overflow-hidden bg-black">
@@ -91,14 +126,18 @@ async function handleLogin(e) {
           </div>
 
           {/* Form */}
-          <form className="mt-10 space-y-5">
+          <form
+            onSubmit={handleLogin}
+            className="mt-10 space-y-5"
+          >
 
             <div className="relative">
               <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
 
               <input
                 type="email"
-                onChange={(e)=>setEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email Address"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
               />
@@ -109,18 +148,16 @@ async function handleLogin(e) {
 
               <input
                 type="password"
-                 onChange={(e)=>setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
               />
             </div>
 
-            
-
             {/* Button */}
             <button
               type="submit"
-              onClick={handleLogin}
               className="w-full bg-[#D3AF37] hover:bg-yellow-400 transition py-4 rounded-xl font-bold text-black flex justify-center items-center gap-3"
             >
               Login
@@ -129,7 +166,11 @@ async function handleLogin(e) {
 
             <p className="text-center text-gray-400">
               Don't have an account?{" "}
-              <span onClick={()=>navigate('/register')} className="text-[#D3AF37] cursor-pointer hover:underline">
+
+              <span
+                onClick={() => navigate("/register")}
+                className="text-[#D3AF37] cursor-pointer hover:underline"
+              >
                 Sign Up
               </span>
             </p>
@@ -140,6 +181,7 @@ async function handleLogin(e) {
 
       </div>
 
+
       {/* Right Side */}
       <div
         className="hidden lg:flex w-[60%] relative bg-cover bg-center"
@@ -148,6 +190,7 @@ async function handleLogin(e) {
             "url('/Gemini_Generated_Image_1pyejg1pyejg1pye.png')",
         }}
       >
+
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
@@ -166,7 +209,7 @@ async function handleLogin(e) {
             </h1>
 
             <h2 className="text-5xl font-bold uppercase mt-5 text-white leading-tight">
-         We Miniaturize
+              We Miniaturize
               <br />
               The Legend.
             </h2>
