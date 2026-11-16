@@ -78,3 +78,12 @@ export const getUserOrders = async (userId) => {
 
     return orders;
 };
+
+
+export const getAllOrders = async () => {
+    const orders = await Order.find()
+        .populate("user", "name email")
+        .sort({ orderDate: -1 });
+
+    return orders;
+};

@@ -1,6 +1,7 @@
 import {
     createOrder,
-    getUserOrders
+    getUserOrders,
+    getAllOrders    
 } from "../services/orderService.js";
 
 export const placeOrder = async (req, res, next) => {
@@ -27,6 +28,20 @@ export const getMyOrders = async (req, res, next) => {
             success: true,
             orders
         });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getAllOrdersAdmin = async (req, res, next) => {
+    try {
+        const orders = await getAllOrders();
+
+        return res.status(200).json({
+            success: true,
+            orders
+        });
+
     } catch (error) {
         next(error);
     }
