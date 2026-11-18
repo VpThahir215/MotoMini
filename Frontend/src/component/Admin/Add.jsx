@@ -8,10 +8,10 @@ import { getOneProduct, editProduct } from "../../services/productService";
 const Add = () => {
   const location = useLocation()
   const editId = location.state?.id;
-  console.log(editId);
+  console.log(editId,"edit idddd");
   async function editBtn() {
     const edit = await getOneProduct(editId)
-    console.log(edit);
+    console.log(edit,"producttttt");
 
   }
   editBtn()
@@ -150,11 +150,12 @@ const Add = () => {
           </p>
 
           <h1 className="mt-1 font-heading text-3xl tracking-widest text-[#D3AF37]">
-            ADD PRODUCT
+           {editId ? "EDIT PRODUCT" : "ADD PRODUCT"}
           </h1>
 
           <p className="mt-2 text-xs text-gray-600">
-            Add a new miniature motorcycle to your collection.
+          
+             {editId ? "  Edit a new miniature motorcycle to your collection." : "  Add a new miniature motorcycle to your collection."}
           </p>
 
         </div>

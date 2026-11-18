@@ -12,6 +12,7 @@ import Settings from "../pages/admin/Settings";
 import AddProduct from "../pages/admin/AddProduct";
 import ProfileUser from "../pages/admin/ProfileUser";
 import EditUser from "../pages/admin/EditUser";
+import Trash from "../pages/Trash";
 
 const AdminRoute = () => {
   const [status, setStatus] = useState("checking");
@@ -56,6 +57,7 @@ console.log("USER ROLE:", response.data.user?.role);
         <Route path="settings" element={<Settings />} />
         <Route path="userProfile" element={<ProfileUser />} />
         <Route path="editUser" element={<EditUser />} />
+        <Route path="trash" element={<Trash />} />
       </Route>
     </Routes>
   );

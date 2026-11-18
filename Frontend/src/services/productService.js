@@ -8,16 +8,38 @@ export const getProducts = async (filters = {}) => {
 };
 export const getOneProduct= async (id)=>{
         const respons=await api.get(`/products/${id}`);
-        return respons.data.products
+        return respons.data.product
 }   
 export const addProduct=async (product)=>{
   const respons=  await api.post('/products/admin',product);
     return respons.data
 }
-export const deleteProduct=async (id)=>{
-  await api.delete(`/products/${id}`)
-}
+
 
 export const editProduct=async (id,product)=>{
-  await api.put(`/products/${id}`,product)
+  const response = await api.put(`/products/admin/${id}`,product)
+    return response.data;
+  
 }
+export const softDeleteProduct = async (id) => {
+    const response = await api.delete(`/products/admin/${id}`);
+    return response.data;
+};
+export const hardDeleteProduct = async (id) => {
+    const response = await api.delete(
+        `/products/admin/${id}/permanent`
+    );
+    return response.data;
+};
+
+// Restore
+export const restoreProduct = async (id) => {
+    const response = await api.patch(
+        `/products/admin/${id}/restore`
+    );
+    return response.data;
+};
+export const getDeletedProductsAdmin = async () => {
+    const response = await api.get("/products/admin/trash");
+    return response.data.products;
+};

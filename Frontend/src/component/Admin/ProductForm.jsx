@@ -9,7 +9,7 @@ import {
 } from "react-icons/fi";
 import { getProducts } from "../../services/productService";
 import { data, useNavigate } from "react-router-dom";
-import { deleteProduct } from "../../services/productService";
+import { softDeleteProduct } from "../../services/productService";
 import toast from "react-hot-toast";
 
 
@@ -71,7 +71,7 @@ fetchProduct()
   } 
   try{
      
- await   deleteProduct(id)
+ await   softDeleteProduct(id)
      toast.success("Deleting:", id);
      const data=await getProducts()
      setProducts(data)
@@ -297,6 +297,7 @@ fetchProduct()
                           {correntProduct.map((product) => (
 
 
+
                             <tr
                                 key={product.id}
                                 className="border-b border-[#1c1c1c] transition hover:bg-[#0d0d0d]"
@@ -325,7 +326,7 @@ fetchProduct()
                                             </p>
 
                                             <p className="mt-1 text-[10px] text-gray-700">
-                                                {product.id}
+                                                {product._id}
                                             </p>
 
                                         </div>
@@ -389,8 +390,9 @@ fetchProduct()
 
                                         <button 
                                         onClick={()=>navigate('/admin/products/add',{
+                                            
                                             state:{
-                                                id:product.id
+                                                id:product._id
                                             }
                                         })}
                                         className="text-gray-600 transition hover:text-[#D3AF37]">
@@ -398,7 +400,7 @@ fetchProduct()
                                         </button>
 
                                         <button 
-                                        onClick={()=>deleteHandle(product.id)}
+                                        onClick={()=>deleteHandle(product._id)}
                                         className="text-gray-600 transition hover:text-red-500">
                                             <FiTrash2 size={16} />
                                         </button>
@@ -481,134 +483,3 @@ fetchProduct()
 
 
 export default ProductForm
-
-                                       
-
-                        // {products.map((product) => (
-
-                        //     <tr
-                        //         key={product.id}
-                        //         className="border-b border-[#1c1c1c] transition hover:bg-[#0d0d0d]"
-                        //     >
-
-                        //         {/* Product */}
-
-                        //         <td className="px-5 py-4">
-
-                        //             <div className="flex items-center gap-4">
-
-                        //                 <div className="h-14 w-14 overflow-hidden border border-[#29230d] bg-[#111]">
-
-                        //                     <img
-                        //                         src={product.image}
-                        //                         alt={product.name}
-                        //                         className="h-full w-full object-cover"
-                        //                     />
-
-                        //                 </div>
-
-                        //                 <div>
-
-                        //                     <p className="text-sm font-medium text-gray-200">
-                        //                         {product.name}
-                        //                     </p>
-
-                        //                     <p className="mt-1 text-[10px] text-gray-700">
-                        //                         {product.id}
-                        //                     </p>
-
-                        //                 </div>
-
-                        //             </div>
-
-                        //         </td>
-
-
-                        //         {/* Brand */}
-
-                        //         <td className="px-5 py-4 text-xs text-gray-500">
-                        //             {product.brand}
-                        //         </td>
-
-
-                        //         {/* Category */}
-
-                        //         <td className="px-5 py-4">
-
-                        //             <span className="border border-[#29230d] px-2.5 py-1 text-[9px] uppercase tracking-wider text-gray-500">
-                        //                 {product.category}
-                        //             </span>
-
-                        //         </td>
-
-
-                        //         {/* Price */}
-
-                        //         <td className="px-5 py-4 text-sm font-semibold text-[#D3AF37]">
-                        //             {product.price}
-                        //         </td>
-
-
-                        //         {/* Stock */}
-
-                        //         <td className="px-5 py-4">
-
-                        //             <span
-                        //                 className={
-                        //                     product.stock === 0
-                        //                         ? "text-red-500"
-                        //                         : product.stock < 10
-                        //                             ? "text-yellow-500"
-                        //                             : "text-gray-400"
-                        //                 }
-                        //             >
-                        //                 {product.stock}
-                        //             </span>
-
-                        //             <span className="ml-1 text-[10px] text-gray-700">
-                        //                 units
-                        //             </span>
-
-                        //         </td>
-
-
-                        //         {/* Status */}
-
-                        //         <td className="px-5 py-4">
-
-                        //             <span
-                        //                 className={`inline-block border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider ${getStatusStyle(
-                        //                     product.status
-                        //                 )}`}
-                        //             >
-                        //                 {product.status}
-                        //             </span>
-
-                        //         </td>
-
-
-                        //         {/* Actions */}
-
-                        //         <td className="px-5 py-4">
-
-                        //             <div className="flex items-center gap-4">
-
-                        //                 <button className="text-gray-600 transition hover:text-[#D3AF37]">
-                        //                     <FiEye size={16} />
-                        //                 </button>
-
-                        //                 <button className="text-gray-600 transition hover:text-[#D3AF37]">
-                        //                     <FiEdit2 size={16} />
-                        //                 </button>
-
-                        //                 <button className="text-gray-600 transition hover:text-red-500">
-                        //                     <FiTrash2 size={16} />
-                        //                 </button>
-
-                        //             </div>
-
-                        //         </td>
-
-                        //     </tr>
-
-                        // ))}
