@@ -45,3 +45,26 @@ export const getProductById = async (id) => {
 
     return product;
 };
+export const createProduct = async (productData) => {
+    const {
+        name,
+        brand,
+        category,
+        price,
+        stock,
+        image,
+        description
+    } = productData;
+
+    const newProduct = await Product.create({
+        name,
+        brand,
+        category,
+        price,
+        stock,
+        image,
+        description
+    });
+
+    return newProduct;
+};

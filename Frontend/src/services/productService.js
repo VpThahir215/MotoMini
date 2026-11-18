@@ -11,7 +11,7 @@ export const getOneProduct= async (id)=>{
         return respons.data.products
 }   
 export const addProduct=async (product)=>{
-  const respons=  await api.post('/products',product);
+  const respons=  await api.post('/products/admin',product);
     return respons.data
 }
 export const deleteProduct=async (id)=>{
