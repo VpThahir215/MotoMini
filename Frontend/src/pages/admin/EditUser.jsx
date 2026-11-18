@@ -5,7 +5,9 @@ import { useLocation } from 'react-router-dom'
 const EditUser = () => {
     
     const location =useLocation()
-    const id=location.state?.user.id
+    const id=location.state?.user
+    console.log("iddddd",id);
+    
     
 
     

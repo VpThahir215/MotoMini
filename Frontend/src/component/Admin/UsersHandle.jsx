@@ -30,33 +30,7 @@ useEffect(()=>{
 fetchUser()
 },[])
 
-       async   function deleteHandle(id){
-        console.log("IDDDDD",id);
-         const confirmDelete = window.confirm(
-    "Are you sure you want to delete this product?"
-  );
-
-  if (!confirmDelete) {
-  toast.error("Delete cancelled")
-    
-     return
-    
-  } 
-  try{
-     
- await   deleteUser(id)
-    toast.success("Deleting:", id);
-     const data=await getUsers()
-     setUser(data)
-
-
- }catch(error){
-    console.log(error);
-    
-  }
-       
-     }
-
+   
 
   useEffect(()=>{
     const timer=setTimeout(()=>{
@@ -224,7 +198,7 @@ const getAccesStyle = (access) => {
           {/* User ID */}
           <td className="px-4 py-4 md:px-5 md:py-5">
             <span className="text-xs text-gray-500">
-              {user.id}
+              {user._id}
             </span>
           </td>
 
@@ -264,18 +238,13 @@ const getAccesStyle = (access) => {
               </button>
 
               <button
-                onClick={()=>navigate("/admin/editUser",{state:{user}})}
+                onClick={()=>navigate("/admin/editUser",{state:{user:user._id}})}
                 className="rounded p-2 text-gray-500 transition hover:bg-[#1c1a12] hover:text-[#D3AF37]"
               >
                 <FiEdit2 size={16}/>
               </button>
 
-              <button
-                onClick={()=>deleteHandle(user.id)}
-                className="rounded p-2 text-gray-500 transition hover:bg-red-950/40 hover:text-red-500"
-              >
-                <FiTrash2 size={16}/>
-              </button>
+              
             </div>
           </td>
         </tr>

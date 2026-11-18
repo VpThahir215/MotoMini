@@ -1,7 +1,7 @@
 import express from 'express'
 import authMiddleware from '../middleware/authMiddleware.js'
 import adminMiddleware from '../middleware/adminMiddleware.js'
-import { authRegister,authLogin,refreshAccessToken,logout,getAllUsersAdmin} from '../controllers/authControllers.js'
+import { authRegister,authLogin,refreshAccessToken,logout,getAllUsersAdmin,updateUserAdmin} from '../controllers/authControllers.js'
 import User from '../models/authModels.js'
 
 const routeAuth=express.Router()
@@ -56,6 +56,12 @@ routeAuth.get(
     authMiddleware,
     adminMiddleware,
     getAllUsersAdmin
+);
+routeAuth.put(
+  "/admin/:id",
+  authMiddleware,
+  adminMiddleware,
+  updateUserAdmin
 );
 
 

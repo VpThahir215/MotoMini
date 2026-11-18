@@ -79,3 +79,22 @@ export const getAllUsers = async () => {
 
     return users;
 };
+
+export const updateUser = async (id, userData) => {
+  const { role, isBlocked } = userData;
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    const error = new Error("User not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (role !== undefined) user.role = role;
+  if (isBlocked !== undefined) user.isBlocked = isBlocked;
+
+  await user.save();
+
+  return await User.findById(id).select("-password -refreshTokenHash");
+};

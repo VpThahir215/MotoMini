@@ -10,6 +10,7 @@ import {
 import { FaMotorcycle } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
+import { logoutUser } from '../../services/userService';
 
 const UserProfile = () => {
      const navigate = useNavigate();
@@ -20,16 +21,25 @@ const UserProfile = () => {
 
 
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    toast.success(
-         <div>
-    <p>Leaving MotoMini?</p>
-    <p>Your ride will be waiting when you return.</p>
-  </div>
-    )
-    navigate("/login");
-  };
+  // const handleLogout = async() => {
+    
+  //   navigate("/login");
+
+  //    try {
+  //         console.log("logouttttt");
+          
+  //           await logoutUser();
+    
+  //           localStorage.removeItem("user");
+    
+  //           navigate("/login", { replace: true });
+    
+  //           toast.success("Logged out successfully");
+  //       } catch (error) {
+  //           console.error("Logout failed:", error);
+  //           toast.error("Unable to logout. Please try again.");
+  //       }
+  // };
   return (
      <div className="min-h-screen bg-black text-white px-4 py-10 md:px-10">
 
@@ -128,7 +138,7 @@ const UserProfile = () => {
                 </div>
 
                 <p className="text-lg break-all">
-                  {user.id}
+                  {user._id}
                 </p>
               </div>
 
@@ -189,19 +199,13 @@ const UserProfile = () => {
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
 
           <button
-            onClick={() => navigate("/shop")}
+            onClick={() => navigate(-1)}
             className="flex-1 py-3 rounded-lg border border-[#D3AF37] text-[#D3AF37] hover:bg-[#D3AF37] hover:text-black transition font-semibold"
           >
-            Continue Shopping
+            Continue Users
           </button>
 
-          <button
-            onClick={handleLogout}
-            className="flex-1 py-3 rounded-lg bg-[#D3AF37] text-black hover:bg-[#b9972f] transition font-semibold flex items-center justify-center gap-2"
-          >
-            <FiLogOut />
-            Logout
-          </button>
+         
 
         </div>
 

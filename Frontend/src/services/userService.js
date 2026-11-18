@@ -18,16 +18,16 @@ export const registerUser = async (userData) => {
 };
 
 export const getUserById = async (id) => {
-  const response = await api.get(`/users/${id}`);
+  const response = await api.get(`/auth/admin/${id}`);
   return response.data;
 };
 export const deleteUser=async (id)=>{
  await api.delete(`/users/${id}`)
 }
-export const editUser=async (id,product)=>{
-   const respons=await api.put(`/users/${id}`,product)
-   return respons.data
-}
+export const editUser = async (id, userData) => {
+  const response = await api.put(`/auth/admin/${id}`, userData);
+  return response.data.user
+};
 export const getUsersAdmin=async ()=>{
   const respons=await api.get('/auth/admin')
   return respons.data.users

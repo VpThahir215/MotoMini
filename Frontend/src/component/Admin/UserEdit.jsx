@@ -15,21 +15,19 @@ const UserEdit = ({id}) => {
   const [getUser,setGetUser]=useState([])
 
   const [user, setUser] = useState({
-    name: "",
-    email: "",
     role: "",
     access:"",
   });
-useEffect(()=>{
-    async function fetchUser(){
-        const data= await getUserById(id)
-        console.log("hyyyyyyyyyy",data.name);
-        setUser(data)
+// useEffect(()=>{
+//     async function fetchUser(){
+//         const data= await getUserById(id)
+//         console.log("hyyyyyyyyyy",data.name);
+//         setUser(data)
         
         
-    }
-    fetchUser()
-},[])
+//     }
+//     fetchUser()
+// },[])
 
 
 
@@ -45,15 +43,7 @@ useEffect(()=>{
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user.name.trim()) {
-      toast.error("Please enter user name");
-      return;
-    }
-
-    if (!user.email.trim()) {
-      toast.error("Please enter email");
-      return;
-    }
+  
 
     try {
       await editUser(id, user);
@@ -92,35 +82,9 @@ useEffect(()=>{
           className="border border-[#29230d] bg-[#0d0d0d] p-6"
         >
 
-          {/* Name */}
-          <div className="mb-5">
-            <label className="mb-2 block text-xs uppercase tracking-wider text-gray-500">
-              Name
-            </label>
+         
 
-            <input
-              type="text"
-              name="name"
-              value={user.name}
-              onChange={handleChange}
-              className="w-full border border-[#29230d] bg-[#111] px-4 py-3 text-sm text-gray-200 outline-none focus:border-[#D3AF37]"
-            />
-          </div>
-
-          {/* Email */}
-          <div className="mb-5">
-            <label className="mb-2 block text-xs uppercase tracking-wider text-gray-500">
-              Email
-            </label>
-
-            <input
-              type="email"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-              className="w-full border border-[#29230d] bg-[#111] px-4 py-3 text-sm text-gray-200 outline-none focus:border-[#D3AF37]"
-            />
-          </div>
+         
 
           {/* Role */}
           <div className="mb-6">

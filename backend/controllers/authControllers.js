@@ -1,4 +1,4 @@
-import { register,loginUser,getAllUsers } from "../services/authService.js";
+import { register,loginUser,getAllUsers,updateUser } from "../services/authService.js";
 import jwt from 'jsonwebtoken'
 import User from "../models/authModels.js";
 import {createHash}from 'crypto'
@@ -170,4 +170,21 @@ export const getAllUsersAdmin = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+export const updateUserAdmin = async (req, res, next) => {
+  try {
+    const updatedUser = await updateUser(
+      req.params.id,
+      req.body
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      user: updatedUser
+    });
+
+  } catch (error) {
+    next(error);
+  }
 };
