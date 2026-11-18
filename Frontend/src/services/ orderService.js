@@ -10,8 +10,8 @@ export const getOrders = async () => {
     return response.data.orders;
 };
 export const getOredersAdmin=async ()=>{
-  const respons=await api.get('/orders')
-  return respons.data
+  const respons=await api.get('/orders/admin')
+  return respons.data.orders
 }
 export const UpdateOrder=async (id,status)=>{
 const respons =  await api.patch(`/orders/${id}`,{status:status});

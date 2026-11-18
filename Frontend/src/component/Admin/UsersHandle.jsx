@@ -6,7 +6,7 @@ import {
   FiEdit2,
   FiTrash2,
 } from "react-icons/fi";
-import { loginUser } from "../../services/userService";
+import { loginUser,getUsersAdmin} from "../../services/userService";
 import { data, useNavigate } from "react-router-dom";
 import { deleteUser } from "../../services/userService";
 import toast from "react-hot-toast";
@@ -21,7 +21,7 @@ const UsersHandle = () => {
 
 useEffect(()=>{
   async function fetchUser(){
-    const data=await getUsers('/users')
+    const data=await getUsersAdmin()
     console.log("userrrrrdaaataaaaa",data);
     setUser(data)
     

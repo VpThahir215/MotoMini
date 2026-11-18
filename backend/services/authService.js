@@ -72,3 +72,10 @@ console.log("REFRESH:", !!process.env.REFRESH_TOKEN_SECRET);
         refreshToken
     };
 };
+export const getAllUsers = async () => {
+    const users = await User.find()
+        .select("-password -refreshTokenHash")
+        .sort({ createdAt: -1 });
+
+    return users;
+};

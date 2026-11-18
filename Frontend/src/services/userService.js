@@ -28,3 +28,7 @@ export const editUser=async (id,product)=>{
    const respons=await api.put(`/users/${id}`,product)
    return respons.data
 }
+export const getUsersAdmin=async ()=>{
+  const respons=await api.get('/auth/admin')
+  return respons.data.users
+}

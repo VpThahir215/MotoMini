@@ -29,9 +29,11 @@ const OrderTable = () => {
 useEffect(()=>{
 async function fetchOrder(){
   const data=await getOredersAdmin()
+ console.log("dataaa",data);
  
   setOrder(data)
-   console.log("orderrrr",order);
+  console.log("orrdeerrr",order);
+  
   
   
 }

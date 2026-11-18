@@ -1,4 +1,4 @@
-import { register,loginUser } from "../services/authService.js";
+import { register,loginUser,getAllUsers } from "../services/authService.js";
 import jwt from 'jsonwebtoken'
 import User from "../models/authModels.js";
 import {createHash}from 'crypto'
@@ -158,4 +158,16 @@ export const logout = async (req, res) => {
         success: true,
         message: "Logged out successfully"
     });
+};
+export const getAllUsersAdmin = async (req, res, next) => {
+    try {
+        const users = await getAllUsers();
+
+        return res.status(200).json({
+            success: true,
+            users
+        });
+    } catch (error) {
+        next(error);
+    }
 };

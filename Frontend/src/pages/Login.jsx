@@ -49,11 +49,11 @@ async function handleLogin(e) {
     toast.success(`Hy ${data.name}! Welcome back to Moto Mini.`);
 navigate("/", { replace: true });
 
-  }else if(data.role==="admin"){
-    //  localStorage.setItem("admin", JSON.stringify(data));
-    toast.success(`Hy ${data.name}! Welcome to Admin Module`)
-    navigate('/admin')
-  }
+  }else if (data.role === "admin") {
+  toast.success(`Hi ${data.name}! Welcome to Admin Module`);
+
+  navigate("/admin", { replace: true });
+}
    
 
 
