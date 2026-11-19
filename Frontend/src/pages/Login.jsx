@@ -29,8 +29,10 @@ async function handleLogin(e) {
   try {
     const users = await loginUser(email,password);
     const data=users.user
-    
+
     console.log(data,"frontend");
+    console.log("is blocked:::",data.isBlocked);
+    
     
 
   
@@ -39,12 +41,14 @@ async function handleLogin(e) {
       toast.error("Invalid Email or Password");
       return;
     }
-     if (data.isblocked === "blocked") {
+     if (data.isBlocked === true) {
+      
       toast.error("Your MotoMini account has been blocked.");
       return;
     }
 
   if(data.role==="user"){
+      localStorage.setItem("user", JSON.stringify(data));
    
     toast.success(`Hy ${data.name}! Welcome back to Moto Mini.`);
 navigate("/", { replace: true });

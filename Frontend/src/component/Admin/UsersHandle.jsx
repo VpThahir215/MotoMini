@@ -56,14 +56,14 @@ const getStatusStyle = (role) => {
     : "border-white text-white";
 };
 
-const getAccesStyle = (access) => {
-  return access === "blocked"
+const getAccesStyle = (isBlocked) => {
+  return isBlocked 
     ? "border-red-500 text-red-500"
     : "border-green-500 text-green-500";
 };
 
  const blockedCount=user.filter((val)=>{
- return   val.access==="blocked"
+ return   val.isBlocked===true
 
     
  }).length
@@ -174,7 +174,7 @@ const getAccesStyle = (access) => {
     <tbody>
       {filteredUser.map((user)=>(
         <tr
-          key={user.id}
+          key={user._id}
           className="border-b border-[#1c1c1c] transition hover:bg-[#111111]"
         >
           {/* User */}
@@ -210,13 +210,13 @@ const getAccesStyle = (access) => {
           </td>
 
           {/* Access */}
-          <td className="px-4 py-4 md:px-5 md:py-5">
-            <span
-              className={`inline-flex rounded border px-2 py-1 text-[9px] font-semibold uppercase tracking-wider md:px-3 md:py-1.5 ${getAccesStyle(user.access)}`}
-            >
-              {user.access==="blocked" ? "Blocked" : "Active"}
-            </span>
-          </td>
+         <td className="px-4 py-4 md:px-5 md:py-5">
+  <span
+    className={`inline-flex rounded border px-2 py-1 text-[9px] font-semibold uppercase tracking-wider md:px-3 md:py-1.5 ${getAccesStyle(user.isBlocked)}`}
+  >
+    {user.isBlocked ? "Blocked" : "Active"}
+  </span>
+</td>
 
           {/* Role */}
           <td className="px-4 py-4 md:px-5 md:py-5">

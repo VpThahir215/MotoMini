@@ -52,7 +52,7 @@ export const authLogin=async (req,res,next)=>{
         name: user.data.name,
         email: user.data.email,
         role: user.data.role,
-        access:user.data.bolecked
+        isBlocked:user.data.isBlocked
     }
         });
 

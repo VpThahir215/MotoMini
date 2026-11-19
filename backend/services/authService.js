@@ -19,6 +19,8 @@ export const register=async ({name,email,password,role,isblocked})=>{
 export const loginUser = async ({ email, password }) => {
 
     const data = await User.findOne({ email });
+    console.log("dataaaaaa",data);
+    
 
     if (!data) {
         throw new Error('Invalid email or password');

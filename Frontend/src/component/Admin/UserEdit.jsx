@@ -15,8 +15,8 @@ const UserEdit = ({id}) => {
   const [getUser,setGetUser]=useState([])
 
   const [user, setUser] = useState({
-    role: "",
-    access:"",
+    role: "user",
+    isBlocked:false,
   });
 // useEffect(()=>{
 //     async function fetchUser(){
@@ -36,7 +36,10 @@ const UserEdit = ({id}) => {
 
     setUser({
       ...user,
-      [name]: value,
+      [name]: 
+      name === "isBlocked"
+        ? value === "blocked"
+        : value,
     });
   };
 
@@ -108,8 +111,8 @@ const UserEdit = ({id}) => {
             </label>
 
             <select
-              name="access"
-              value={user.access}
+              name="isBlocked"
+              value={user.isBlocked ? "blocked" : "active"}
               onChange={handleChange}
               className="w-full border border-[#29230d] bg-[#111] px-4 py-3 text-sm text-gray-200 outline-none focus:border-[#D3AF37]"
             >
