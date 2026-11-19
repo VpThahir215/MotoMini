@@ -119,6 +119,8 @@ import { useNavigate } from "react-router-dom";
 
 const AdminNavbar = ({ setSidebarOpen }) => {
   const user = JSON.parse(localStorage.getItem("admin"));
+  console.log("user in admin",user);
+  
   const navigate = useNavigate();
 
   const handleLogout = () => {
