@@ -3,14 +3,14 @@ import api from "./api";
 export const getDashboardData = async () => {
   const [usersResponse, productsResponse, ordersResponse] =
     await Promise.all([
-      api.get("/users"),
-      api.get("/products"),
-      api.get("/orders"),
+      api.get("/auth/admin"),
+      api.get("/products/"),
+      api.get("/orders/admin"),
     ]);
 
   return {
-    users: usersResponse.data,
-    products: productsResponse.data,
-    orders: ordersResponse.data,
+    users: usersResponse.data.users,
+    products: productsResponse.data.products,
+    orders: ordersResponse.data.orders,
   };
 };

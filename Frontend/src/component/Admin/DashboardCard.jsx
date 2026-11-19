@@ -86,6 +86,8 @@ const Dashboard = () => {
     const fetchDashboard = async () => {
       try {
         const data = await getDashboardData();
+        console.log("dataaaaaaaaaaaa",data);
+        
 
         setDashboardData(data);
       } catch (error) {
@@ -98,8 +100,13 @@ const Dashboard = () => {
     fetchDashboard();
   }, []);
   const totalUsers = users.length;
-  const totalProducts = orders.length;
-  const totalOrders = orders.length;
+  const totalProducts = products.length;
+  const totalOrders = orders.length 
+
+console.log("DashBoard", totalUsers);
+  console.log("products", totalProducts);
+  console.log("orders", totalOrders);
+
 
   const pendingCount = orders.filter(
     (order) => order.status === "Pending"
@@ -182,7 +189,7 @@ const Dashboard = () => {
 
     {
       title: "TOTAL ORDERS",
-      value: totalProducts,
+      value: totalOrders,
       icon: <FiClock size={22} />,
       // change: "+15%",
       // changeText: "vs last month",
