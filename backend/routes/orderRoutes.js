@@ -1,6 +1,6 @@
 
 import express from "express";
-import { placeOrder,getMyOrders,getAllOrdersAdmin } from "../controllers/orderController.js";
+import { placeOrder,getMyOrders,getAllOrdersAdmin,updateOrderStatusAdmin } from "../controllers/orderController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import adminMiddleware from "../middleware/adminMiddleware.js";
 
@@ -21,6 +21,12 @@ orderRouter.get(
     authMiddleware,
     adminMiddleware,
     getAllOrdersAdmin
+);
+orderRouter.patch(
+  "/admin/:id",
+  authMiddleware,
+  adminMiddleware,
+  updateOrderStatusAdmin
 );
 
 export default orderRouter;

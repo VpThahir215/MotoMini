@@ -91,7 +91,7 @@ const fetchOrder=async ()=>{
 // },[])
 
  const handleStatusChange = async (orderId, newStatus) => {
-  console.log("Order:", orderId);
+  console.log("OrderIdddddddd:", orderId);
   console.log("New status:", newStatus);
 try{
   await UpdateOrder(orderId,newStatus)
@@ -146,6 +146,9 @@ const deliveredCount = order.filter(
 const cancelledCount = order.filter(
   (val) => val.status === "Cancelled"
 ).length;
+
+console.log(filteredOrder[0],"orderrrrr");
+
   return (
    <div className="min-h-screen bg-black px-4 py-4 text-white md:px-6 md:py-6 lg:px-8 lg:py-8">
 
@@ -244,52 +247,7 @@ const cancelledCount = order.filter(
 
 
       {/* ================= FILTER BAR ================= */}
-<div className="mt-8 flex flex-col gap-4 border border-[#29230d] bg-[#080808] p-4 md:flex-row md:items-center md:justify-between md:px-5 md:py-4">
 
-        {/* Search */}
-
-        <div className="flex w-full max-w-md items-center gap-3 border border-[#29230d] px-4 py-2.5">
-
-          <FiSearch
-            size={16}
-            className="text-gray-600"
-          />
-
-          <input
-             value={search}
-             onChange={(e)=>setSearch(e.target.value)}
-            type="text"
-            placeholder="Search Order Id..."
-            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-700"
-          />
-
-        </div>
-
-
-        {/* Filters */}
-
-        <div className="flex items-center gap-3">
-
-        
-
-
-          <select
-           value={status}
-  onChange={(e) => setStatus(e.target.value)}
-         className="w-full border border-[#29230d] bg-black px-4 py-2.5 text-xs text-gray-500 outline-none md:w-auto">
-
-            <option>All Status</option>
-            <option>Delivered</option>
-            <option>Processing</option>
-            <option>Shipped</option>
-            <option>Pending</option>
-            <option>Cancelled</option>
-
-          </select>
-
-        </div>
-
-      </div>
 
 
       {/* ================= ORDERS TABLE ================= */}
@@ -315,14 +273,16 @@ const cancelledCount = order.filter(
     {/* Body */}
     <tbody>
       {filteredOrder.map((order) => (
+        
+        
         <tr
-          key={order.id}
+          key={order._id}
           className="border-b border-[#1c1c1c] transition-colors duration-200 hover:bg-[#111111]"
         >
           {/* Order ID */}
           <td className="px-4 py-4 md:px-5 md:py-5">
             <span className="text-xs font-semibold text-[#D3AF37] md:text-sm">
-              #{order.userId}
+                {order._id}
             </span>
           </td>
 
@@ -396,7 +356,7 @@ const cancelledCount = order.filter(
             <select
               value={order.status}
               onChange={(e) =>
-                handleStatusChange(order.id, e.target.value)
+                handleStatusChange(order._id, e.target.value)
               }
               className={`w-full min-w-[120px] rounded border px-2 py-2 text-[10px] font-semibold uppercase outline-none transition-colors md:w-auto ${getStatusStyle(
                 order.status

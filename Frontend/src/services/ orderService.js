@@ -14,9 +14,9 @@ export const getOredersAdmin=async ()=>{
   return respons.data.orders
 }
 export const UpdateOrder=async (id,status)=>{
-const respons =  await api.patch(`/orders/${id}`,{status:status});
+const respons =  await api.patch(`/orders/admin/${id}`,{status:status});
    return {
-  status: status
+  status: respons.order
 };
 }
 export const deleteOrder=async (id)=>{

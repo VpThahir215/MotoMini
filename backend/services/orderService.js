@@ -87,3 +87,36 @@ export const getAllOrders = async () => {
 
     return orders;
 };
+// Update order status (Admin)
+export const updateOrderStatus = async (id, status) => {
+  const allowedStatuses = [
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Delivered",
+    "Cancelled"
+  ];
+
+  if (!allowedStatuses.includes(status)) {
+    const error = new Error("Invalid order status");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const updatedOrder = await Order.findByIdAndUpdate(
+    id,
+    { status },
+    {
+      new: true,
+      runValidators: true
+    }
+  );
+
+  if (!updatedOrder) {
+    const error = new Error("Order not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  return updatedOrder;
+};

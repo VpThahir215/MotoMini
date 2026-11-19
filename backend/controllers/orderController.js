@@ -1,7 +1,8 @@
 import {
     createOrder,
     getUserOrders,
-    getAllOrders    
+    getAllOrders,
+    updateOrderStatus    
 } from "../services/orderService.js";
 
 export const placeOrder = async (req, res, next) => {
@@ -45,4 +46,24 @@ export const getAllOrdersAdmin = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+// UPDATE order status (Admin)
+export const updateOrderStatusAdmin = async (req, res, next) => {
+  try {
+    const { status } = req.body;
+
+    const updatedOrder = await updateOrderStatus(
+      req.params.id,
+      status
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Order status updated successfully",
+      order: updatedOrder
+    });
+
+  } catch (error) {
+    next(error);
+  }
 };
