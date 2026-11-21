@@ -116,6 +116,7 @@ import React from "react";
 import toast from "react-hot-toast";
 import { FiMenu, FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../../services/userService";
 
 const AdminNavbar = ({ setSidebarOpen }) => {
   const user = JSON.parse(localStorage.getItem("admin"));
@@ -123,8 +124,13 @@ const AdminNavbar = ({ setSidebarOpen }) => {
   
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+ 
+const handleLogout = async () => {
+  try {
+    await logoutUser();
+
     localStorage.removeItem("admin");
+    localStorage.removeItem("user");
 
     toast.success(
       <div>
@@ -133,8 +139,14 @@ const AdminNavbar = ({ setSidebarOpen }) => {
       </div>
     );
 
-    navigate("/login");
-  };
+    navigate("/login", { replace: true });
+
+  } catch (error) {
+    console.error("Logout failed:", error);
+    toast.error("Unable to logout. Please try again.");
+  }
+};
+
 
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[#29230d] bg-[#080808] px-4 md:px-6">

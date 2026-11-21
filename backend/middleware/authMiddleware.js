@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
         // Get token from cookie
         const token = req.cookies.accessToken;
 
-        if (!token) {
+        if (!token) {   
             return res.status(401).json({
                 success: false,
                 message: "Token not provided. Please login."

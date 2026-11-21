@@ -12,7 +12,7 @@ const adminMiddleware = async (req, res, next) => {
                 message: "User not found"
             });
         }
-
+               
         if (user.isBlocked) {
             return res.status(403).json({
                 success: false,

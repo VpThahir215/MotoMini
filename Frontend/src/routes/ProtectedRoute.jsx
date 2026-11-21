@@ -1,41 +1,39 @@
+
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import api from '../services/api'
+import api from "../services/api";
 
 const ProtectedRoute = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [status, setStatus] = useState("checking");
 
   useEffect(() => {
-    console.log("Checking authentication...");
+    const checkAuth = async () => {
+      try {
+        const res = await api.get("/auth/check-auth");
 
-    api.get("http://localhost:3001/api/auth/check-auth", {
-      withCredentials: true
-    })
-    .then((res) => {
-      console.log("Backend response:", res.data);
-      setIsAuthenticated(true);
-    })
-    .catch((err) => {
-      console.log("Authentication error:", err.response?.data);
-      setIsAuthenticated(false);
-    });
+        if (res.data.success && res.data.user && !res.data.user.isBlocked) {
+          setStatus("authenticated");
+        } else {
+          setStatus("unauthenticated");
+        }
+      } catch (error) {
+        console.log("Authentication error:", error.response?.data);
+        setStatus("unauthenticated");
+      }
+    };
+
+    checkAuth();
   }, []);
 
-if (isAuthenticated === null) {
+  if (status === "checking") {
     return (
-        <div className="min-h-screen bg-black flex items-center justify-center">
-            <div className="text-center">
-                <div className="animate-spin rounded-full h-10 w-10 border-4 border-gray-300 border-t-blue-600 mx-auto"></div>
-
-                <p className="mt-4 text-gray-600">
-                    Checking authentication...
-                </p>
-            </div>
-        </div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <p className="text-gray-400">Checking authentication...</p>
+      </div>
     );
-}
+  }
 
-  if (!isAuthenticated) {
+  if (status !== "authenticated") {
     return <Navigate to="/login" replace />;
   }
 

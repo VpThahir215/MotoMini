@@ -13,6 +13,7 @@ import {
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+   const user = JSON.parse(localStorage.getItem("user"));
  
   
 
@@ -20,6 +21,11 @@ const ProductCard = ({ product }) => {
   // Add To Cart
   // ===========================
  const handleAddToCart = async () => {
+  if(!user){
+    toast.success("Please login to add product your cart!");
+     navigate("/login");
+     return
+  }
     try {
       const existingItem=  await addCartItem(product._id);
 

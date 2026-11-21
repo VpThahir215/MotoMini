@@ -178,7 +178,7 @@ const [menuOpen, setMenuOpen] = useState(false);
     {/* Login */}
     <FiUser
       onClick={() =>{
-          toast.error("Please login to add products to your cart.");
+          toast.error("Please login.....");
         navigate("/login")}}
       size={22}
       className={`cursor-pointer hover:text-[#D3AF37] ${
@@ -198,7 +198,7 @@ const [menuOpen, setMenuOpen] = useState(false);
     />
      <FiHeart
           onClick={()=>{
-              toast.error("Please login to add products to your cart.");
+              toast.error("Please login to add products to your whishlist.");
             navigate('/login')}}
              size={22}
   className={`cursor-pointer hover:text-[#D3AF37] ${

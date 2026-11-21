@@ -7,8 +7,15 @@ import { addCartItem } from "../../services/cartServices";
 
 const AddToCartButton = ({ product }) => {
   const navigate = useNavigate();
+   const user = JSON.parse(localStorage.getItem("user"));
+  
 
   const handleAddToCart = async () => {
+     if(!user){
+    toast.success("Please login to add product your cart!");
+     navigate("/login");
+     return
+  }
     try {
       console.log("Product ID:", product._id);
 
