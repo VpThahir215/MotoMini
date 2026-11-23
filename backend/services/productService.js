@@ -64,7 +64,10 @@ export const createProduct = async (productData) => {
         category,
         price,
         stock,
-        image,
+        image:{
+            url :image.url,
+            publicId:image.publicId
+        },
         description
     });
 
@@ -72,30 +75,30 @@ export const createProduct = async (productData) => {
 };
 
 export const updateProduct = async (id, productData) => {
-    const updatedProduct = await Product.findByIdAndUpdate(
-        id,
-        {
-            name: productData.name,
-            brand: productData.brand,
-            category: productData.category,
-            price: productData.price,
-            stock: productData.stock,
-            image: productData.image,
-            description: productData.description
-        },
-        {
-            new: true,
-            runValidators: true
-        }
-    );
+    const product = await Product.findById(id);
 
-    if (!updatedProduct) {
+    if (!product) {
         const error = new Error("Product not found");
         error.statusCode = 404;
         throw error;
     }
 
-    return updatedProduct;
+    // Update normal product fields
+    product.name = productData.name ?? product.name;
+    product.brand = productData.brand ?? product.brand;
+    product.category = productData.category ?? product.category;
+    product.price = productData.price ?? product.price;
+    product.stock = productData.stock ?? product.stock;
+    product.description = productData.description ?? product.description;
+
+    // Update image only when a new image is provided
+    if (productData.image) {
+        product.image = productData.image;
+    }
+
+    await product.save();
+
+    return product;
 };
 export const softDeleteProduct = async (id) => {
     const product = await Product.findByIdAndUpdate(

@@ -10,6 +10,7 @@ import routerProduct from './routes/productRoutes.js'
 import routerCart from './routes/cartRoutes.js'
 import whishlistRouter from './routes/wishlistRoutes.js'
 import orderRouter from './routes/orderRoutes.js'
+import uploadRouter from './routes/uploadRoutes.js'
 
 
 const app=express()
@@ -22,6 +23,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(cookieParser())
+app.use("/api/upload",uploadRouter)
 app.use("/api/orders",orderRouter)
 app.use("/api/wishlist",whishlistRouter)
 app.use("/api/cart",routerCart)
