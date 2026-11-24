@@ -91,7 +91,11 @@ try {
         }
       })}>
         <img
-          src={product.image}
+         src={
+        typeof product.image === "string"
+            ? product.image
+            : product.image?.url
+    }
           alt={product.name}
           className="h-52 w-full object-cover"
         />

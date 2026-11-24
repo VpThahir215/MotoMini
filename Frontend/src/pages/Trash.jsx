@@ -187,7 +187,11 @@ if (loading) {
 
       {product.image ? (
         <img
-          src={product.image}
+           src={
+        typeof product.image === "string"
+            ? product.image
+            : product.image?.url
+    }
           alt={product.name}
           className="h-full w-full object-contain"
           onError={(e) => {

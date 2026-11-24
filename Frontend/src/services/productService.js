@@ -10,17 +10,15 @@ export const getOneProduct= async (id)=>{
         const respons=await api.get(`/products/${id}`);
         return respons.data.product
 }   
-export const addProduct=async (product)=>{
-  const respons=  await api.post('/products/admin',product);
-    return respons.data
-}
-
-
-export const editProduct=async (id,product)=>{
-  const response = await api.put(`/products/admin/${id}`,product)
+export const addProduct = async (formData) => {
+    const response = await api.post('/products/admin', formData);
     return response.data;
-  
-}
+};
+
+export const editProduct = async (id, formData) => {
+    const response = await api.put(`/products/admin/${id}`, formData);
+    return response.data;
+};
 export const softDeleteProduct = async (id) => {
     const response = await api.delete(`/products/admin/${id}`);
     return response.data;

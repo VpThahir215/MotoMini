@@ -311,11 +311,15 @@ fetchProduct()
 
                                         <div className="h-14 w-14 overflow-hidden border border-[#29230d] bg-[#111]">
 
-                                            <img
-                                                src={product.image}
-                                                alt={product.name}
-                                                className="h-full w-full object-cover"
-                                            />
+                                           <img
+    src={
+        typeof product.image === "string"
+            ? product.image
+            : product.image?.url
+    }
+    alt={product.name}
+    className="h-full w-full object-cover"
+/>
 
                                         </div>
 
