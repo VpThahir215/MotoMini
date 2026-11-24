@@ -72,26 +72,31 @@ console.log("after add");
       <div className="flex justify-center items-center p-8">
 
 
-        {
-          feature?  ( <img
-          src={feature.image}
-          alt={feature.title}
-          className="w-full max-w-lg object-contain"
-        />) : (
-          <>
-          {/* <button
-        onClick={handleWishlist}
-        className="absolute top-4 right-4 z-10 bg-black/70 p-3 rounded-full text-white hover:bg-[#D3AF37] hover:text-black transition duration-300"
-      >
-        <FiHeart size={22} />
-      </button> */}
-         <img
-          src={product.image}
-          alt={product.name}
-          className="w-full max-w-lg object-contain"
-        />
-        </>
-        )}
+        {feature ? (
+  <img
+    src={
+      typeof feature.image === "string"
+        ? feature.image
+        : feature.image?.url
+    }
+    alt={feature.title}
+    className="w-full max-w-lg object-contain"
+  />
+) : (
+  <>
+    {/* Wishlist button */}
+
+    <img
+      src={
+        typeof product.image === "string"
+          ? product.image
+          : product.image?.url
+      }
+      alt={product.name}
+      className="w-full max-w-lg object-contain"
+    />
+  </>
+)}
        
       </div>
 
