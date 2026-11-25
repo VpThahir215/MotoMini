@@ -10,26 +10,67 @@ import {
   getDeletedProducts
 } from "../services/productService.js";
 import uploadToCloudinary from "../utils/uploadToCloudinary.js";
+import redisClient from "../config/redis.js";
+import createProductCacheKey from "../utils/cacheKey.js";
+import clearProductCache from "../utils/clearProductCache.js";
 
 // GET all active products
+
+// GET all active products with Redis caching
 export const getAllProducts = async (req, res, next) => {
-  try {
-    const { search, brand, category } = req.query;
+    try {
+        const { search, brand, category } = req.query;
 
-    const products = await getAllProductsService({
-      search,
-      brand,
-      category
-    });
+        // Step 1: Prepare filters
+        const filters = {
+            search,
+            brand,
+            category
+        };
 
-    res.status(200).json({
-      success: true,
-      count: products.length,
-      products
-    });
-  } catch (error) {
-    next(error);
-  }
+        // Step 2: Generate a unique Redis cache key
+        const cacheKey = createProductCacheKey(filters);
+
+        // Step 3: Check whether products exist in Redis
+        const cachedProducts = await redisClient.get(cacheKey);
+
+        // Step 4: If cached data exists, return it
+        if (cachedProducts) {
+            console.log("Redis Cache HIT");
+
+            const products = JSON.parse(cachedProducts);
+
+            return res.status(200).json({
+                success: true,
+                count: products.length,
+                products
+            });
+        }
+
+        console.log("Redis Cache MISS");
+
+        // Step 5: If cache is empty, fetch from MongoDB
+        const products = await getAllProductsService(filters);
+
+        // Step 6: Store products in Redis for 60 seconds
+        await redisClient.set(
+            cacheKey,
+            JSON.stringify(products),
+            {
+                EX: 60
+            }
+        );
+
+        // Step 7: Return products
+        return res.status(200).json({
+            success: true,
+            count: products.length,
+            products
+        });
+
+    } catch (error) {
+        next(error);
+    }
 };
 
 // GET one product by ID
@@ -74,6 +115,7 @@ console.log("Image Public ID:", result.public_id);
 
 console.log("Product data image:", productData.image);
     const product = await createProduct(productData);
+    await clearProductCache();
 
     return res.status(201).json({
       success: true,
@@ -111,7 +153,7 @@ export const updateProductAdmin = async (req, res, next) => {
             req.params.id,
             productData
         );
-
+         await clearProductCache();
         return res.status(200).json({
             success: true,
             message: "Product updated successfully",
@@ -127,6 +169,7 @@ export const updateProductAdmin = async (req, res, next) => {
 export const softDeleteProductAdmin = async (req, res, next) => {
   try {
     const product = await softDeleteProduct(req.params.id);
+    await clearProductCache();
 
     return res.status(200).json({
       success: true,
@@ -142,6 +185,7 @@ export const softDeleteProductAdmin = async (req, res, next) => {
 export const hardDeleteProductAdmin = async (req, res, next) => {
   try {
     const product = await hardDeleteProduct(req.params.id);
+    await clearProductCache();
 
     return res.status(200).json({
       success: true,
@@ -157,6 +201,7 @@ export const hardDeleteProductAdmin = async (req, res, next) => {
 export const restoreProductAdmin = async (req, res, next) => {
   try {
     const product = await restoreProduct(req.params.id);
+    await clearProductCache();
 
     return res.status(200).json({
       success: true,

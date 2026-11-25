@@ -11,6 +11,9 @@ import routerCart from './routes/cartRoutes.js'
 import whishlistRouter from './routes/wishlistRoutes.js'
 import orderRouter from './routes/orderRoutes.js'
 import uploadRouter from './routes/uploadRoutes.js'
+import redisClient from './config/redis.js'
+import routerRdis from './routes/redisRoutes.js'
+
 
 
 const app=express()
@@ -23,6 +26,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(cookieParser())
+app.use("/api/redis",routerRdis )
 app.use("/api/upload",uploadRouter)
 app.use("/api/orders",orderRouter)
 app.use("/api/wishlist",whishlistRouter)
@@ -44,6 +48,7 @@ app.use(errorMiddleware)
 const startServer=async ()=>{
     try{
         await connectMongoDb()
+        await redisClient.connect()
         app.listen(PORT,()=>{
             console.log(`Your Server Connected On Port ${PORT}`);
             console.log("MongoDb Connection",mongoose.connection.readyState);
