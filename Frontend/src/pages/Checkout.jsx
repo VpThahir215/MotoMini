@@ -126,8 +126,13 @@ console.log(
     navigate("/orderSucces");
 
   } catch (error) {
-    console.error(error);
-    toast.error("Something went wrong. Please try again.");
+   console.log("Backend error:", error.response?.data);
+
+    const message =
+        error.response?.data?.message ||
+        error.message ||
+        "Something went wrong. Please try again.";
+    toast.error(message);
   }
 };
 
@@ -505,7 +510,11 @@ console.log(
                     <div className="flex gap-4">
 
                       <img
-                        src={item.image}
+                        src={
+        typeof product.image === "string"
+            ? product.image
+            : product.image?.url
+    }
                         alt={item.name}
                         className="w-20 h-20 rounded-lg object-cover"
                       />

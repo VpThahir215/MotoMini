@@ -1,9 +1,10 @@
 
 import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
+import mongoose from "mongoose";
+
 
 export const createOrder = async (userId, orderData) => {
-
     const { customer, paymentMethod, products } = orderData;
 
     // 1. Validate products array
@@ -11,67 +12,106 @@ export const createOrder = async (userId, orderData) => {
         throw new Error("Your order must contain at least one product");
     }
 
-    // 2. Find products and prepare order items
-    const orderProducts = await Promise.all(
-        products.map(async (item) => {
-             console.log("Incoming product:", item);
-        console.log("Searching Product ID:", item.productId);
+    // 2. Validate quantities before starting the transaction
+    for (const item of products) {
+        const quantity = Number(item.quantity);
 
-            const product = await Product.findById(item.productId);
-               console.log("Product found:", product);
+        if (!Number.isInteger(quantity) || quantity < 1) {
+            throw new Error("Invalid product quantity");
+        }
+    }
 
-            if (!product) {
-                throw new Error("Product not found");
-            }
+    const session = await mongoose.startSession();
 
-            const quantity = Number(item.quantity);
+    let newOrder;
 
-            if (!Number.isInteger(quantity) || quantity < 1) {
-                throw new Error("Invalid product quantity");
-            }
+    try {
+        await session.withTransaction(async () => {
 
-            // 3. Check available stock
-            if (product.stock < quantity) {
-                throw new Error(
-                    `Insufficient stock for ${product.name}`
+            const orderProducts = [];
+
+            // 3. Process products one by one
+            for (const item of products) {
+                const quantity = Number(item.quantity);
+
+                // 4. Atomically check and decrease stock
+                const product = await Product.findOneAndUpdate(
+                    {
+                        _id: item.productId,
+                        stock: { $gte: quantity },
+                        isDeleted: false
+                    },
+                    {
+                        $inc: {
+                            stock: -quantity
+                        }
+                    },
+                    {
+                        new: true,
+                        session
+                    }
                 );
+
+                // 5. If product is unavailable or stock is insufficient
+                if (!product) {
+                    const existingProduct = await Product.findById(
+                        item.productId
+                    ).session(session);
+
+                    if (!existingProduct) {
+                        throw new Error("Product not found");
+                    }
+
+                    throw new Error(
+                        `Insufficient stock for ${existingProduct.name}`
+                    );
+                }
+
+                // 6. Create product snapshot
+                orderProducts.push({
+                    product: product._id,
+                    name: product.name,
+                    brand: product.brand,
+                    category: product.category,
+                    price: product.price,
+                    image: product.image,
+                    description: product.description,
+                    quantity
+                });
             }
 
-            // 4. Create product snapshot
-            return {
-                product: product._id,
-                name: product.name,
-                brand: product.brand,
-                category: product.category,
-                price: product.price,
-                image: product.image,
-                description: product.description,
-                quantity
-            };
-        })
-    );
+            // 7. Calculate subtotal
+            const subtotal = orderProducts.reduce(
+                (total, item) =>
+                    total + item.price * item.quantity,
+                0
+            );
 
-    // 5. Calculate subtotal using database prices
-    const subtotal = orderProducts.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-    );
+            const total = Math.round(subtotal);
 
-    // Match your existing checkout calculation
-    const total = Math.round(subtotal);
+            // 8. Create order inside the same transaction
+            const createdOrders = await Order.create(
+                [{
+                    user: userId,
+                    customer,
+                    paymentMethod,
+                    products: orderProducts,
+                    subtotal,
+                    total
+                }],
+                { session }
+            );
 
-    // 6. Save order in MongoDB
-    const newOrder = await Order.create({
-        user: userId,
-        customer,
-        paymentMethod,
-        products: orderProducts,
-        subtotal,
-        total
-    });
+            newOrder = createdOrders[0];
+        });
 
-    return newOrder;
+        return newOrder;
+
+    } finally {
+        await session.endSession();
+    }
 };
+
 export const getUserOrders = async (userId) => {
     const orders = await Order.find({ user: userId })
         .sort({ orderDate: -1 });

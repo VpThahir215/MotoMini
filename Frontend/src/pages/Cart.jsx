@@ -150,7 +150,11 @@ if (cartItems.length === 0) {
                 <div className="flex gap-5">
 
                   <img
-                    src={item.image}
+                  src={
+        typeof item.image === "string"
+            ? item.image
+            : item.image?.url
+    }
                     alt={item.name}
                     className="w-36 h-28 object-cover rounded"
                   />
