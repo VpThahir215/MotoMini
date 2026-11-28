@@ -1,7 +1,7 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom'
 import { useState } from "react";
-import { registerUser } from "../services/userService";
+import { registerUser,verifyEmailOtp } from "../services/userService";
 import toast from "react-hot-toast";
 import {
   FiUser,
@@ -16,6 +16,9 @@ const Register = () => {
       let [email,setEmail]=useState("")
         let [password,setPassword]=useState("")
         let [confirmPassword, setConfirmPassword] = useState("");
+        const [isOtpStep, setIsOtpStep] = useState(false);
+const [otp, setOtp] = useState("");
+const [loading, setLoading] = useState(false);
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         
 
@@ -52,21 +55,58 @@ const Register = () => {
 }
 async function saveUser() {
   try {
+    setLoading(true);
+
     const newUser = {
-      name: name,
-      email: email,
+      name,
+      email,
       password: confirmPassword,
-    
     };
 
-    await registerUser(newUser);
-      // alert("Registration successful! Welcome to MotoMini.")
-   toast.success("Registration successful! Welcome to MotoMini.")
-    navigate("/login"); 
+    const response = await registerUser(newUser);
+
+    toast.success(response.message || "OTP sent to your email");
+
+    // Move to OTP screen
+    setIsOtpStep(true);
+
   } catch (error) {
-   toast.error("Unable to create your MotoMini account. Please try again.")
-  // alert("Unable to create your MotoMini account. Please try again.")
+    toast.error(
+      error.response?.data?.message ||
+      "Unable to create your MotoMini account."
+    );
+
     console.error(error);
+  } finally {
+    setLoading(false);
+  }
+}
+async function handleVerifyOtp(e) {
+  e.preventDefault();
+
+  if (!otp || otp.length !== 6) {
+    toast.error("Please enter a valid 6-digit OTP");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const response = await verifyEmailOtp(email, otp);
+
+    toast.success(response.message || "Email verified successfully");
+
+    navigate("/login");
+
+  } catch (error) {
+    toast.error(
+      error.response?.data?.message ||
+      "OTP verification failed"
+    );
+
+    console.error(error);
+  } finally {
+    setLoading(false);
   }
 }
   return (
@@ -99,64 +139,125 @@ async function saveUser() {
           </div>
 
           {/* Form */}
-          <form className="mt-10 space-y-5">
+         {!isOtpStep ? (
+   <form onSubmit={ErrorHandle} className="mt-10 space-y-5">
 
-            <div className="relative">
-              <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
-              <input
-              onChange={(e)=>setName(e.target.value)}
-                type="text"
-                placeholder="Full Name"
-                className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
-              />
-            </div>
-            <div className="relative">
-              <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
-              <input
-                onChange={(e)=>setEmail(e.target.value)}
-                type="email"
-                placeholder="Email Address"
-                className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
-              />
-            </div>
+    {/* Name */}
+    <div className="relative">
+      <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        type="text"
+        placeholder="Full Name"
+        className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
+      />
+    </div>
 
-            <div className="relative">
-              <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
-              <input
-                onChange={(e)=>setPassword(e.target.value)}
-                type="password"
-                placeholder="Password"
-                className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
-              />
-            </div>
+    {/* Email */}
+    <div className="relative">
+      <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
+      <input
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        type="email"
+        placeholder="Email Address"
+        className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
+      />
+    </div>
 
-            <div className="relative">
-              <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
-              <input
-                onChange={(e)=>setConfirmPassword(e.target.value)}
-                type="password"
-                placeholder="Confirm Password"
-                className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
-              />
-            </div>
+    {/* Password */}
+    <div className="relative">
+      <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
+      <input
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        type="password"
+        placeholder="Password"
+        className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
+      />
+    </div>
 
-            <button
-              type="submit"
-              onClick={ErrorHandle}
-              className="w-full bg-[#D3AF37] hover:bg-yellow-400 transition py-4 rounded-xl font-bold text-black flex justify-center items-center gap-3"
-            >
-              Sign Up
-              <FiArrowRight />
-            </button>
+    {/* Confirm Password */}
+    <div className="relative">
+      <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D3AF37]" />
+      <input
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        type="password"
+        placeholder="Confirm Password"
+        className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 pl-12 outline-none text-white focus:border-[#D3AF37]"
+      />
+    </div>
 
-            <p className="text-center text-gray-400">
-              Already have an account?{" "}
-              <span onClick={()=>navigate('/login')} className="text-[#D3AF37] cursor-pointer hover:underline ">
-                Sign In
-              </span>
-            </p>
+    {/* Submit */}
+    <button
+      type="submit"
+      disabled={loading}
+      className="w-full bg-[#D3AF37] hover:bg-yellow-400 transition py-4 rounded-xl font-bold text-black flex justify-center items-center gap-3 disabled:opacity-50"
+    >
+      {loading ? "Creating Account..." : "Sign Up"}
+      <FiArrowRight />
+    </button>
 
-          </form>
+    <p className="text-center text-gray-400">
+      Already have an account?{" "}
+      <span
+        onClick={() => navigate("/login")}
+        className="text-[#D3AF37] cursor-pointer hover:underline"
+      >
+        Sign In
+      </span>
+    </p>
+
+  </form>
+
+) : (
+  <form onSubmit={handleVerifyOtp} className="mt-10 space-y-5">
+
+    <p className="text-gray-400">
+      We sent a verification code to:
+    </p>
+
+    <p className="text-[#D3AF37] font-semibold">
+      {email}
+    </p>
+
+    <div className="relative">
+      <input
+        type="text"
+        inputMode="numeric"
+        maxLength={6}
+        value={otp}
+        onChange={(e) =>
+          setOtp(e.target.value.replace(/\D/g, ""))
+        }
+        placeholder="Enter 6-digit OTP"
+        className="w-full bg-[#111] border border-gray-700 rounded-xl py-4 px-5 outline-none text-white text-center tracking-[10px] text-xl focus:border-[#D3AF37]"
+      />
+    </div>
+
+    <button
+      type="submit"
+      disabled={loading}
+      className="w-full bg-[#D3AF37] hover:bg-yellow-400 transition py-4 rounded-xl font-bold text-black disabled:opacity-50"
+    >
+      {loading ? "Verifying..." : "Verify Email"}
+    </button>
+
+    <button
+      type="button"
+      onClick={() => {
+        setIsOtpStep(false);
+        setOtp("");
+      }}
+      className="w-full text-gray-400 hover:text-[#D3AF37]"
+    >
+      Back to Registration
+    </button>
+
+  </form>
+)}
 
         </div>
       </div>

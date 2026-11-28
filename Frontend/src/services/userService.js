@@ -5,6 +5,14 @@ export const registerUser = async (userData) => {
   const response = await api.post("/auth/register", userData);
   return response.data;
 };
+export const verifyEmailOtp = async (email, otp) => {
+  const response = await api.post("/auth/verify-email", {
+    email,
+    otp
+  });
+
+  return response.data;
+};
 
   export const loginUser = async (email,password) => {
     const response = await api.post("/auth/login",{email,password});

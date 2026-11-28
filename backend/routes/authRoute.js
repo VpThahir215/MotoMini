@@ -3,12 +3,16 @@ import authMiddleware from '../middleware/authMiddleware.js'
 import adminMiddleware from '../middleware/adminMiddleware.js'
 import { authRegister,authLogin,refreshAccessToken,logout,getAllUsersAdmin,updateUserAdmin} from '../controllers/authControllers.js'
 import User from '../models/authModels.js'
+import { createAndStoreOtp } from '../utils/otpStorage.js'
+import sendEmail from '../utils/sendEmail.js'
+import { verifyEmailOtp } from '../controllers/authControllers.js'
 
 const routeAuth=express.Router()
 routeAuth.post('/register',authRegister)
 routeAuth.post('/login',authLogin)
 routeAuth.post("/logout", logout);
 routeAuth.post('/refresh', refreshAccessToken);
+routeAuth.post("/verify-email", verifyEmailOtp);
 routeAuth.get('/check-auth', authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user.id)
@@ -64,5 +68,30 @@ routeAuth.put(
   updateUserAdmin
 );
 
+routeAuth.get("/test-otp", async (req, res, next) => {
+    try {
+        const email="bcaproject57@gmail.com"
+        const otp = await createAndStoreOtp(email);
+//          await sendEmail(
+//             email,
+//             "MotoMini - Email Verification",
+//             `Your MotoMini verification OTP is ${otp}.
+
+// This OTP is valid for 5 minutes.
+
+// Please do not share this code with anyone.`
+//         );
+
+
+        res.json({
+            success: true,
+            message: "OTP stored successfully. Please check your email.",
+           
+        });
+
+    } catch (error) {
+        next(error);
+    }
+});
 
 export default routeAuth

@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import 'dotenv/config'
 import {createHash} from 'crypto'
+import { createAndStoreOtp } from "../utils/otpStorage.js";
 
 
 const hashToken = (token) => {
@@ -12,8 +13,14 @@ const hashToken = (token) => {
 };
 
 export const register=async ({name,email,password,role,isblocked})=>{
+
+    const existingUser=await User.findOne({email})
+    if(existingUser){
+        throw new Error("Email already registered");
+    }
     const hashedPassword=await bcrypt.hash(password,10)
-    const data=await User.create({name,email,password:hashedPassword})
+    const data=await User.create({name,email,password:hashedPassword,isEmailVerified:false})
+    await createAndStoreOtp(email)
     return data
 };
 export const loginUser = async ({ email, password }) => {

@@ -2,6 +2,7 @@ import { register,loginUser,getAllUsers,updateUser } from "../services/authServi
 import jwt from 'jsonwebtoken'
 import User from "../models/authModels.js";
 import {createHash}from 'crypto'
+import { verifyOtp } from "../utils/otpStorage.js";
 
 const hashToken = (token) => {
     return createHash('sha256')
@@ -14,7 +15,7 @@ export const authRegister=async (req,res,next)=>{
         const user=await register(req.body)
         console.log("Request Body:", user);
         res.status(201).json({
-            message:"Registration Successfull",
+            message:"Registration Successfull.Please verify your email using the OTP sent to you.",
             data:user
         })
 
@@ -187,4 +188,26 @@ export const updateUserAdmin = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+export const verifyEmailOtp = async (req, res, next) => {
+    try {
+        const { email, otp } = req.body;
+
+        if (!email || !otp) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and OTP are required"
+            });
+        }
+
+        await verifyOtp(email, otp);
+
+        return res.status(200).json({
+            success: true,
+            message: "Email verified successfully"
+        });
+
+    } catch (error) {
+        next(error);
+    }
 };

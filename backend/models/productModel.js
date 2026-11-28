@@ -65,19 +65,19 @@ productSchema.index({
     createdAt: -1
 });
 
-// 2. Filter products by brand
-productSchema.index({
-    isDeleted: 1,
-    brand: 1,
-    createdAt: -1
-});
+// // 2. Filter products by brand
+// productSchema.index({
+//     isDeleted: 1,
+//     brand: 1,
+//     createdAt: -1
+// });
 
-// 3. Filter products by category
-productSchema.index({
-    isDeleted: 1,
-    category: 1,
-    createdAt: -1
-});
+// // 3. Filter products by category
+// productSchema.index({
+//     isDeleted: 1,
+//     category: 1,
+//     createdAt: -1
+// });
 
 // 4. Filter products by price
 
